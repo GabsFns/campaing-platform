@@ -1,0 +1,35 @@
+# Usando imagem do Node.js
+FROM node:18-alpine
+
+# Definindo o diretório de trabalho
+WORKDIR /app
+
+# Copiando os arquivos do Next.js
+COPY ./apps/dashboard/package.json ./apps/dashboard/package-lock.json ./
+RUN npm install --legacy-peer-deps
+
+# Copiar os arquivos do projeto
+COPY ./apps/dashboard ./
+
+# Expondo a porta do Next.js
+EXPOSE 3000
+
+# Iniciando o Next.js
+CMD ["npm", "run", "dev"]
+FROM node:18-alpine
+
+# Definindo o diretório de trabalho
+WORKDIR /app
+
+# Copiando os arquivos do Next.js
+COPY ./apps/dashboard/package.json ./apps/dashboard/package-lock.json ./
+RUN npm install --legacy-peer-deps
+
+# Copiar os arquivos do projeto
+COPY ./apps/dashboard ./
+
+# Expondo a porta do Next.js
+EXPOSE 3000
+
+# Iniciando o Next.js
+CMD ["npm", "run", "dev"]

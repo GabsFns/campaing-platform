@@ -1,0 +1,6 @@
+# Ignore all node_modules anywhere
+node_modules/
+
+# Optional: ignore OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,18 @@
+v# Usando imagem do Node.js
+FROM node:18-alpine
+
+# Definindo o diretório de trabalho
+WORKDIR /app
+
+# Copiando os arquivos do NestJS
+COPY ./apps/api/package.json ./apps/api/package-lock.json ./
+RUN npm install --legacy-peer-deps
+
+# Copiar os arquivos do projeto
+COPY ./apps/api ./
+
+# Expondo a porta do NestJS
+EXPOSE 3001
+
+# Iniciando o NestJS
+CMD ["npm", "run", "start:dev"]
