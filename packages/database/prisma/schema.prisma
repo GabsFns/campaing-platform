@@ -11,3 +11,249 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Template {
+  id        String   @id @default(uuid())
+  name      String
+  content   String
+  channel   Channel
+  variables Json?
+  createdAt DateTime @default(now())
+
+  campaigns Campaign[]
+}
+
+model Audience {
+  id            String            @id @default(uuid())
+  name          String
+  totalContacts Int               @default(0)
+  createdAt     DateTime          @default(now())
+
+  contacts      AudienceContact[]
+  campaigns     Campaign[]
+}
+model AudienceContact {
+  id         String   @id @default(uuid())
+  audienceId String
+  sellerId   String?
+
+  name       String?
+  phone      String
+  email      String?
+
+  chatwootContactId String?
+  chatwootSourceId  String?
+
+  createdAt  DateTime @default(now())
+
+  audience   Audience @relation(fields: [audienceId], references: [id], onDelete: Cascade)
+  seller     Seller?  @relation(fields: [sellerId], references: [id])
+
+  messages   CampaignMessage[]
+
+  @@index([audienceId])
+  @@index([phone])
+  @@index([chatwootContactId])
+}
+
+model Seller {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String?
+
+  chatwootAgentId Int?
+
+  createdAt DateTime @default(now())
+
+  contacts  AudienceContact[]
+}
+
+model Campaign {
+  id          String   @id @default(uuid())
+  name        String
+  userId      String
+  templateId  String
+  audienceId  String
+  status      CampaignStatus @default(DRAFT)
+  scheduledAt DateTime?
+  startedAt   DateTime?
+  finishedAt  DateTime?
+  createdAt   DateTime @default(now())
+
+  user       User      @relation(fields: [userId], references: [id])
+  template   Template  @relation(fields: [templateId], references: [id])
+  audience   Audience  @relation(fields: [audienceId], references: [id])
+
+  messages   CampaignMessage[]
+
+  @@index([status])
+  @@index([scheduledAt])
+}
+
+model CampaignMessage {
+  id          String   @id @default(uuid())
+
+  campaignId  String
+  contactId   String
+  phone       String
+
+  batchId     String?
+
+  status      MessageStatus @default(PENDING)
+
+  error       String?
+
+  providerId  String?
+
+  chatwootConversationId Int?
+  chatwootInboxId        Int?
+
+  queuedAt   DateTime?
+  sentAt     DateTime?
+  deliveredAt DateTime?
+  readAt     DateTime?
+
+  retryCount Int @default(0)
+
+  createdAt  DateTime @default(now())
+
+  campaign Campaign        @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  contact  AudienceContact @relation(fields: [contactId], references: [id])
+  batch    CampaignBatch?  @relation(fields: [batchId], references: [id])
+
+  events MessageEvent[]
+
+  @@index([campaignId])
+  @@index([campaignId, status])
+  @@index([status])
+  @@index([phone])
+  @@index([providerId])
+  @@index([chatwootConversationId])
+}
+model CampaignBatch {
+  id         String   @id @default(uuid())
+
+  campaignId String
+
+  batchIndex Int
+  size       Int
+
+  status     BatchStatus @default(PENDING)
+
+  startedAt  DateTime?
+  finishedAt DateTime?
+
+  createdAt  DateTime @default(now())
+
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@index([campaignId])
+}
+
+model CampaignStats {
+  id String @id @default(uuid())
+
+  campaignId String @unique
+
+  totalMessages Int @default(0)
+  sentMessages Int @default(0)
+  deliveredMessages Int @default(0)
+  readMessages Int @default(0)
+  failedMessages Int @default(0)
+
+  updatedAt DateTime @updatedAt
+
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+}
+
+model ChatwootConversation {
+  id                   String  @id @default(uuid())
+
+  chatwootConversationId Int @unique
+  chatwootContactId      Int
+
+  inboxId                Int
+
+  contactId String?
+
+  lastMessageAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([chatwootContactId])
+}
+
+model MessageEvent {
+  id          String   @id @default(uuid())
+
+  messageId   String
+  type        MessageEventType
+
+  providerPayload Json?
+
+  createdAt   DateTime @default(now())
+
+  message CampaignMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@index([messageId])
+  @@index([type])
+}
+
+model WebhookEvent {
+  id        String   @id @default(uuid())
+
+  provider  WebhookProvider
+
+  eventType String
+
+  payload   Json
+
+  processed Boolean @default(false)
+
+  createdAt DateTime @default(now())
+}
+
+enum WebhookProvider {
+  META
+  CHATWOOT
+}
+
+enum MessageEventType {
+  QUEUED
+  SENT
+  DELIVERED
+  READ
+  FAILED
+  REPLIED
+}
+
+enum Channel {
+  WHATSAPP
+  MESSENGER
+  INSTAGRAM
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  RUNNING
+  PAUSED
+  FINISHED
+  FAILED
+}
+
+enum BatchStatus {
+  PENDING
+  RUNNING
+  FINISHED
+  FAILED
+}
+
+enum MessageStatus {
+  PENDING
+  QUEUED
+  SENT
+  FAILED
+  DELIVERED
+  READ
+}
