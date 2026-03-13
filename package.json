@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-    "workspaces": [
+  "workspaces": [
     "apps/*",
     "workers/*",
     "packages/*"
@@ -11,10 +11,14 @@
   "scripts": {
     "dev:dashboard": "npm run dev --workspace=dashboard",
     "dev:api": "npm run start:dev --workspace=api",
-    "dev:worker": "npm run dev --workspace=sender"
+    "dev:worker": "npm run dev --workspace=sender",
+    "dev": "npm run dev --workspaces"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "lucide-react": "^0.577.0"
+  }
 }
