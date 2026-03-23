@@ -1,8 +1,8 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
+# =========================
+# DEPENDENCIES
+# =========================
+node_modules/
+.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -10,32 +10,72 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
+# =========================
+# BUILD / DIST
+# =========================
+dist/
+build/
+.out/
+.next/
+out/
 
-# next.js
-/.next/
-/out/
+# =========================
+# NESTJS
+# =========================
+# (build padrão do Nest)
+dist/
 
-# production
-/build
+# =========================
+# TESTS
+# =========================
+coverage/
 
-# misc
-.DS_Store
-*.pem
+# =========================
+# PRISMA
+# =========================
+generated/prisma/
+node_modules/.prisma/
 
-# debug
+# =========================
+# ENV
+# =========================
+.env
+
+
+# =========================
+# LOGS
+# =========================
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# =========================
+# VERCEL
+# =========================
+.vercel/
 
-# vercel
-.vercel
-
-# typescript
+# =========================
+# TYPESCRIPT
+# =========================
 *.tsbuildinfo
 next-env.d.ts
+
+# =========================
+# OS / MISC
+# =========================
+.DS_Store
+Thumbs.db
+*.pem
+
+# =========================
+# EDITORS
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# OPTIONAL (se usar uploads)
+# =========================
+uploads/
+tmp/

@@ -5,20 +5,33 @@
   "main": "index.js",
   "workspaces": [
     "apps/*",
-    "workers/*",
-    "packages/*"
+    "workers/*"
   ],
   "scripts": {
     "dev:dashboard": "npm run dev --workspace=dashboard",
     "dev:api": "npm run start:dev --workspace=api",
     "dev:worker": "npm run dev --workspace=sender",
-    "dev": "npm run dev --workspaces"
+    "dev": "npm run dev --workspaces",
+    "nest:api": "cd apps/api && nest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "lucide-react": "^0.577.0"
+    "@prisma/adapter-pg": "^7.5.0",
+    "@prisma/client": "^7.5.0",
+    "dotenv": "^17.3.1",
+    "lucide-react": "^0.577.0",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^25.5.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "prettier": "^3.8.1"
   }
 }
