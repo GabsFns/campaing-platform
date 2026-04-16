@@ -8,7 +8,6 @@ export class WorkspaceController {
   @Post()
   create(@Body() dto: CreateWorkspaceDto) {
     return this.service.create(dto);
-    console.log(process.env.DATABASE_URL);
   }
 
   @Get()

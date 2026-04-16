@@ -10,10 +10,42 @@ export class UserRepository {
     return this.prisma.user.create({ data });
   }
 
-  async findAll() {
-    return this.prisma.user.findMany({
-      include: {
-        workspace: true,
+  async findAllByWorkspace(workspaceId: string) {
+    return await this.prisma.user.findMany({
+      where: { workspaceId },
+    });
+  }
+
+  async findByEmail(email: string) {
+    return this.prisma.user.findUnique({
+      where: { email },
+    });
+  }
+
+  async findById(id: string, workspaceId: string) {
+    return await this.prisma.user.findFirst({
+      where: {
+        id,
+        workspaceId,
+      },
+    });
+  }
+
+  async update(id: string, workspaceId: string, data: Prisma.UserUpdateInput) {
+    return await this.prisma.user.updateMany({
+      where: {
+        id,
+        workspaceId,
+      },
+      data,
+    });
+  }
+
+  async delete(id: string, workspaceId: string) {
+    return await this.prisma.user.deleteMany({
+      where: {
+        id,
+        workspaceId,
       },
     });
   }
