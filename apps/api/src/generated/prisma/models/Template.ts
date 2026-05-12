@@ -28,8 +28,12 @@ export type TemplateMinAggregateOutputType = {
   id: string | null
   workspaceId: string | null
   name: string | null
-  content: string | null
+  body: string | null
   channel: $Enums.Channel | null
+  category: $Enums.TemplateCategory | null
+  language: string | null
+  status: $Enums.TemplateStatus | null
+  metaTemplateId: string | null
   createdAt: Date | null
 }
 
@@ -37,8 +41,12 @@ export type TemplateMaxAggregateOutputType = {
   id: string | null
   workspaceId: string | null
   name: string | null
-  content: string | null
+  body: string | null
   channel: $Enums.Channel | null
+  category: $Enums.TemplateCategory | null
+  language: string | null
+  status: $Enums.TemplateStatus | null
+  metaTemplateId: string | null
   createdAt: Date | null
 }
 
@@ -46,9 +54,13 @@ export type TemplateCountAggregateOutputType = {
   id: number
   workspaceId: number
   name: number
-  content: number
+  body: number
   channel: number
+  category: number
+  language: number
   variables: number
+  status: number
+  metaTemplateId: number
   createdAt: number
   _all: number
 }
@@ -58,8 +70,12 @@ export type TemplateMinAggregateInputType = {
   id?: true
   workspaceId?: true
   name?: true
-  content?: true
+  body?: true
   channel?: true
+  category?: true
+  language?: true
+  status?: true
+  metaTemplateId?: true
   createdAt?: true
 }
 
@@ -67,8 +83,12 @@ export type TemplateMaxAggregateInputType = {
   id?: true
   workspaceId?: true
   name?: true
-  content?: true
+  body?: true
   channel?: true
+  category?: true
+  language?: true
+  status?: true
+  metaTemplateId?: true
   createdAt?: true
 }
 
@@ -76,9 +96,13 @@ export type TemplateCountAggregateInputType = {
   id?: true
   workspaceId?: true
   name?: true
-  content?: true
+  body?: true
   channel?: true
+  category?: true
+  language?: true
   variables?: true
+  status?: true
+  metaTemplateId?: true
   createdAt?: true
   _all?: true
 }
@@ -159,9 +183,13 @@ export type TemplateGroupByOutputType = {
   id: string
   workspaceId: string
   name: string
-  content: string
+  body: string
   channel: $Enums.Channel
+  category: $Enums.TemplateCategory
+  language: string
   variables: runtime.JsonValue | null
+  status: $Enums.TemplateStatus
+  metaTemplateId: string | null
   createdAt: Date
   _count: TemplateCountAggregateOutputType | null
   _min: TemplateMinAggregateOutputType | null
@@ -190,9 +218,13 @@ export type TemplateWhereInput = {
   id?: Prisma.StringFilter<"Template"> | string
   workspaceId?: Prisma.StringFilter<"Template"> | string
   name?: Prisma.StringFilter<"Template"> | string
-  content?: Prisma.StringFilter<"Template"> | string
+  body?: Prisma.StringFilter<"Template"> | string
   channel?: Prisma.EnumChannelFilter<"Template"> | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFilter<"Template"> | $Enums.TemplateCategory
+  language?: Prisma.StringFilter<"Template"> | string
   variables?: Prisma.JsonNullableFilter<"Template">
+  status?: Prisma.EnumTemplateStatusFilter<"Template"> | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.StringNullableFilter<"Template"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Template"> | Date | string
   campaigns?: Prisma.CampaignListRelationFilter
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
@@ -202,9 +234,13 @@ export type TemplateOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  content?: Prisma.SortOrder
+  body?: Prisma.SortOrder
   channel?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   variables?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
+  metaTemplateId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   campaigns?: Prisma.CampaignOrderByRelationAggregateInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
@@ -212,26 +248,35 @@ export type TemplateOrderByWithRelationInput = {
 
 export type TemplateWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  workspaceId_metaTemplateId?: Prisma.TemplateWorkspaceIdMetaTemplateIdCompoundUniqueInput
   AND?: Prisma.TemplateWhereInput | Prisma.TemplateWhereInput[]
   OR?: Prisma.TemplateWhereInput[]
   NOT?: Prisma.TemplateWhereInput | Prisma.TemplateWhereInput[]
   workspaceId?: Prisma.StringFilter<"Template"> | string
   name?: Prisma.StringFilter<"Template"> | string
-  content?: Prisma.StringFilter<"Template"> | string
+  body?: Prisma.StringFilter<"Template"> | string
   channel?: Prisma.EnumChannelFilter<"Template"> | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFilter<"Template"> | $Enums.TemplateCategory
+  language?: Prisma.StringFilter<"Template"> | string
   variables?: Prisma.JsonNullableFilter<"Template">
+  status?: Prisma.EnumTemplateStatusFilter<"Template"> | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.StringNullableFilter<"Template"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Template"> | Date | string
   campaigns?: Prisma.CampaignListRelationFilter
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
-}, "id">
+}, "id" | "workspaceId_metaTemplateId">
 
 export type TemplateOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  content?: Prisma.SortOrder
+  body?: Prisma.SortOrder
   channel?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   variables?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
+  metaTemplateId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.TemplateCountOrderByAggregateInput
   _max?: Prisma.TemplateMaxOrderByAggregateInput
@@ -245,18 +290,26 @@ export type TemplateScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Template"> | string
   workspaceId?: Prisma.StringWithAggregatesFilter<"Template"> | string
   name?: Prisma.StringWithAggregatesFilter<"Template"> | string
-  content?: Prisma.StringWithAggregatesFilter<"Template"> | string
+  body?: Prisma.StringWithAggregatesFilter<"Template"> | string
   channel?: Prisma.EnumChannelWithAggregatesFilter<"Template"> | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryWithAggregatesFilter<"Template"> | $Enums.TemplateCategory
+  language?: Prisma.StringWithAggregatesFilter<"Template"> | string
   variables?: Prisma.JsonNullableWithAggregatesFilter<"Template">
+  status?: Prisma.EnumTemplateStatusWithAggregatesFilter<"Template"> | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.StringNullableWithAggregatesFilter<"Template"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Template"> | Date | string
 }
 
 export type TemplateCreateInput = {
   id?: string
   name: string
-  content: string
+  body: string
   channel: $Enums.Channel
+  category: $Enums.TemplateCategory
+  language: string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.TemplateStatus
+  metaTemplateId?: string | null
   createdAt?: Date | string
   campaigns?: Prisma.CampaignCreateNestedManyWithoutTemplateInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutTemplatesInput
@@ -266,9 +319,13 @@ export type TemplateUncheckedCreateInput = {
   id?: string
   workspaceId: string
   name: string
-  content: string
+  body: string
   channel: $Enums.Channel
+  category: $Enums.TemplateCategory
+  language: string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.TemplateStatus
+  metaTemplateId?: string | null
   createdAt?: Date | string
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTemplateInput
 }
@@ -276,9 +333,13 @@ export type TemplateUncheckedCreateInput = {
 export type TemplateUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFieldUpdateOperationsInput | $Enums.TemplateCategory
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaigns?: Prisma.CampaignUpdateManyWithoutTemplateNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutTemplatesNestedInput
@@ -288,9 +349,13 @@ export type TemplateUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFieldUpdateOperationsInput | $Enums.TemplateCategory
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTemplateNestedInput
 }
@@ -299,18 +364,26 @@ export type TemplateCreateManyInput = {
   id?: string
   workspaceId: string
   name: string
-  content: string
+  body: string
   channel: $Enums.Channel
+  category: $Enums.TemplateCategory
+  language: string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.TemplateStatus
+  metaTemplateId?: string | null
   createdAt?: Date | string
 }
 
 export type TemplateUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFieldUpdateOperationsInput | $Enums.TemplateCategory
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -318,9 +391,13 @@ export type TemplateUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFieldUpdateOperationsInput | $Enums.TemplateCategory
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -334,13 +411,22 @@ export type TemplateOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type TemplateWorkspaceIdMetaTemplateIdCompoundUniqueInput = {
+  workspaceId: string
+  metaTemplateId: string
+}
+
 export type TemplateCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  content?: Prisma.SortOrder
+  body?: Prisma.SortOrder
   channel?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  language?: Prisma.SortOrder
   variables?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  metaTemplateId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -348,8 +434,12 @@ export type TemplateMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  content?: Prisma.SortOrder
+  body?: Prisma.SortOrder
   channel?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  language?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  metaTemplateId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -357,8 +447,12 @@ export type TemplateMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  content?: Prisma.SortOrder
+  body?: Prisma.SortOrder
   channel?: Prisma.SortOrder
+  category?: Prisma.SortOrder
+  language?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  metaTemplateId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -413,6 +507,18 @@ export type EnumChannelFieldUpdateOperationsInput = {
   set?: $Enums.Channel
 }
 
+export type EnumTemplateCategoryFieldUpdateOperationsInput = {
+  set?: $Enums.TemplateCategory
+}
+
+export type EnumTemplateStatusFieldUpdateOperationsInput = {
+  set?: $Enums.TemplateStatus
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type TemplateCreateNestedOneWithoutCampaignsInput = {
   create?: Prisma.XOR<Prisma.TemplateCreateWithoutCampaignsInput, Prisma.TemplateUncheckedCreateWithoutCampaignsInput>
   connectOrCreate?: Prisma.TemplateCreateOrConnectWithoutCampaignsInput
@@ -430,9 +536,13 @@ export type TemplateUpdateOneRequiredWithoutCampaignsNestedInput = {
 export type TemplateCreateWithoutWorkspaceInput = {
   id?: string
   name: string
-  content: string
+  body: string
   channel: $Enums.Channel
+  category: $Enums.TemplateCategory
+  language: string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.TemplateStatus
+  metaTemplateId?: string | null
   createdAt?: Date | string
   campaigns?: Prisma.CampaignCreateNestedManyWithoutTemplateInput
 }
@@ -440,9 +550,13 @@ export type TemplateCreateWithoutWorkspaceInput = {
 export type TemplateUncheckedCreateWithoutWorkspaceInput = {
   id?: string
   name: string
-  content: string
+  body: string
   channel: $Enums.Channel
+  category: $Enums.TemplateCategory
+  language: string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.TemplateStatus
+  metaTemplateId?: string | null
   createdAt?: Date | string
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutTemplateInput
 }
@@ -480,18 +594,26 @@ export type TemplateScalarWhereInput = {
   id?: Prisma.StringFilter<"Template"> | string
   workspaceId?: Prisma.StringFilter<"Template"> | string
   name?: Prisma.StringFilter<"Template"> | string
-  content?: Prisma.StringFilter<"Template"> | string
+  body?: Prisma.StringFilter<"Template"> | string
   channel?: Prisma.EnumChannelFilter<"Template"> | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFilter<"Template"> | $Enums.TemplateCategory
+  language?: Prisma.StringFilter<"Template"> | string
   variables?: Prisma.JsonNullableFilter<"Template">
+  status?: Prisma.EnumTemplateStatusFilter<"Template"> | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.StringNullableFilter<"Template"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Template"> | Date | string
 }
 
 export type TemplateCreateWithoutCampaignsInput = {
   id?: string
   name: string
-  content: string
+  body: string
   channel: $Enums.Channel
+  category: $Enums.TemplateCategory
+  language: string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.TemplateStatus
+  metaTemplateId?: string | null
   createdAt?: Date | string
   workspace: Prisma.WorkspaceCreateNestedOneWithoutTemplatesInput
 }
@@ -500,9 +622,13 @@ export type TemplateUncheckedCreateWithoutCampaignsInput = {
   id?: string
   workspaceId: string
   name: string
-  content: string
+  body: string
   channel: $Enums.Channel
+  category: $Enums.TemplateCategory
+  language: string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.TemplateStatus
+  metaTemplateId?: string | null
   createdAt?: Date | string
 }
 
@@ -525,9 +651,13 @@ export type TemplateUpdateToOneWithWhereWithoutCampaignsInput = {
 export type TemplateUpdateWithoutCampaignsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFieldUpdateOperationsInput | $Enums.TemplateCategory
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutTemplatesNestedInput
 }
@@ -536,27 +666,39 @@ export type TemplateUncheckedUpdateWithoutCampaignsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFieldUpdateOperationsInput | $Enums.TemplateCategory
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TemplateCreateManyWorkspaceInput = {
   id?: string
   name: string
-  content: string
+  body: string
   channel: $Enums.Channel
+  category: $Enums.TemplateCategory
+  language: string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: $Enums.TemplateStatus
+  metaTemplateId?: string | null
   createdAt?: Date | string
 }
 
 export type TemplateUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFieldUpdateOperationsInput | $Enums.TemplateCategory
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaigns?: Prisma.CampaignUpdateManyWithoutTemplateNestedInput
 }
@@ -564,9 +706,13 @@ export type TemplateUpdateWithoutWorkspaceInput = {
 export type TemplateUncheckedUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFieldUpdateOperationsInput | $Enums.TemplateCategory
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutTemplateNestedInput
 }
@@ -574,9 +720,13 @@ export type TemplateUncheckedUpdateWithoutWorkspaceInput = {
 export type TemplateUncheckedUpdateManyWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  content?: Prisma.StringFieldUpdateOperationsInput | string
+  body?: Prisma.StringFieldUpdateOperationsInput | string
   channel?: Prisma.EnumChannelFieldUpdateOperationsInput | $Enums.Channel
+  category?: Prisma.EnumTemplateCategoryFieldUpdateOperationsInput | $Enums.TemplateCategory
+  language?: Prisma.StringFieldUpdateOperationsInput | string
   variables?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  metaTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -615,9 +765,13 @@ export type TemplateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   workspaceId?: boolean
   name?: boolean
-  content?: boolean
+  body?: boolean
   channel?: boolean
+  category?: boolean
+  language?: boolean
   variables?: boolean
+  status?: boolean
+  metaTemplateId?: boolean
   createdAt?: boolean
   campaigns?: boolean | Prisma.Template$campaignsArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
@@ -628,9 +782,13 @@ export type TemplateSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   workspaceId?: boolean
   name?: boolean
-  content?: boolean
+  body?: boolean
   channel?: boolean
+  category?: boolean
+  language?: boolean
   variables?: boolean
+  status?: boolean
+  metaTemplateId?: boolean
   createdAt?: boolean
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["template"]>
@@ -639,9 +797,13 @@ export type TemplateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   workspaceId?: boolean
   name?: boolean
-  content?: boolean
+  body?: boolean
   channel?: boolean
+  category?: boolean
+  language?: boolean
   variables?: boolean
+  status?: boolean
+  metaTemplateId?: boolean
   createdAt?: boolean
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["template"]>
@@ -650,13 +812,17 @@ export type TemplateSelectScalar = {
   id?: boolean
   workspaceId?: boolean
   name?: boolean
-  content?: boolean
+  body?: boolean
   channel?: boolean
+  category?: boolean
+  language?: boolean
   variables?: boolean
+  status?: boolean
+  metaTemplateId?: boolean
   createdAt?: boolean
 }
 
-export type TemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "name" | "content" | "channel" | "variables" | "createdAt", ExtArgs["result"]["template"]>
+export type TemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "name" | "body" | "channel" | "category" | "language" | "variables" | "status" | "metaTemplateId" | "createdAt", ExtArgs["result"]["template"]>
 export type TemplateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaigns?: boolean | Prisma.Template$campaignsArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
@@ -679,9 +845,13 @@ export type $TemplatePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: string
     workspaceId: string
     name: string
-    content: string
+    body: string
     channel: $Enums.Channel
+    category: $Enums.TemplateCategory
+    language: string
     variables: runtime.JsonValue | null
+    status: $Enums.TemplateStatus
+    metaTemplateId: string | null
     createdAt: Date
   }, ExtArgs["result"]["template"]>
   composites: {}
@@ -1111,9 +1281,13 @@ export interface TemplateFieldRefs {
   readonly id: Prisma.FieldRef<"Template", 'String'>
   readonly workspaceId: Prisma.FieldRef<"Template", 'String'>
   readonly name: Prisma.FieldRef<"Template", 'String'>
-  readonly content: Prisma.FieldRef<"Template", 'String'>
+  readonly body: Prisma.FieldRef<"Template", 'String'>
   readonly channel: Prisma.FieldRef<"Template", 'Channel'>
+  readonly category: Prisma.FieldRef<"Template", 'TemplateCategory'>
+  readonly language: Prisma.FieldRef<"Template", 'String'>
   readonly variables: Prisma.FieldRef<"Template", 'Json'>
+  readonly status: Prisma.FieldRef<"Template", 'TemplateStatus'>
+  readonly metaTemplateId: Prisma.FieldRef<"Template", 'String'>
   readonly createdAt: Prisma.FieldRef<"Template", 'DateTime'>
 }
     

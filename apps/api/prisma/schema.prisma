@@ -13,7 +13,8 @@ model Workspace {
   name                 String
   createdAt            DateTime               @default(now())
   audiences            Audience[]
-  contacts             AudienceContact[]
+  seller               Seller[]
+  contacts             Contact[]
   campaigns            Campaign[]
   messages             CampaignMessage[]
   chatwootConversation ChatwootConversation[]
@@ -21,6 +22,8 @@ model Workspace {
   templates            Template[]
   users                User[]
   webHooks             WebhookEvent[]
+  MetaConnection       MetaConnection[]
+  ChatwootConnection   ChatwootConnection[]
 }
 
 model User {
@@ -34,60 +37,107 @@ model User {
 }
 
 model Template {
-  id          String     @id @default(uuid())
-  workspaceId String
-  name        String
-  content     String
-  channel     Channel
-  variables   Json?
-  createdAt   DateTime   @default(now())
-  campaigns   Campaign[]
-  workspace   Workspace  @relation(fields: [workspaceId], references: [id])
+  id             String         @id @default(uuid())
+  workspaceId     String
+
+  name           String
+  body           String
+  channel        Channel
+  category       TemplateCategory
+  language       String
+
+  variables      Json?
+  status         TemplateStatus @default(PENDING)
+  metaTemplateId String?
+
+  createdAt      DateTime @default(now())
+
+  campaigns      Campaign[]
+  workspace      Workspace @relation(fields: [workspaceId], references: [id])
+
+  @@unique([workspaceId, metaTemplateId])
+}
+
+model Contact {
+  id                String   @id @default(uuid())
+  workspaceId       String
+
+  name              String?
+  phoneRaw          String
+  phoneNormalized   String
+  email             String?
+
+  hasWhatsapp       Boolean  @default(true)
+  isBlocked         Boolean  @default(false)
+
+  chatwootContactId String?
+  chatwootSourceId  String?
+
+  createdAt         DateTime @default(now())
+
+  workspace         Workspace @relation(fields: [workspaceId], references: [id])
+  audiences         AudienceContact[]
+  messages          CampaignMessage[]
+  chatwootMessage   ChatwootConversation[]
+
+  @@unique([workspaceId, phoneNormalized])
+  @@index([phoneNormalized])
+  @@index([workspaceId])
 }
 
 model Audience {
   id            String            @id @default(uuid())
   workspaceId   String
+
   name          String
   totalContacts Int               @default(0)
   createdAt     DateTime          @default(now())
+
   workspace     Workspace         @relation(fields: [workspaceId], references: [id])
   contacts      AudienceContact[]
   campaigns     Campaign[]
+
+  @@index([workspaceId])
 }
 
 model AudienceContact {
-  id                String            @id @default(uuid())
-  audienceId        String
-  sellerId          String?
-  name              String?
-  phoneRaw          String
-  phoneNormalized   String
-  email             String?
-  hasWhatsapp       Boolean           @default(true)
-  isBlocked         Boolean           @default(false)
-  chatwootContactId String?
-  chatwootSourceId  String?
-  workspaceId       String
-  createdAt         DateTime          @default(now())
-  audience          Audience          @relation(fields: [audienceId], references: [id], onDelete: Cascade)
-  seller            Seller?           @relation(fields: [sellerId], references: [id])
-  workspace         Workspace         @relation(fields: [workspaceId], references: [id])
-  messages          CampaignMessage[]
+  id          String   @id @default(uuid())
 
-  @@unique([workspaceId, phoneNormalized])
-  @@index([audienceId])
-  @@index([phoneNormalized])
-  @@index([chatwootContactId])
+  audienceId  String
+  contactId   String
+  sellerId    String?
+
+  createdAt   DateTime @default(now())
+
+  audience    Audience @relation(fields: [audienceId], references: [id], onDelete: Cascade)
+  contact     Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  seller      Seller?  @relation(fields: [sellerId], references: [id])
+
+  @@unique([audienceId, contactId])
+  @@index([contactId])
+  @@index([sellerId])
 }
 
 model Seller {
-  id              String            @id @default(uuid())
-  name            String
-  phone           String?
-  chatwootAgentId Int?
+  id                String            @id @default(uuid())
+  workspaceId       String
+  name              String
+  phoneRaw          String?
+  phoneNormalized   String?
+
+
+  chatwootAgentId   Int?
+  chatwootAccountId Int?
+
   createdAt       DateTime          @default(now())
-  contacts        AudienceContact[]
+
+  workspace       Workspace @relation(fields: [workspaceId], references: [id])
+  audiences       AudienceContact[]
+
+
+  @@unique([workspaceId, chatwootAgentId])
+  @@index([phoneNormalized])
+
 }
 
 model Campaign {
@@ -97,14 +147,18 @@ model Campaign {
   userId            String
   templateId        String
   audienceId        String
+
   status            CampaignStatus    @default(DRAFT)
   scheduledAt       DateTime?
   startedAt         DateTime?
   finishedAt        DateTime?
   totalContacts     Int?
   processedContacts Int?
+
   createdAt         DateTime          @default(now())
+
   audience          Audience          @relation(fields: [audienceId], references: [id])
+  
   template          Template          @relation(fields: [templateId], references: [id])
   user              User              @relation(fields: [userId], references: [id])
   workspace         Workspace         @relation(fields: [workspaceId], references: [id])
@@ -123,23 +177,28 @@ model CampaignMessage {
   phoneNormalized        String
   batchId                String?
   senderNumberId         String?
+  workspaceId            String
+
   status                 MessageStatus     @default(PENDING)
   error                  String?
+
   providerId             String?
   chatwootConversationId Int?
   chatwootInboxId        Int?
+
   lastEventType          MessageEventType?
   queuedAt               DateTime?
   sentAt                 DateTime?
   deliveredAt            DateTime?
   readAt                 DateTime?
   lockedAt               DateTime?
-  workspaceId            String
+  
   retryCount             Int               @default(0)
   createdAt              DateTime          @default(now())
+
   batch                  CampaignBatch?    @relation(fields: [batchId], references: [id])
   campaign               Campaign          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
-  contact                AudienceContact   @relation(fields: [contactId], references: [id])
+  contact                Contact           @relation(fields: [contactId], references: [id])
   senderNumber           SenderNumber?     @relation(fields: [senderNumberId], references: [id])
   workspace              Workspace         @relation(fields: [workspaceId], references: [id])
   events                 MessageEvent[]
@@ -155,12 +214,16 @@ model CampaignMessage {
 model CampaignBatch {
   id         String            @id @default(uuid())
   campaignId String
+
   batchIndex Int
   size       Int
   status     BatchStatus       @default(PENDING)
+
   startedAt  DateTime?
   finishedAt DateTime?
+
   createdAt  DateTime          @default(now())
+
   campaign   Campaign          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
   messages   CampaignMessage[]
 
@@ -170,13 +233,29 @@ model CampaignBatch {
 model CampaignStats {
   id                String   @id @default(uuid())
   campaignId        String   @unique
+
   totalMessages     Int      @default(0)
   sentMessages      Int      @default(0)
   deliveredMessages Int      @default(0)
   readMessages      Int      @default(0)
   failedMessages    Int      @default(0)
+
   updatedAt         DateTime @updatedAt
+
   campaign          Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+}
+
+model ChatwootConnection {
+  id                String   @id @default(uuid())
+
+  workspaceId       String   @unique
+  baseUrl           String
+  apiToken          String
+  accountId         Int
+
+  createdAt         DateTime @default(now())
+
+  workspace         Workspace @relation(fields: [workspaceId], references: [id])
 }
 
 model ChatwootConversation {
@@ -186,9 +265,13 @@ model ChatwootConversation {
   inboxId                Int
   workspaceId            String
   contactId              String?
+
   lastMessageAt          DateTime?
+
   createdAt              DateTime  @default(now())
+
   workspace              Workspace @relation(fields: [workspaceId], references: [id])
+  contact                Contact? @relation(fields: [contactId], references: [id])
 
   @@index([chatwootContactId])
 }
@@ -196,9 +279,12 @@ model ChatwootConversation {
 model MessageEvent {
   id              String           @id @default(uuid())
   messageId       String
+
   type            MessageEventType
   providerPayload Json?
+
   createdAt       DateTime         @default(now())
+
   message         CampaignMessage  @relation(fields: [messageId], references: [id], onDelete: Cascade)
 
   @@index([messageId])
@@ -215,6 +301,7 @@ model SenderNumber {
   lockedAt     DateTime?
   createdAt    DateTime          @default(now())
   messages     CampaignMessage[]
+
   workspace    Workspace         @relation(fields: [workspaceId], references: [id])
 }
 
@@ -228,6 +315,37 @@ model WebhookEvent {
   processed   Boolean         @default(false)
   createdAt   DateTime        @default(now())
   workspace   Workspace       @relation(fields: [workspaceId], references: [id])
+}
+
+model MetaConnection {
+  id              String   @id @default(uuid())
+  workspaceId     String   @unique
+
+  accessToken     String
+  businessId      String
+  wabaId          String
+  phoneNumberId   String
+  phoneNumber     String?
+  displayName     String?
+
+  webhookToken    String?
+  webhookUrl      String?
+
+  createdAt       DateTime @default(now())
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+}
+
+enum TemplateCategory {
+  MARKETING
+  UTILITY
+  AUTHENTICATION
+}
+
+enum TemplateStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }
 
 enum WebhookProvider {

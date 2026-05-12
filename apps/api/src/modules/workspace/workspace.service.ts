@@ -1,16 +1,23 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+
 import { WorkspaceRepository } from './workspace.repository.js';
-import { CreateWorkspaceDto } from './create-workspace.dto.js';
+import { UpdateWorkspaceDto } from './dto/create-workspace.dto.js';
 
 @Injectable()
 export class WorkspaceService {
   constructor(private readonly repository: WorkspaceRepository) {}
 
-  create(dto: CreateWorkspaceDto) {
-    return this.repository.create(dto);
+  async findById(id: string) {
+    const workspace = await this.repository.findById(id);
+
+    if (!workspace) {
+      throw new NotFoundException('Workspace not found');
+    }
+
+    return workspace;
   }
 
-  findAll() {
-    return this.repository.findAll();
+  async update(id: string, dto: UpdateWorkspaceDto) {
+    return this.repository.update(id, dto);
   }
 }

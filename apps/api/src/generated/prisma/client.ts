@@ -55,6 +55,11 @@ export type User = Prisma.UserModel
  */
 export type Template = Prisma.TemplateModel
 /**
+ * Model Contact
+ * 
+ */
+export type Contact = Prisma.ContactModel
+/**
  * Model Audience
  * 
  */
@@ -90,6 +95,11 @@ export type CampaignBatch = Prisma.CampaignBatchModel
  */
 export type CampaignStats = Prisma.CampaignStatsModel
 /**
+ * Model ChatwootConnection
+ * 
+ */
+export type ChatwootConnection = Prisma.ChatwootConnectionModel
+/**
  * Model ChatwootConversation
  * 
  */
@@ -109,3 +119,8 @@ export type SenderNumber = Prisma.SenderNumberModel
  * 
  */
 export type WebhookEvent = Prisma.WebhookEventModel
+/**
+ * Model MetaConnection
+ * 
+ */
+export type MetaConnection = Prisma.MetaConnectionModel

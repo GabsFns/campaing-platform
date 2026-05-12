@@ -249,6 +249,7 @@ export type ChatwootConversationWhereInput = {
   lastMessageAt?: Prisma.DateTimeNullableFilter<"ChatwootConversation"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ChatwootConversation"> | Date | string
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  contact?: Prisma.XOR<Prisma.ContactNullableScalarRelationFilter, Prisma.ContactWhereInput> | null
 }
 
 export type ChatwootConversationOrderByWithRelationInput = {
@@ -261,6 +262,7 @@ export type ChatwootConversationOrderByWithRelationInput = {
   lastMessageAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
+  contact?: Prisma.ContactOrderByWithRelationInput
 }
 
 export type ChatwootConversationWhereUniqueInput = Prisma.AtLeast<{
@@ -276,6 +278,7 @@ export type ChatwootConversationWhereUniqueInput = Prisma.AtLeast<{
   lastMessageAt?: Prisma.DateTimeNullableFilter<"ChatwootConversation"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ChatwootConversation"> | Date | string
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  contact?: Prisma.XOR<Prisma.ContactNullableScalarRelationFilter, Prisma.ContactWhereInput> | null
 }, "id" | "chatwootConversationId">
 
 export type ChatwootConversationOrderByWithAggregationInput = {
@@ -313,10 +316,10 @@ export type ChatwootConversationCreateInput = {
   chatwootConversationId: number
   chatwootContactId: number
   inboxId: number
-  contactId?: string | null
   lastMessageAt?: Date | string | null
   createdAt?: Date | string
   workspace: Prisma.WorkspaceCreateNestedOneWithoutChatwootConversationInput
+  contact?: Prisma.ContactCreateNestedOneWithoutChatwootMessageInput
 }
 
 export type ChatwootConversationUncheckedCreateInput = {
@@ -335,10 +338,10 @@ export type ChatwootConversationUpdateInput = {
   chatwootConversationId?: Prisma.IntFieldUpdateOperationsInput | number
   chatwootContactId?: Prisma.IntFieldUpdateOperationsInput | number
   inboxId?: Prisma.IntFieldUpdateOperationsInput | number
-  contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutChatwootConversationNestedInput
+  contact?: Prisma.ContactUpdateOneWithoutChatwootMessageNestedInput
 }
 
 export type ChatwootConversationUncheckedUpdateInput = {
@@ -368,7 +371,6 @@ export type ChatwootConversationUpdateManyMutationInput = {
   chatwootConversationId?: Prisma.IntFieldUpdateOperationsInput | number
   chatwootContactId?: Prisma.IntFieldUpdateOperationsInput | number
   inboxId?: Prisma.IntFieldUpdateOperationsInput | number
-  contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -481,14 +483,56 @@ export type ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput =
   deleteMany?: Prisma.ChatwootConversationScalarWhereInput | Prisma.ChatwootConversationScalarWhereInput[]
 }
 
+export type ChatwootConversationCreateNestedManyWithoutContactInput = {
+  create?: Prisma.XOR<Prisma.ChatwootConversationCreateWithoutContactInput, Prisma.ChatwootConversationUncheckedCreateWithoutContactInput> | Prisma.ChatwootConversationCreateWithoutContactInput[] | Prisma.ChatwootConversationUncheckedCreateWithoutContactInput[]
+  connectOrCreate?: Prisma.ChatwootConversationCreateOrConnectWithoutContactInput | Prisma.ChatwootConversationCreateOrConnectWithoutContactInput[]
+  createMany?: Prisma.ChatwootConversationCreateManyContactInputEnvelope
+  connect?: Prisma.ChatwootConversationWhereUniqueInput | Prisma.ChatwootConversationWhereUniqueInput[]
+}
+
+export type ChatwootConversationUncheckedCreateNestedManyWithoutContactInput = {
+  create?: Prisma.XOR<Prisma.ChatwootConversationCreateWithoutContactInput, Prisma.ChatwootConversationUncheckedCreateWithoutContactInput> | Prisma.ChatwootConversationCreateWithoutContactInput[] | Prisma.ChatwootConversationUncheckedCreateWithoutContactInput[]
+  connectOrCreate?: Prisma.ChatwootConversationCreateOrConnectWithoutContactInput | Prisma.ChatwootConversationCreateOrConnectWithoutContactInput[]
+  createMany?: Prisma.ChatwootConversationCreateManyContactInputEnvelope
+  connect?: Prisma.ChatwootConversationWhereUniqueInput | Prisma.ChatwootConversationWhereUniqueInput[]
+}
+
+export type ChatwootConversationUpdateManyWithoutContactNestedInput = {
+  create?: Prisma.XOR<Prisma.ChatwootConversationCreateWithoutContactInput, Prisma.ChatwootConversationUncheckedCreateWithoutContactInput> | Prisma.ChatwootConversationCreateWithoutContactInput[] | Prisma.ChatwootConversationUncheckedCreateWithoutContactInput[]
+  connectOrCreate?: Prisma.ChatwootConversationCreateOrConnectWithoutContactInput | Prisma.ChatwootConversationCreateOrConnectWithoutContactInput[]
+  upsert?: Prisma.ChatwootConversationUpsertWithWhereUniqueWithoutContactInput | Prisma.ChatwootConversationUpsertWithWhereUniqueWithoutContactInput[]
+  createMany?: Prisma.ChatwootConversationCreateManyContactInputEnvelope
+  set?: Prisma.ChatwootConversationWhereUniqueInput | Prisma.ChatwootConversationWhereUniqueInput[]
+  disconnect?: Prisma.ChatwootConversationWhereUniqueInput | Prisma.ChatwootConversationWhereUniqueInput[]
+  delete?: Prisma.ChatwootConversationWhereUniqueInput | Prisma.ChatwootConversationWhereUniqueInput[]
+  connect?: Prisma.ChatwootConversationWhereUniqueInput | Prisma.ChatwootConversationWhereUniqueInput[]
+  update?: Prisma.ChatwootConversationUpdateWithWhereUniqueWithoutContactInput | Prisma.ChatwootConversationUpdateWithWhereUniqueWithoutContactInput[]
+  updateMany?: Prisma.ChatwootConversationUpdateManyWithWhereWithoutContactInput | Prisma.ChatwootConversationUpdateManyWithWhereWithoutContactInput[]
+  deleteMany?: Prisma.ChatwootConversationScalarWhereInput | Prisma.ChatwootConversationScalarWhereInput[]
+}
+
+export type ChatwootConversationUncheckedUpdateManyWithoutContactNestedInput = {
+  create?: Prisma.XOR<Prisma.ChatwootConversationCreateWithoutContactInput, Prisma.ChatwootConversationUncheckedCreateWithoutContactInput> | Prisma.ChatwootConversationCreateWithoutContactInput[] | Prisma.ChatwootConversationUncheckedCreateWithoutContactInput[]
+  connectOrCreate?: Prisma.ChatwootConversationCreateOrConnectWithoutContactInput | Prisma.ChatwootConversationCreateOrConnectWithoutContactInput[]
+  upsert?: Prisma.ChatwootConversationUpsertWithWhereUniqueWithoutContactInput | Prisma.ChatwootConversationUpsertWithWhereUniqueWithoutContactInput[]
+  createMany?: Prisma.ChatwootConversationCreateManyContactInputEnvelope
+  set?: Prisma.ChatwootConversationWhereUniqueInput | Prisma.ChatwootConversationWhereUniqueInput[]
+  disconnect?: Prisma.ChatwootConversationWhereUniqueInput | Prisma.ChatwootConversationWhereUniqueInput[]
+  delete?: Prisma.ChatwootConversationWhereUniqueInput | Prisma.ChatwootConversationWhereUniqueInput[]
+  connect?: Prisma.ChatwootConversationWhereUniqueInput | Prisma.ChatwootConversationWhereUniqueInput[]
+  update?: Prisma.ChatwootConversationUpdateWithWhereUniqueWithoutContactInput | Prisma.ChatwootConversationUpdateWithWhereUniqueWithoutContactInput[]
+  updateMany?: Prisma.ChatwootConversationUpdateManyWithWhereWithoutContactInput | Prisma.ChatwootConversationUpdateManyWithWhereWithoutContactInput[]
+  deleteMany?: Prisma.ChatwootConversationScalarWhereInput | Prisma.ChatwootConversationScalarWhereInput[]
+}
+
 export type ChatwootConversationCreateWithoutWorkspaceInput = {
   id?: string
   chatwootConversationId: number
   chatwootContactId: number
   inboxId: number
-  contactId?: string | null
   lastMessageAt?: Date | string | null
   createdAt?: Date | string
+  contact?: Prisma.ContactCreateNestedOneWithoutChatwootMessageInput
 }
 
 export type ChatwootConversationUncheckedCreateWithoutWorkspaceInput = {
@@ -541,6 +585,52 @@ export type ChatwootConversationScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"ChatwootConversation"> | Date | string
 }
 
+export type ChatwootConversationCreateWithoutContactInput = {
+  id?: string
+  chatwootConversationId: number
+  chatwootContactId: number
+  inboxId: number
+  lastMessageAt?: Date | string | null
+  createdAt?: Date | string
+  workspace: Prisma.WorkspaceCreateNestedOneWithoutChatwootConversationInput
+}
+
+export type ChatwootConversationUncheckedCreateWithoutContactInput = {
+  id?: string
+  chatwootConversationId: number
+  chatwootContactId: number
+  inboxId: number
+  workspaceId: string
+  lastMessageAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type ChatwootConversationCreateOrConnectWithoutContactInput = {
+  where: Prisma.ChatwootConversationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ChatwootConversationCreateWithoutContactInput, Prisma.ChatwootConversationUncheckedCreateWithoutContactInput>
+}
+
+export type ChatwootConversationCreateManyContactInputEnvelope = {
+  data: Prisma.ChatwootConversationCreateManyContactInput | Prisma.ChatwootConversationCreateManyContactInput[]
+  skipDuplicates?: boolean
+}
+
+export type ChatwootConversationUpsertWithWhereUniqueWithoutContactInput = {
+  where: Prisma.ChatwootConversationWhereUniqueInput
+  update: Prisma.XOR<Prisma.ChatwootConversationUpdateWithoutContactInput, Prisma.ChatwootConversationUncheckedUpdateWithoutContactInput>
+  create: Prisma.XOR<Prisma.ChatwootConversationCreateWithoutContactInput, Prisma.ChatwootConversationUncheckedCreateWithoutContactInput>
+}
+
+export type ChatwootConversationUpdateWithWhereUniqueWithoutContactInput = {
+  where: Prisma.ChatwootConversationWhereUniqueInput
+  data: Prisma.XOR<Prisma.ChatwootConversationUpdateWithoutContactInput, Prisma.ChatwootConversationUncheckedUpdateWithoutContactInput>
+}
+
+export type ChatwootConversationUpdateManyWithWhereWithoutContactInput = {
+  where: Prisma.ChatwootConversationScalarWhereInput
+  data: Prisma.XOR<Prisma.ChatwootConversationUpdateManyMutationInput, Prisma.ChatwootConversationUncheckedUpdateManyWithoutContactInput>
+}
+
 export type ChatwootConversationCreateManyWorkspaceInput = {
   id?: string
   chatwootConversationId: number
@@ -556,9 +646,9 @@ export type ChatwootConversationUpdateWithoutWorkspaceInput = {
   chatwootConversationId?: Prisma.IntFieldUpdateOperationsInput | number
   chatwootContactId?: Prisma.IntFieldUpdateOperationsInput | number
   inboxId?: Prisma.IntFieldUpdateOperationsInput | number
-  contactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastMessageAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contact?: Prisma.ContactUpdateOneWithoutChatwootMessageNestedInput
 }
 
 export type ChatwootConversationUncheckedUpdateWithoutWorkspaceInput = {
@@ -581,6 +671,46 @@ export type ChatwootConversationUncheckedUpdateManyWithoutWorkspaceInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type ChatwootConversationCreateManyContactInput = {
+  id?: string
+  chatwootConversationId: number
+  chatwootContactId: number
+  inboxId: number
+  workspaceId: string
+  lastMessageAt?: Date | string | null
+  createdAt?: Date | string
+}
+
+export type ChatwootConversationUpdateWithoutContactInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  chatwootConversationId?: Prisma.IntFieldUpdateOperationsInput | number
+  chatwootContactId?: Prisma.IntFieldUpdateOperationsInput | number
+  inboxId?: Prisma.IntFieldUpdateOperationsInput | number
+  lastMessageAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutChatwootConversationNestedInput
+}
+
+export type ChatwootConversationUncheckedUpdateWithoutContactInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  chatwootConversationId?: Prisma.IntFieldUpdateOperationsInput | number
+  chatwootContactId?: Prisma.IntFieldUpdateOperationsInput | number
+  inboxId?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastMessageAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ChatwootConversationUncheckedUpdateManyWithoutContactInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  chatwootConversationId?: Prisma.IntFieldUpdateOperationsInput | number
+  chatwootContactId?: Prisma.IntFieldUpdateOperationsInput | number
+  inboxId?: Prisma.IntFieldUpdateOperationsInput | number
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  lastMessageAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 
 
 export type ChatwootConversationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -593,6 +723,7 @@ export type ChatwootConversationSelect<ExtArgs extends runtime.Types.Extensions.
   lastMessageAt?: boolean
   createdAt?: boolean
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ChatwootConversation$contactArgs<ExtArgs>
 }, ExtArgs["result"]["chatwootConversation"]>
 
 export type ChatwootConversationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -605,6 +736,7 @@ export type ChatwootConversationSelectCreateManyAndReturn<ExtArgs extends runtim
   lastMessageAt?: boolean
   createdAt?: boolean
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ChatwootConversation$contactArgs<ExtArgs>
 }, ExtArgs["result"]["chatwootConversation"]>
 
 export type ChatwootConversationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -617,6 +749,7 @@ export type ChatwootConversationSelectUpdateManyAndReturn<ExtArgs extends runtim
   lastMessageAt?: boolean
   createdAt?: boolean
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ChatwootConversation$contactArgs<ExtArgs>
 }, ExtArgs["result"]["chatwootConversation"]>
 
 export type ChatwootConversationSelectScalar = {
@@ -633,18 +766,22 @@ export type ChatwootConversationSelectScalar = {
 export type ChatwootConversationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "chatwootConversationId" | "chatwootContactId" | "inboxId" | "workspaceId" | "contactId" | "lastMessageAt" | "createdAt", ExtArgs["result"]["chatwootConversation"]>
 export type ChatwootConversationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ChatwootConversation$contactArgs<ExtArgs>
 }
 export type ChatwootConversationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ChatwootConversation$contactArgs<ExtArgs>
 }
 export type ChatwootConversationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ChatwootConversation$contactArgs<ExtArgs>
 }
 
 export type $ChatwootConversationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ChatwootConversation"
   objects: {
     workspace: Prisma.$WorkspacePayload<ExtArgs>
+    contact: Prisma.$ContactPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1050,6 +1187,7 @@ readonly fields: ChatwootConversationFieldRefs;
 export interface Prisma__ChatwootConversationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  contact<T extends Prisma.ChatwootConversation$contactArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ChatwootConversation$contactArgs<ExtArgs>>): Prisma.Prisma__ContactClient<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1485,6 +1623,25 @@ export type ChatwootConversationDeleteManyArgs<ExtArgs extends runtime.Types.Ext
    * Limit how many ChatwootConversations to delete.
    */
   limit?: number
+}
+
+/**
+ * ChatwootConversation.contact
+ */
+export type ChatwootConversation$contactArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Contact
+   */
+  select?: Prisma.ContactSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Contact
+   */
+  omit?: Prisma.ContactOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContactInclude<ExtArgs> | null
+  where?: Prisma.ContactWhereInput
 }
 
 /**

@@ -167,7 +167,8 @@ export type WorkspaceWhereInput = {
   name?: Prisma.StringFilter<"Workspace"> | string
   createdAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   audiences?: Prisma.AudienceListRelationFilter
-  contacts?: Prisma.AudienceContactListRelationFilter
+  seller?: Prisma.SellerListRelationFilter
+  contacts?: Prisma.ContactListRelationFilter
   campaigns?: Prisma.CampaignListRelationFilter
   messages?: Prisma.CampaignMessageListRelationFilter
   chatwootConversation?: Prisma.ChatwootConversationListRelationFilter
@@ -175,6 +176,8 @@ export type WorkspaceWhereInput = {
   templates?: Prisma.TemplateListRelationFilter
   users?: Prisma.UserListRelationFilter
   webHooks?: Prisma.WebhookEventListRelationFilter
+  MetaConnection?: Prisma.MetaConnectionListRelationFilter
+  ChatwootConnection?: Prisma.ChatwootConnectionListRelationFilter
 }
 
 export type WorkspaceOrderByWithRelationInput = {
@@ -182,7 +185,8 @@ export type WorkspaceOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   audiences?: Prisma.AudienceOrderByRelationAggregateInput
-  contacts?: Prisma.AudienceContactOrderByRelationAggregateInput
+  seller?: Prisma.SellerOrderByRelationAggregateInput
+  contacts?: Prisma.ContactOrderByRelationAggregateInput
   campaigns?: Prisma.CampaignOrderByRelationAggregateInput
   messages?: Prisma.CampaignMessageOrderByRelationAggregateInput
   chatwootConversation?: Prisma.ChatwootConversationOrderByRelationAggregateInput
@@ -190,6 +194,8 @@ export type WorkspaceOrderByWithRelationInput = {
   templates?: Prisma.TemplateOrderByRelationAggregateInput
   users?: Prisma.UserOrderByRelationAggregateInput
   webHooks?: Prisma.WebhookEventOrderByRelationAggregateInput
+  MetaConnection?: Prisma.MetaConnectionOrderByRelationAggregateInput
+  ChatwootConnection?: Prisma.ChatwootConnectionOrderByRelationAggregateInput
 }
 
 export type WorkspaceWhereUniqueInput = Prisma.AtLeast<{
@@ -200,7 +206,8 @@ export type WorkspaceWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Workspace"> | string
   createdAt?: Prisma.DateTimeFilter<"Workspace"> | Date | string
   audiences?: Prisma.AudienceListRelationFilter
-  contacts?: Prisma.AudienceContactListRelationFilter
+  seller?: Prisma.SellerListRelationFilter
+  contacts?: Prisma.ContactListRelationFilter
   campaigns?: Prisma.CampaignListRelationFilter
   messages?: Prisma.CampaignMessageListRelationFilter
   chatwootConversation?: Prisma.ChatwootConversationListRelationFilter
@@ -208,6 +215,8 @@ export type WorkspaceWhereUniqueInput = Prisma.AtLeast<{
   templates?: Prisma.TemplateListRelationFilter
   users?: Prisma.UserListRelationFilter
   webHooks?: Prisma.WebhookEventListRelationFilter
+  MetaConnection?: Prisma.MetaConnectionListRelationFilter
+  ChatwootConnection?: Prisma.ChatwootConnectionListRelationFilter
 }, "id">
 
 export type WorkspaceOrderByWithAggregationInput = {
@@ -233,7 +242,8 @@ export type WorkspaceCreateInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
@@ -241,6 +251,8 @@ export type WorkspaceCreateInput = {
   templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateInput = {
@@ -248,7 +260,8 @@ export type WorkspaceUncheckedCreateInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -256,6 +269,8 @@ export type WorkspaceUncheckedCreateInput = {
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUpdateInput = {
@@ -263,7 +278,8 @@ export type WorkspaceUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
@@ -271,6 +287,8 @@ export type WorkspaceUpdateInput = {
   templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateInput = {
@@ -278,7 +296,8 @@ export type WorkspaceUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -286,6 +305,8 @@ export type WorkspaceUncheckedUpdateInput = {
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateManyInput = {
@@ -365,6 +386,20 @@ export type WorkspaceUpdateOneRequiredWithoutTemplatesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutTemplatesInput, Prisma.WorkspaceUpdateWithoutTemplatesInput>, Prisma.WorkspaceUncheckedUpdateWithoutTemplatesInput>
 }
 
+export type WorkspaceCreateNestedOneWithoutContactsInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutContactsInput, Prisma.WorkspaceUncheckedCreateWithoutContactsInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutContactsInput
+  connect?: Prisma.WorkspaceWhereUniqueInput
+}
+
+export type WorkspaceUpdateOneRequiredWithoutContactsNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutContactsInput, Prisma.WorkspaceUncheckedCreateWithoutContactsInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutContactsInput
+  upsert?: Prisma.WorkspaceUpsertWithoutContactsInput
+  connect?: Prisma.WorkspaceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutContactsInput, Prisma.WorkspaceUpdateWithoutContactsInput>, Prisma.WorkspaceUncheckedUpdateWithoutContactsInput>
+}
+
 export type WorkspaceCreateNestedOneWithoutAudiencesInput = {
   create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutAudiencesInput, Prisma.WorkspaceUncheckedCreateWithoutAudiencesInput>
   connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutAudiencesInput
@@ -379,18 +414,18 @@ export type WorkspaceUpdateOneRequiredWithoutAudiencesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutAudiencesInput, Prisma.WorkspaceUpdateWithoutAudiencesInput>, Prisma.WorkspaceUncheckedUpdateWithoutAudiencesInput>
 }
 
-export type WorkspaceCreateNestedOneWithoutContactsInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutContactsInput, Prisma.WorkspaceUncheckedCreateWithoutContactsInput>
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutContactsInput
+export type WorkspaceCreateNestedOneWithoutSellerInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutSellerInput, Prisma.WorkspaceUncheckedCreateWithoutSellerInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutSellerInput
   connect?: Prisma.WorkspaceWhereUniqueInput
 }
 
-export type WorkspaceUpdateOneRequiredWithoutContactsNestedInput = {
-  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutContactsInput, Prisma.WorkspaceUncheckedCreateWithoutContactsInput>
-  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutContactsInput
-  upsert?: Prisma.WorkspaceUpsertWithoutContactsInput
+export type WorkspaceUpdateOneRequiredWithoutSellerNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutSellerInput, Prisma.WorkspaceUncheckedCreateWithoutSellerInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutSellerInput
+  upsert?: Prisma.WorkspaceUpsertWithoutSellerInput
   connect?: Prisma.WorkspaceWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutContactsInput, Prisma.WorkspaceUpdateWithoutContactsInput>, Prisma.WorkspaceUncheckedUpdateWithoutContactsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutSellerInput, Prisma.WorkspaceUpdateWithoutSellerInput>, Prisma.WorkspaceUncheckedUpdateWithoutSellerInput>
 }
 
 export type WorkspaceCreateNestedOneWithoutCampaignsInput = {
@@ -419,6 +454,20 @@ export type WorkspaceUpdateOneRequiredWithoutMessagesNestedInput = {
   upsert?: Prisma.WorkspaceUpsertWithoutMessagesInput
   connect?: Prisma.WorkspaceWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutMessagesInput, Prisma.WorkspaceUpdateWithoutMessagesInput>, Prisma.WorkspaceUncheckedUpdateWithoutMessagesInput>
+}
+
+export type WorkspaceCreateNestedOneWithoutChatwootConnectionInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutChatwootConnectionInput, Prisma.WorkspaceUncheckedCreateWithoutChatwootConnectionInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutChatwootConnectionInput
+  connect?: Prisma.WorkspaceWhereUniqueInput
+}
+
+export type WorkspaceUpdateOneRequiredWithoutChatwootConnectionNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutChatwootConnectionInput, Prisma.WorkspaceUncheckedCreateWithoutChatwootConnectionInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutChatwootConnectionInput
+  upsert?: Prisma.WorkspaceUpsertWithoutChatwootConnectionInput
+  connect?: Prisma.WorkspaceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutChatwootConnectionInput, Prisma.WorkspaceUpdateWithoutChatwootConnectionInput>, Prisma.WorkspaceUncheckedUpdateWithoutChatwootConnectionInput>
 }
 
 export type WorkspaceCreateNestedOneWithoutChatwootConversationInput = {
@@ -463,18 +512,35 @@ export type WorkspaceUpdateOneRequiredWithoutWebHooksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutWebHooksInput, Prisma.WorkspaceUpdateWithoutWebHooksInput>, Prisma.WorkspaceUncheckedUpdateWithoutWebHooksInput>
 }
 
+export type WorkspaceCreateNestedOneWithoutMetaConnectionInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutMetaConnectionInput, Prisma.WorkspaceUncheckedCreateWithoutMetaConnectionInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutMetaConnectionInput
+  connect?: Prisma.WorkspaceWhereUniqueInput
+}
+
+export type WorkspaceUpdateOneRequiredWithoutMetaConnectionNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkspaceCreateWithoutMetaConnectionInput, Prisma.WorkspaceUncheckedCreateWithoutMetaConnectionInput>
+  connectOrCreate?: Prisma.WorkspaceCreateOrConnectWithoutMetaConnectionInput
+  upsert?: Prisma.WorkspaceUpsertWithoutMetaConnectionInput
+  connect?: Prisma.WorkspaceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkspaceUpdateToOneWithWhereWithoutMetaConnectionInput, Prisma.WorkspaceUpdateWithoutMetaConnectionInput>, Prisma.WorkspaceUncheckedUpdateWithoutMetaConnectionInput>
+}
+
 export type WorkspaceCreateWithoutUsersInput = {
   id?: string
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutUsersInput = {
@@ -482,13 +548,16 @@ export type WorkspaceUncheckedCreateWithoutUsersInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutUsersInput = {
@@ -512,13 +581,16 @@ export type WorkspaceUpdateWithoutUsersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutUsersInput = {
@@ -526,13 +598,16 @@ export type WorkspaceUncheckedUpdateWithoutUsersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutTemplatesInput = {
@@ -540,13 +615,16 @@ export type WorkspaceCreateWithoutTemplatesInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutTemplatesInput = {
@@ -554,13 +632,16 @@ export type WorkspaceUncheckedCreateWithoutTemplatesInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutTemplatesInput = {
@@ -584,13 +665,16 @@ export type WorkspaceUpdateWithoutTemplatesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutTemplatesInput = {
@@ -598,85 +682,16 @@ export type WorkspaceUncheckedUpdateWithoutTemplatesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceCreateWithoutAudiencesInput = {
-  id?: string
-  name: string
-  createdAt?: Date | string
-  contacts?: Prisma.AudienceContactCreateNestedManyWithoutWorkspaceInput
-  campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
-  messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
-  chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
-  numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
-  templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
-  users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
-  webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceUncheckedCreateWithoutAudiencesInput = {
-  id?: string
-  name: string
-  createdAt?: Date | string
-  contacts?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutWorkspaceInput
-  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
-  messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
-  chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
-  numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
-  templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
-  webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
-}
-
-export type WorkspaceCreateOrConnectWithoutAudiencesInput = {
-  where: Prisma.WorkspaceWhereUniqueInput
-  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutAudiencesInput, Prisma.WorkspaceUncheckedCreateWithoutAudiencesInput>
-}
-
-export type WorkspaceUpsertWithoutAudiencesInput = {
-  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutAudiencesInput, Prisma.WorkspaceUncheckedUpdateWithoutAudiencesInput>
-  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutAudiencesInput, Prisma.WorkspaceUncheckedCreateWithoutAudiencesInput>
-  where?: Prisma.WorkspaceWhereInput
-}
-
-export type WorkspaceUpdateToOneWithWhereWithoutAudiencesInput = {
-  where?: Prisma.WorkspaceWhereInput
-  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutAudiencesInput, Prisma.WorkspaceUncheckedUpdateWithoutAudiencesInput>
-}
-
-export type WorkspaceUpdateWithoutAudiencesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  contacts?: Prisma.AudienceContactUpdateManyWithoutWorkspaceNestedInput
-  campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
-  messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
-  chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
-  numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
-  templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
-  users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
-  webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
-}
-
-export type WorkspaceUncheckedUpdateWithoutAudiencesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  contacts?: Prisma.AudienceContactUncheckedUpdateManyWithoutWorkspaceNestedInput
-  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
-  messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
-  chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
-  numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
-  templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
-  users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
-  webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutContactsInput = {
@@ -684,6 +699,7 @@ export type WorkspaceCreateWithoutContactsInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
@@ -691,6 +707,8 @@ export type WorkspaceCreateWithoutContactsInput = {
   templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutContactsInput = {
@@ -698,6 +716,7 @@ export type WorkspaceUncheckedCreateWithoutContactsInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -705,6 +724,8 @@ export type WorkspaceUncheckedCreateWithoutContactsInput = {
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutContactsInput = {
@@ -728,6 +749,7 @@ export type WorkspaceUpdateWithoutContactsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
@@ -735,6 +757,8 @@ export type WorkspaceUpdateWithoutContactsInput = {
   templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutContactsInput = {
@@ -742,6 +766,7 @@ export type WorkspaceUncheckedUpdateWithoutContactsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -749,6 +774,176 @@ export type WorkspaceUncheckedUpdateWithoutContactsInput = {
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceCreateWithoutAudiencesInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
+  messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
+  chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
+  numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
+  templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
+  users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
+  webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
+}
+
+export type WorkspaceUncheckedCreateWithoutAudiencesInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
+  messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
+  chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
+  numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
+  templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
+  webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+}
+
+export type WorkspaceCreateOrConnectWithoutAudiencesInput = {
+  where: Prisma.WorkspaceWhereUniqueInput
+  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutAudiencesInput, Prisma.WorkspaceUncheckedCreateWithoutAudiencesInput>
+}
+
+export type WorkspaceUpsertWithoutAudiencesInput = {
+  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutAudiencesInput, Prisma.WorkspaceUncheckedUpdateWithoutAudiencesInput>
+  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutAudiencesInput, Prisma.WorkspaceUncheckedCreateWithoutAudiencesInput>
+  where?: Prisma.WorkspaceWhereInput
+}
+
+export type WorkspaceUpdateToOneWithWhereWithoutAudiencesInput = {
+  where?: Prisma.WorkspaceWhereInput
+  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutAudiencesInput, Prisma.WorkspaceUncheckedUpdateWithoutAudiencesInput>
+}
+
+export type WorkspaceUpdateWithoutAudiencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
+  campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
+  messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
+  chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
+  numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
+  templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
+  users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
+  webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceUncheckedUpdateWithoutAudiencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
+  messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
+  chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
+  numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
+  templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
+  webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceCreateWithoutSellerInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
+  messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
+  chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
+  numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
+  templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
+  users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
+  webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
+}
+
+export type WorkspaceUncheckedCreateWithoutSellerInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
+  messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
+  chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
+  numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
+  templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
+  webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+}
+
+export type WorkspaceCreateOrConnectWithoutSellerInput = {
+  where: Prisma.WorkspaceWhereUniqueInput
+  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutSellerInput, Prisma.WorkspaceUncheckedCreateWithoutSellerInput>
+}
+
+export type WorkspaceUpsertWithoutSellerInput = {
+  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutSellerInput, Prisma.WorkspaceUncheckedUpdateWithoutSellerInput>
+  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutSellerInput, Prisma.WorkspaceUncheckedCreateWithoutSellerInput>
+  where?: Prisma.WorkspaceWhereInput
+}
+
+export type WorkspaceUpdateToOneWithWhereWithoutSellerInput = {
+  where?: Prisma.WorkspaceWhereInput
+  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutSellerInput, Prisma.WorkspaceUncheckedUpdateWithoutSellerInput>
+}
+
+export type WorkspaceUpdateWithoutSellerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
+  campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
+  messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
+  chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
+  numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
+  templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
+  users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
+  webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceUncheckedUpdateWithoutSellerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
+  messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
+  chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
+  numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
+  templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
+  webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutCampaignsInput = {
@@ -756,13 +951,16 @@ export type WorkspaceCreateWithoutCampaignsInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutCampaignsInput = {
@@ -770,13 +968,16 @@ export type WorkspaceUncheckedCreateWithoutCampaignsInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutCampaignsInput = {
@@ -800,13 +1001,16 @@ export type WorkspaceUpdateWithoutCampaignsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutCampaignsInput = {
@@ -814,13 +1018,16 @@ export type WorkspaceUncheckedUpdateWithoutCampaignsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutMessagesInput = {
@@ -828,13 +1035,16 @@ export type WorkspaceCreateWithoutMessagesInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutMessagesInput = {
@@ -842,13 +1052,16 @@ export type WorkspaceUncheckedCreateWithoutMessagesInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutMessagesInput = {
@@ -872,13 +1085,16 @@ export type WorkspaceUpdateWithoutMessagesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutMessagesInput = {
@@ -886,13 +1102,100 @@ export type WorkspaceUncheckedUpdateWithoutMessagesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceCreateWithoutChatwootConnectionInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
+  messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
+  chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
+  numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
+  templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
+  users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
+  webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+}
+
+export type WorkspaceUncheckedCreateWithoutChatwootConnectionInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
+  messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
+  chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
+  numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
+  templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
+  webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+}
+
+export type WorkspaceCreateOrConnectWithoutChatwootConnectionInput = {
+  where: Prisma.WorkspaceWhereUniqueInput
+  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutChatwootConnectionInput, Prisma.WorkspaceUncheckedCreateWithoutChatwootConnectionInput>
+}
+
+export type WorkspaceUpsertWithoutChatwootConnectionInput = {
+  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutChatwootConnectionInput, Prisma.WorkspaceUncheckedUpdateWithoutChatwootConnectionInput>
+  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutChatwootConnectionInput, Prisma.WorkspaceUncheckedCreateWithoutChatwootConnectionInput>
+  where?: Prisma.WorkspaceWhereInput
+}
+
+export type WorkspaceUpdateToOneWithWhereWithoutChatwootConnectionInput = {
+  where?: Prisma.WorkspaceWhereInput
+  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutChatwootConnectionInput, Prisma.WorkspaceUncheckedUpdateWithoutChatwootConnectionInput>
+}
+
+export type WorkspaceUpdateWithoutChatwootConnectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
+  campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
+  messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
+  chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
+  numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
+  templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
+  users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
+  webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceUncheckedUpdateWithoutChatwootConnectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
+  messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
+  chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
+  numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
+  templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
+  webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutChatwootConversationInput = {
@@ -900,13 +1203,16 @@ export type WorkspaceCreateWithoutChatwootConversationInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutChatwootConversationInput = {
@@ -914,13 +1220,16 @@ export type WorkspaceUncheckedCreateWithoutChatwootConversationInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutChatwootConversationInput = {
@@ -944,13 +1253,16 @@ export type WorkspaceUpdateWithoutChatwootConversationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutChatwootConversationInput = {
@@ -958,13 +1270,16 @@ export type WorkspaceUncheckedUpdateWithoutChatwootConversationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutNumbersInput = {
@@ -972,13 +1287,16 @@ export type WorkspaceCreateWithoutNumbersInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutNumbersInput = {
@@ -986,13 +1304,16 @@ export type WorkspaceUncheckedCreateWithoutNumbersInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
   webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutNumbersInput = {
@@ -1016,13 +1337,16 @@ export type WorkspaceUpdateWithoutNumbersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutNumbersInput = {
@@ -1030,13 +1354,16 @@ export type WorkspaceUncheckedUpdateWithoutNumbersInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
   webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceCreateWithoutWebHooksInput = {
@@ -1044,13 +1371,16 @@ export type WorkspaceCreateWithoutWebHooksInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceUncheckedCreateWithoutWebHooksInput = {
@@ -1058,13 +1388,16 @@ export type WorkspaceUncheckedCreateWithoutWebHooksInput = {
   name: string
   createdAt?: Date | string
   audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
-  contacts?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
   campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
   numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
   templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
 }
 
 export type WorkspaceCreateOrConnectWithoutWebHooksInput = {
@@ -1088,13 +1421,16 @@ export type WorkspaceUpdateWithoutWebHooksInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
 }
 
 export type WorkspaceUncheckedUpdateWithoutWebHooksInput = {
@@ -1102,13 +1438,100 @@ export type WorkspaceUncheckedUpdateWithoutWebHooksInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
-  contacts?: Prisma.AudienceContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
   campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
   chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
   numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
   templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
+  MetaConnection?: Prisma.MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceCreateWithoutMetaConnectionInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  audiences?: Prisma.AudienceCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutWorkspaceInput
+  campaigns?: Prisma.CampaignCreateNestedManyWithoutWorkspaceInput
+  messages?: Prisma.CampaignMessageCreateNestedManyWithoutWorkspaceInput
+  chatwootConversation?: Prisma.ChatwootConversationCreateNestedManyWithoutWorkspaceInput
+  numbers?: Prisma.SenderNumberCreateNestedManyWithoutWorkspaceInput
+  templates?: Prisma.TemplateCreateNestedManyWithoutWorkspaceInput
+  users?: Prisma.UserCreateNestedManyWithoutWorkspaceInput
+  webHooks?: Prisma.WebhookEventCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionCreateNestedManyWithoutWorkspaceInput
+}
+
+export type WorkspaceUncheckedCreateWithoutMetaConnectionInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  audiences?: Prisma.AudienceUncheckedCreateNestedManyWithoutWorkspaceInput
+  seller?: Prisma.SellerUncheckedCreateNestedManyWithoutWorkspaceInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutWorkspaceInput
+  campaigns?: Prisma.CampaignUncheckedCreateNestedManyWithoutWorkspaceInput
+  messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutWorkspaceInput
+  chatwootConversation?: Prisma.ChatwootConversationUncheckedCreateNestedManyWithoutWorkspaceInput
+  numbers?: Prisma.SenderNumberUncheckedCreateNestedManyWithoutWorkspaceInput
+  templates?: Prisma.TemplateUncheckedCreateNestedManyWithoutWorkspaceInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutWorkspaceInput
+  webHooks?: Prisma.WebhookEventUncheckedCreateNestedManyWithoutWorkspaceInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedCreateNestedManyWithoutWorkspaceInput
+}
+
+export type WorkspaceCreateOrConnectWithoutMetaConnectionInput = {
+  where: Prisma.WorkspaceWhereUniqueInput
+  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutMetaConnectionInput, Prisma.WorkspaceUncheckedCreateWithoutMetaConnectionInput>
+}
+
+export type WorkspaceUpsertWithoutMetaConnectionInput = {
+  update: Prisma.XOR<Prisma.WorkspaceUpdateWithoutMetaConnectionInput, Prisma.WorkspaceUncheckedUpdateWithoutMetaConnectionInput>
+  create: Prisma.XOR<Prisma.WorkspaceCreateWithoutMetaConnectionInput, Prisma.WorkspaceUncheckedCreateWithoutMetaConnectionInput>
+  where?: Prisma.WorkspaceWhereInput
+}
+
+export type WorkspaceUpdateToOneWithWhereWithoutMetaConnectionInput = {
+  where?: Prisma.WorkspaceWhereInput
+  data: Prisma.XOR<Prisma.WorkspaceUpdateWithoutMetaConnectionInput, Prisma.WorkspaceUncheckedUpdateWithoutMetaConnectionInput>
+}
+
+export type WorkspaceUpdateWithoutMetaConnectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  audiences?: Prisma.AudienceUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutWorkspaceNestedInput
+  campaigns?: Prisma.CampaignUpdateManyWithoutWorkspaceNestedInput
+  messages?: Prisma.CampaignMessageUpdateManyWithoutWorkspaceNestedInput
+  chatwootConversation?: Prisma.ChatwootConversationUpdateManyWithoutWorkspaceNestedInput
+  numbers?: Prisma.SenderNumberUpdateManyWithoutWorkspaceNestedInput
+  templates?: Prisma.TemplateUpdateManyWithoutWorkspaceNestedInput
+  users?: Prisma.UserUpdateManyWithoutWorkspaceNestedInput
+  webHooks?: Prisma.WebhookEventUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUpdateManyWithoutWorkspaceNestedInput
+}
+
+export type WorkspaceUncheckedUpdateWithoutMetaConnectionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  audiences?: Prisma.AudienceUncheckedUpdateManyWithoutWorkspaceNestedInput
+  seller?: Prisma.SellerUncheckedUpdateManyWithoutWorkspaceNestedInput
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutWorkspaceNestedInput
+  campaigns?: Prisma.CampaignUncheckedUpdateManyWithoutWorkspaceNestedInput
+  messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutWorkspaceNestedInput
+  chatwootConversation?: Prisma.ChatwootConversationUncheckedUpdateManyWithoutWorkspaceNestedInput
+  numbers?: Prisma.SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput
+  templates?: Prisma.TemplateUncheckedUpdateManyWithoutWorkspaceNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutWorkspaceNestedInput
+  webHooks?: Prisma.WebhookEventUncheckedUpdateManyWithoutWorkspaceNestedInput
+  ChatwootConnection?: Prisma.ChatwootConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput
 }
 
 
@@ -1118,6 +1541,7 @@ export type WorkspaceUncheckedUpdateWithoutWebHooksInput = {
 
 export type WorkspaceCountOutputType = {
   audiences: number
+  seller: number
   contacts: number
   campaigns: number
   messages: number
@@ -1126,10 +1550,13 @@ export type WorkspaceCountOutputType = {
   templates: number
   users: number
   webHooks: number
+  MetaConnection: number
+  ChatwootConnection: number
 }
 
 export type WorkspaceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   audiences?: boolean | WorkspaceCountOutputTypeCountAudiencesArgs
+  seller?: boolean | WorkspaceCountOutputTypeCountSellerArgs
   contacts?: boolean | WorkspaceCountOutputTypeCountContactsArgs
   campaigns?: boolean | WorkspaceCountOutputTypeCountCampaignsArgs
   messages?: boolean | WorkspaceCountOutputTypeCountMessagesArgs
@@ -1138,6 +1565,8 @@ export type WorkspaceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensi
   templates?: boolean | WorkspaceCountOutputTypeCountTemplatesArgs
   users?: boolean | WorkspaceCountOutputTypeCountUsersArgs
   webHooks?: boolean | WorkspaceCountOutputTypeCountWebHooksArgs
+  MetaConnection?: boolean | WorkspaceCountOutputTypeCountMetaConnectionArgs
+  ChatwootConnection?: boolean | WorkspaceCountOutputTypeCountChatwootConnectionArgs
 }
 
 /**
@@ -1160,8 +1589,15 @@ export type WorkspaceCountOutputTypeCountAudiencesArgs<ExtArgs extends runtime.T
 /**
  * WorkspaceCountOutputType without action
  */
+export type WorkspaceCountOutputTypeCountSellerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SellerWhereInput
+}
+
+/**
+ * WorkspaceCountOutputType without action
+ */
 export type WorkspaceCountOutputTypeCountContactsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AudienceContactWhereInput
+  where?: Prisma.ContactWhereInput
 }
 
 /**
@@ -1213,12 +1649,27 @@ export type WorkspaceCountOutputTypeCountWebHooksArgs<ExtArgs extends runtime.Ty
   where?: Prisma.WebhookEventWhereInput
 }
 
+/**
+ * WorkspaceCountOutputType without action
+ */
+export type WorkspaceCountOutputTypeCountMetaConnectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MetaConnectionWhereInput
+}
+
+/**
+ * WorkspaceCountOutputType without action
+ */
+export type WorkspaceCountOutputTypeCountChatwootConnectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChatwootConnectionWhereInput
+}
+
 
 export type WorkspaceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   createdAt?: boolean
   audiences?: boolean | Prisma.Workspace$audiencesArgs<ExtArgs>
+  seller?: boolean | Prisma.Workspace$sellerArgs<ExtArgs>
   contacts?: boolean | Prisma.Workspace$contactsArgs<ExtArgs>
   campaigns?: boolean | Prisma.Workspace$campaignsArgs<ExtArgs>
   messages?: boolean | Prisma.Workspace$messagesArgs<ExtArgs>
@@ -1227,6 +1678,8 @@ export type WorkspaceSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   templates?: boolean | Prisma.Workspace$templatesArgs<ExtArgs>
   users?: boolean | Prisma.Workspace$usersArgs<ExtArgs>
   webHooks?: boolean | Prisma.Workspace$webHooksArgs<ExtArgs>
+  MetaConnection?: boolean | Prisma.Workspace$MetaConnectionArgs<ExtArgs>
+  ChatwootConnection?: boolean | Prisma.Workspace$ChatwootConnectionArgs<ExtArgs>
   _count?: boolean | Prisma.WorkspaceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["workspace"]>
 
@@ -1251,6 +1704,7 @@ export type WorkspaceSelectScalar = {
 export type WorkspaceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt", ExtArgs["result"]["workspace"]>
 export type WorkspaceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   audiences?: boolean | Prisma.Workspace$audiencesArgs<ExtArgs>
+  seller?: boolean | Prisma.Workspace$sellerArgs<ExtArgs>
   contacts?: boolean | Prisma.Workspace$contactsArgs<ExtArgs>
   campaigns?: boolean | Prisma.Workspace$campaignsArgs<ExtArgs>
   messages?: boolean | Prisma.Workspace$messagesArgs<ExtArgs>
@@ -1259,6 +1713,8 @@ export type WorkspaceInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   templates?: boolean | Prisma.Workspace$templatesArgs<ExtArgs>
   users?: boolean | Prisma.Workspace$usersArgs<ExtArgs>
   webHooks?: boolean | Prisma.Workspace$webHooksArgs<ExtArgs>
+  MetaConnection?: boolean | Prisma.Workspace$MetaConnectionArgs<ExtArgs>
+  ChatwootConnection?: boolean | Prisma.Workspace$ChatwootConnectionArgs<ExtArgs>
   _count?: boolean | Prisma.WorkspaceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type WorkspaceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1268,7 +1724,8 @@ export type $WorkspacePayload<ExtArgs extends runtime.Types.Extensions.InternalA
   name: "Workspace"
   objects: {
     audiences: Prisma.$AudiencePayload<ExtArgs>[]
-    contacts: Prisma.$AudienceContactPayload<ExtArgs>[]
+    seller: Prisma.$SellerPayload<ExtArgs>[]
+    contacts: Prisma.$ContactPayload<ExtArgs>[]
     campaigns: Prisma.$CampaignPayload<ExtArgs>[]
     messages: Prisma.$CampaignMessagePayload<ExtArgs>[]
     chatwootConversation: Prisma.$ChatwootConversationPayload<ExtArgs>[]
@@ -1276,6 +1733,8 @@ export type $WorkspacePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     templates: Prisma.$TemplatePayload<ExtArgs>[]
     users: Prisma.$UserPayload<ExtArgs>[]
     webHooks: Prisma.$WebhookEventPayload<ExtArgs>[]
+    MetaConnection: Prisma.$MetaConnectionPayload<ExtArgs>[]
+    ChatwootConnection: Prisma.$ChatwootConnectionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1676,7 +2135,8 @@ readonly fields: WorkspaceFieldRefs;
 export interface Prisma__WorkspaceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   audiences<T extends Prisma.Workspace$audiencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$audiencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AudiencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  contacts<T extends Prisma.Workspace$contactsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$contactsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AudienceContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  seller<T extends Prisma.Workspace$sellerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$sellerArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contacts<T extends Prisma.Workspace$contactsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$contactsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   campaigns<T extends Prisma.Workspace$campaignsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$campaignsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   messages<T extends Prisma.Workspace$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampaignMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   chatwootConversation<T extends Prisma.Workspace$chatwootConversationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$chatwootConversationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatwootConversationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1684,6 +2144,8 @@ export interface Prisma__WorkspaceClient<T, Null = never, ExtArgs extends runtim
   templates<T extends Prisma.Workspace$templatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$templatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   users<T extends Prisma.Workspace$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   webHooks<T extends Prisma.Workspace$webHooksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$webHooksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WebhookEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  MetaConnection<T extends Prisma.Workspace$MetaConnectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$MetaConnectionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MetaConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ChatwootConnection<T extends Prisma.Workspace$ChatwootConnectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Workspace$ChatwootConnectionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatwootConnectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2133,27 +2595,51 @@ export type Workspace$audiencesArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
+ * Workspace.seller
+ */
+export type Workspace$sellerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Seller
+   */
+  select?: Prisma.SellerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Seller
+   */
+  omit?: Prisma.SellerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SellerInclude<ExtArgs> | null
+  where?: Prisma.SellerWhereInput
+  orderBy?: Prisma.SellerOrderByWithRelationInput | Prisma.SellerOrderByWithRelationInput[]
+  cursor?: Prisma.SellerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SellerScalarFieldEnum | Prisma.SellerScalarFieldEnum[]
+}
+
+/**
  * Workspace.contacts
  */
 export type Workspace$contactsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AudienceContact
+   * Select specific fields to fetch from the Contact
    */
-  select?: Prisma.AudienceContactSelect<ExtArgs> | null
+  select?: Prisma.ContactSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AudienceContact
+   * Omit specific fields from the Contact
    */
-  omit?: Prisma.AudienceContactOmit<ExtArgs> | null
+  omit?: Prisma.ContactOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AudienceContactInclude<ExtArgs> | null
-  where?: Prisma.AudienceContactWhereInput
-  orderBy?: Prisma.AudienceContactOrderByWithRelationInput | Prisma.AudienceContactOrderByWithRelationInput[]
-  cursor?: Prisma.AudienceContactWhereUniqueInput
+  include?: Prisma.ContactInclude<ExtArgs> | null
+  where?: Prisma.ContactWhereInput
+  orderBy?: Prisma.ContactOrderByWithRelationInput | Prisma.ContactOrderByWithRelationInput[]
+  cursor?: Prisma.ContactWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AudienceContactScalarFieldEnum | Prisma.AudienceContactScalarFieldEnum[]
+  distinct?: Prisma.ContactScalarFieldEnum | Prisma.ContactScalarFieldEnum[]
 }
 
 /**
@@ -2322,6 +2808,54 @@ export type Workspace$webHooksArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.WebhookEventScalarFieldEnum | Prisma.WebhookEventScalarFieldEnum[]
+}
+
+/**
+ * Workspace.MetaConnection
+ */
+export type Workspace$MetaConnectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MetaConnection
+   */
+  select?: Prisma.MetaConnectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MetaConnection
+   */
+  omit?: Prisma.MetaConnectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MetaConnectionInclude<ExtArgs> | null
+  where?: Prisma.MetaConnectionWhereInput
+  orderBy?: Prisma.MetaConnectionOrderByWithRelationInput | Prisma.MetaConnectionOrderByWithRelationInput[]
+  cursor?: Prisma.MetaConnectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MetaConnectionScalarFieldEnum | Prisma.MetaConnectionScalarFieldEnum[]
+}
+
+/**
+ * Workspace.ChatwootConnection
+ */
+export type Workspace$ChatwootConnectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ChatwootConnection
+   */
+  select?: Prisma.ChatwootConnectionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ChatwootConnection
+   */
+  omit?: Prisma.ChatwootConnectionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ChatwootConnectionInclude<ExtArgs> | null
+  where?: Prisma.ChatwootConnectionWhereInput
+  orderBy?: Prisma.ChatwootConnectionOrderByWithRelationInput | Prisma.ChatwootConnectionOrderByWithRelationInput[]
+  cursor?: Prisma.ChatwootConnectionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ChatwootConnectionScalarFieldEnum | Prisma.ChatwootConnectionScalarFieldEnum[]
 }
 
 /**

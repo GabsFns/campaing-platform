@@ -54,6 +54,7 @@ export const ModelName = {
   Workspace: 'Workspace',
   User: 'User',
   Template: 'Template',
+  Contact: 'Contact',
   Audience: 'Audience',
   AudienceContact: 'AudienceContact',
   Seller: 'Seller',
@@ -61,10 +62,12 @@ export const ModelName = {
   CampaignMessage: 'CampaignMessage',
   CampaignBatch: 'CampaignBatch',
   CampaignStats: 'CampaignStats',
+  ChatwootConnection: 'ChatwootConnection',
   ChatwootConversation: 'ChatwootConversation',
   MessageEvent: 'MessageEvent',
   SenderNumber: 'SenderNumber',
-  WebhookEvent: 'WebhookEvent'
+  WebhookEvent: 'WebhookEvent',
+  MetaConnection: 'MetaConnection'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -107,13 +110,34 @@ export const TemplateScalarFieldEnum = {
   id: 'id',
   workspaceId: 'workspaceId',
   name: 'name',
-  content: 'content',
+  body: 'body',
   channel: 'channel',
+  category: 'category',
+  language: 'language',
   variables: 'variables',
+  status: 'status',
+  metaTemplateId: 'metaTemplateId',
   createdAt: 'createdAt'
 } as const
 
 export type TemplateScalarFieldEnum = (typeof TemplateScalarFieldEnum)[keyof typeof TemplateScalarFieldEnum]
+
+
+export const ContactScalarFieldEnum = {
+  id: 'id',
+  workspaceId: 'workspaceId',
+  name: 'name',
+  phoneRaw: 'phoneRaw',
+  phoneNormalized: 'phoneNormalized',
+  email: 'email',
+  hasWhatsapp: 'hasWhatsapp',
+  isBlocked: 'isBlocked',
+  chatwootContactId: 'chatwootContactId',
+  chatwootSourceId: 'chatwootSourceId',
+  createdAt: 'createdAt'
+} as const
+
+export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
 
 
 export const AudienceScalarFieldEnum = {
@@ -130,16 +154,8 @@ export type AudienceScalarFieldEnum = (typeof AudienceScalarFieldEnum)[keyof typ
 export const AudienceContactScalarFieldEnum = {
   id: 'id',
   audienceId: 'audienceId',
+  contactId: 'contactId',
   sellerId: 'sellerId',
-  name: 'name',
-  phoneRaw: 'phoneRaw',
-  phoneNormalized: 'phoneNormalized',
-  email: 'email',
-  hasWhatsapp: 'hasWhatsapp',
-  isBlocked: 'isBlocked',
-  chatwootContactId: 'chatwootContactId',
-  chatwootSourceId: 'chatwootSourceId',
-  workspaceId: 'workspaceId',
   createdAt: 'createdAt'
 } as const
 
@@ -148,9 +164,12 @@ export type AudienceContactScalarFieldEnum = (typeof AudienceContactScalarFieldE
 
 export const SellerScalarFieldEnum = {
   id: 'id',
+  workspaceId: 'workspaceId',
   name: 'name',
-  phone: 'phone',
+  phoneRaw: 'phoneRaw',
+  phoneNormalized: 'phoneNormalized',
   chatwootAgentId: 'chatwootAgentId',
+  chatwootAccountId: 'chatwootAccountId',
   createdAt: 'createdAt'
 } as const
 
@@ -183,6 +202,7 @@ export const CampaignMessageScalarFieldEnum = {
   phoneNormalized: 'phoneNormalized',
   batchId: 'batchId',
   senderNumberId: 'senderNumberId',
+  workspaceId: 'workspaceId',
   status: 'status',
   error: 'error',
   providerId: 'providerId',
@@ -194,7 +214,6 @@ export const CampaignMessageScalarFieldEnum = {
   deliveredAt: 'deliveredAt',
   readAt: 'readAt',
   lockedAt: 'lockedAt',
-  workspaceId: 'workspaceId',
   retryCount: 'retryCount',
   createdAt: 'createdAt'
 } as const
@@ -228,6 +247,18 @@ export const CampaignStatsScalarFieldEnum = {
 } as const
 
 export type CampaignStatsScalarFieldEnum = (typeof CampaignStatsScalarFieldEnum)[keyof typeof CampaignStatsScalarFieldEnum]
+
+
+export const ChatwootConnectionScalarFieldEnum = {
+  id: 'id',
+  workspaceId: 'workspaceId',
+  baseUrl: 'baseUrl',
+  apiToken: 'apiToken',
+  accountId: 'accountId',
+  createdAt: 'createdAt'
+} as const
+
+export type ChatwootConnectionScalarFieldEnum = (typeof ChatwootConnectionScalarFieldEnum)[keyof typeof ChatwootConnectionScalarFieldEnum]
 
 
 export const ChatwootConversationScalarFieldEnum = {
@@ -281,6 +312,23 @@ export const WebhookEventScalarFieldEnum = {
 } as const
 
 export type WebhookEventScalarFieldEnum = (typeof WebhookEventScalarFieldEnum)[keyof typeof WebhookEventScalarFieldEnum]
+
+
+export const MetaConnectionScalarFieldEnum = {
+  id: 'id',
+  workspaceId: 'workspaceId',
+  accessToken: 'accessToken',
+  businessId: 'businessId',
+  wabaId: 'wabaId',
+  phoneNumberId: 'phoneNumberId',
+  phoneNumber: 'phoneNumber',
+  displayName: 'displayName',
+  webhookToken: 'webhookToken',
+  webhookUrl: 'webhookUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type MetaConnectionScalarFieldEnum = (typeof MetaConnectionScalarFieldEnum)[keyof typeof MetaConnectionScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -27,48 +27,24 @@ export type AggregateAudienceContact = {
 export type AudienceContactMinAggregateOutputType = {
   id: string | null
   audienceId: string | null
+  contactId: string | null
   sellerId: string | null
-  name: string | null
-  phoneRaw: string | null
-  phoneNormalized: string | null
-  email: string | null
-  hasWhatsapp: boolean | null
-  isBlocked: boolean | null
-  chatwootContactId: string | null
-  chatwootSourceId: string | null
-  workspaceId: string | null
   createdAt: Date | null
 }
 
 export type AudienceContactMaxAggregateOutputType = {
   id: string | null
   audienceId: string | null
+  contactId: string | null
   sellerId: string | null
-  name: string | null
-  phoneRaw: string | null
-  phoneNormalized: string | null
-  email: string | null
-  hasWhatsapp: boolean | null
-  isBlocked: boolean | null
-  chatwootContactId: string | null
-  chatwootSourceId: string | null
-  workspaceId: string | null
   createdAt: Date | null
 }
 
 export type AudienceContactCountAggregateOutputType = {
   id: number
   audienceId: number
+  contactId: number
   sellerId: number
-  name: number
-  phoneRaw: number
-  phoneNormalized: number
-  email: number
-  hasWhatsapp: number
-  isBlocked: number
-  chatwootContactId: number
-  chatwootSourceId: number
-  workspaceId: number
   createdAt: number
   _all: number
 }
@@ -77,48 +53,24 @@ export type AudienceContactCountAggregateOutputType = {
 export type AudienceContactMinAggregateInputType = {
   id?: true
   audienceId?: true
+  contactId?: true
   sellerId?: true
-  name?: true
-  phoneRaw?: true
-  phoneNormalized?: true
-  email?: true
-  hasWhatsapp?: true
-  isBlocked?: true
-  chatwootContactId?: true
-  chatwootSourceId?: true
-  workspaceId?: true
   createdAt?: true
 }
 
 export type AudienceContactMaxAggregateInputType = {
   id?: true
   audienceId?: true
+  contactId?: true
   sellerId?: true
-  name?: true
-  phoneRaw?: true
-  phoneNormalized?: true
-  email?: true
-  hasWhatsapp?: true
-  isBlocked?: true
-  chatwootContactId?: true
-  chatwootSourceId?: true
-  workspaceId?: true
   createdAt?: true
 }
 
 export type AudienceContactCountAggregateInputType = {
   id?: true
   audienceId?: true
+  contactId?: true
   sellerId?: true
-  name?: true
-  phoneRaw?: true
-  phoneNormalized?: true
-  email?: true
-  hasWhatsapp?: true
-  isBlocked?: true
-  chatwootContactId?: true
-  chatwootSourceId?: true
-  workspaceId?: true
   createdAt?: true
   _all?: true
 }
@@ -198,16 +150,8 @@ export type AudienceContactGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 export type AudienceContactGroupByOutputType = {
   id: string
   audienceId: string
+  contactId: string
   sellerId: string | null
-  name: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email: string | null
-  hasWhatsapp: boolean
-  isBlocked: boolean
-  chatwootContactId: string | null
-  chatwootSourceId: string | null
-  workspaceId: string
   createdAt: Date
   _count: AudienceContactCountAggregateOutputType | null
   _min: AudienceContactMinAggregateOutputType | null
@@ -235,80 +179,45 @@ export type AudienceContactWhereInput = {
   NOT?: Prisma.AudienceContactWhereInput | Prisma.AudienceContactWhereInput[]
   id?: Prisma.StringFilter<"AudienceContact"> | string
   audienceId?: Prisma.StringFilter<"AudienceContact"> | string
+  contactId?: Prisma.StringFilter<"AudienceContact"> | string
   sellerId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  name?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  phoneRaw?: Prisma.StringFilter<"AudienceContact"> | string
-  phoneNormalized?: Prisma.StringFilter<"AudienceContact"> | string
-  email?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  hasWhatsapp?: Prisma.BoolFilter<"AudienceContact"> | boolean
-  isBlocked?: Prisma.BoolFilter<"AudienceContact"> | boolean
-  chatwootContactId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  chatwootSourceId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  workspaceId?: Prisma.StringFilter<"AudienceContact"> | string
   createdAt?: Prisma.DateTimeFilter<"AudienceContact"> | Date | string
   audience?: Prisma.XOR<Prisma.AudienceScalarRelationFilter, Prisma.AudienceWhereInput>
+  contact?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
   seller?: Prisma.XOR<Prisma.SellerNullableScalarRelationFilter, Prisma.SellerWhereInput> | null
-  workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
-  messages?: Prisma.CampaignMessageListRelationFilter
 }
 
 export type AudienceContactOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   audienceId?: Prisma.SortOrder
+  contactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrderInput | Prisma.SortOrder
-  name?: Prisma.SortOrderInput | Prisma.SortOrder
-  phoneRaw?: Prisma.SortOrder
-  phoneNormalized?: Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
-  hasWhatsapp?: Prisma.SortOrder
-  isBlocked?: Prisma.SortOrder
-  chatwootContactId?: Prisma.SortOrderInput | Prisma.SortOrder
-  chatwootSourceId?: Prisma.SortOrderInput | Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   audience?: Prisma.AudienceOrderByWithRelationInput
+  contact?: Prisma.ContactOrderByWithRelationInput
   seller?: Prisma.SellerOrderByWithRelationInput
-  workspace?: Prisma.WorkspaceOrderByWithRelationInput
-  messages?: Prisma.CampaignMessageOrderByRelationAggregateInput
 }
 
 export type AudienceContactWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  workspaceId_phoneNormalized?: Prisma.AudienceContactWorkspaceIdPhoneNormalizedCompoundUniqueInput
+  audienceId_contactId?: Prisma.AudienceContactAudienceIdContactIdCompoundUniqueInput
   AND?: Prisma.AudienceContactWhereInput | Prisma.AudienceContactWhereInput[]
   OR?: Prisma.AudienceContactWhereInput[]
   NOT?: Prisma.AudienceContactWhereInput | Prisma.AudienceContactWhereInput[]
   audienceId?: Prisma.StringFilter<"AudienceContact"> | string
+  contactId?: Prisma.StringFilter<"AudienceContact"> | string
   sellerId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  name?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  phoneRaw?: Prisma.StringFilter<"AudienceContact"> | string
-  phoneNormalized?: Prisma.StringFilter<"AudienceContact"> | string
-  email?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  hasWhatsapp?: Prisma.BoolFilter<"AudienceContact"> | boolean
-  isBlocked?: Prisma.BoolFilter<"AudienceContact"> | boolean
-  chatwootContactId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  chatwootSourceId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  workspaceId?: Prisma.StringFilter<"AudienceContact"> | string
   createdAt?: Prisma.DateTimeFilter<"AudienceContact"> | Date | string
   audience?: Prisma.XOR<Prisma.AudienceScalarRelationFilter, Prisma.AudienceWhereInput>
+  contact?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
   seller?: Prisma.XOR<Prisma.SellerNullableScalarRelationFilter, Prisma.SellerWhereInput> | null
-  workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
-  messages?: Prisma.CampaignMessageListRelationFilter
-}, "id" | "workspaceId_phoneNormalized">
+}, "id" | "audienceId_contactId">
 
 export type AudienceContactOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   audienceId?: Prisma.SortOrder
+  contactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrderInput | Prisma.SortOrder
-  name?: Prisma.SortOrderInput | Prisma.SortOrder
-  phoneRaw?: Prisma.SortOrder
-  phoneNormalized?: Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
-  hasWhatsapp?: Prisma.SortOrder
-  isBlocked?: Prisma.SortOrder
-  chatwootContactId?: Prisma.SortOrderInput | Prisma.SortOrder
-  chatwootSourceId?: Prisma.SortOrderInput | Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.AudienceContactCountOrderByAggregateInput
   _max?: Prisma.AudienceContactMaxOrderByAggregateInput
@@ -321,129 +230,61 @@ export type AudienceContactScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AudienceContactScalarWhereWithAggregatesInput | Prisma.AudienceContactScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"AudienceContact"> | string
   audienceId?: Prisma.StringWithAggregatesFilter<"AudienceContact"> | string
+  contactId?: Prisma.StringWithAggregatesFilter<"AudienceContact"> | string
   sellerId?: Prisma.StringNullableWithAggregatesFilter<"AudienceContact"> | string | null
-  name?: Prisma.StringNullableWithAggregatesFilter<"AudienceContact"> | string | null
-  phoneRaw?: Prisma.StringWithAggregatesFilter<"AudienceContact"> | string
-  phoneNormalized?: Prisma.StringWithAggregatesFilter<"AudienceContact"> | string
-  email?: Prisma.StringNullableWithAggregatesFilter<"AudienceContact"> | string | null
-  hasWhatsapp?: Prisma.BoolWithAggregatesFilter<"AudienceContact"> | boolean
-  isBlocked?: Prisma.BoolWithAggregatesFilter<"AudienceContact"> | boolean
-  chatwootContactId?: Prisma.StringNullableWithAggregatesFilter<"AudienceContact"> | string | null
-  chatwootSourceId?: Prisma.StringNullableWithAggregatesFilter<"AudienceContact"> | string | null
-  workspaceId?: Prisma.StringWithAggregatesFilter<"AudienceContact"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AudienceContact"> | Date | string
 }
 
 export type AudienceContactCreateInput = {
   id?: string
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
   createdAt?: Date | string
   audience: Prisma.AudienceCreateNestedOneWithoutContactsInput
-  seller?: Prisma.SellerCreateNestedOneWithoutContactsInput
-  workspace: Prisma.WorkspaceCreateNestedOneWithoutContactsInput
-  messages?: Prisma.CampaignMessageCreateNestedManyWithoutContactInput
+  contact: Prisma.ContactCreateNestedOneWithoutAudiencesInput
+  seller?: Prisma.SellerCreateNestedOneWithoutAudiencesInput
 }
 
 export type AudienceContactUncheckedCreateInput = {
   id?: string
   audienceId: string
+  contactId: string
   sellerId?: string | null
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
-  workspaceId: string
   createdAt?: Date | string
-  messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutContactInput
 }
 
 export type AudienceContactUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audience?: Prisma.AudienceUpdateOneRequiredWithoutContactsNestedInput
-  seller?: Prisma.SellerUpdateOneWithoutContactsNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutContactsNestedInput
-  messages?: Prisma.CampaignMessageUpdateManyWithoutContactNestedInput
+  contact?: Prisma.ContactUpdateOneRequiredWithoutAudiencesNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutAudiencesNestedInput
 }
 
 export type AudienceContactUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutContactNestedInput
 }
 
 export type AudienceContactCreateManyInput = {
   id?: string
   audienceId: string
+  contactId: string
   sellerId?: string | null
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
-  workspaceId: string
   createdAt?: Date | string
 }
 
 export type AudienceContactUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AudienceContactUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -457,103 +298,74 @@ export type AudienceContactOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type AudienceContactWorkspaceIdPhoneNormalizedCompoundUniqueInput = {
-  workspaceId: string
-  phoneNormalized: string
+export type AudienceContactAudienceIdContactIdCompoundUniqueInput = {
+  audienceId: string
+  contactId: string
 }
 
 export type AudienceContactCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   audienceId?: Prisma.SortOrder
+  contactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  phoneRaw?: Prisma.SortOrder
-  phoneNormalized?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  hasWhatsapp?: Prisma.SortOrder
-  isBlocked?: Prisma.SortOrder
-  chatwootContactId?: Prisma.SortOrder
-  chatwootSourceId?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type AudienceContactMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   audienceId?: Prisma.SortOrder
+  contactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  phoneRaw?: Prisma.SortOrder
-  phoneNormalized?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  hasWhatsapp?: Prisma.SortOrder
-  isBlocked?: Prisma.SortOrder
-  chatwootContactId?: Prisma.SortOrder
-  chatwootSourceId?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type AudienceContactMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   audienceId?: Prisma.SortOrder
+  contactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  phoneRaw?: Prisma.SortOrder
-  phoneNormalized?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  hasWhatsapp?: Prisma.SortOrder
-  isBlocked?: Prisma.SortOrder
-  chatwootContactId?: Prisma.SortOrder
-  chatwootSourceId?: Prisma.SortOrder
-  workspaceId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
-export type AudienceContactScalarRelationFilter = {
-  is?: Prisma.AudienceContactWhereInput
-  isNot?: Prisma.AudienceContactWhereInput
-}
-
-export type AudienceContactCreateNestedManyWithoutWorkspaceInput = {
-  create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutWorkspaceInput, Prisma.AudienceContactUncheckedCreateWithoutWorkspaceInput> | Prisma.AudienceContactCreateWithoutWorkspaceInput[] | Prisma.AudienceContactUncheckedCreateWithoutWorkspaceInput[]
-  connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutWorkspaceInput | Prisma.AudienceContactCreateOrConnectWithoutWorkspaceInput[]
-  createMany?: Prisma.AudienceContactCreateManyWorkspaceInputEnvelope
+export type AudienceContactCreateNestedManyWithoutContactInput = {
+  create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutContactInput, Prisma.AudienceContactUncheckedCreateWithoutContactInput> | Prisma.AudienceContactCreateWithoutContactInput[] | Prisma.AudienceContactUncheckedCreateWithoutContactInput[]
+  connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutContactInput | Prisma.AudienceContactCreateOrConnectWithoutContactInput[]
+  createMany?: Prisma.AudienceContactCreateManyContactInputEnvelope
   connect?: Prisma.AudienceContactWhereUniqueInput | Prisma.AudienceContactWhereUniqueInput[]
 }
 
-export type AudienceContactUncheckedCreateNestedManyWithoutWorkspaceInput = {
-  create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutWorkspaceInput, Prisma.AudienceContactUncheckedCreateWithoutWorkspaceInput> | Prisma.AudienceContactCreateWithoutWorkspaceInput[] | Prisma.AudienceContactUncheckedCreateWithoutWorkspaceInput[]
-  connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutWorkspaceInput | Prisma.AudienceContactCreateOrConnectWithoutWorkspaceInput[]
-  createMany?: Prisma.AudienceContactCreateManyWorkspaceInputEnvelope
+export type AudienceContactUncheckedCreateNestedManyWithoutContactInput = {
+  create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutContactInput, Prisma.AudienceContactUncheckedCreateWithoutContactInput> | Prisma.AudienceContactCreateWithoutContactInput[] | Prisma.AudienceContactUncheckedCreateWithoutContactInput[]
+  connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutContactInput | Prisma.AudienceContactCreateOrConnectWithoutContactInput[]
+  createMany?: Prisma.AudienceContactCreateManyContactInputEnvelope
   connect?: Prisma.AudienceContactWhereUniqueInput | Prisma.AudienceContactWhereUniqueInput[]
 }
 
-export type AudienceContactUpdateManyWithoutWorkspaceNestedInput = {
-  create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutWorkspaceInput, Prisma.AudienceContactUncheckedCreateWithoutWorkspaceInput> | Prisma.AudienceContactCreateWithoutWorkspaceInput[] | Prisma.AudienceContactUncheckedCreateWithoutWorkspaceInput[]
-  connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutWorkspaceInput | Prisma.AudienceContactCreateOrConnectWithoutWorkspaceInput[]
-  upsert?: Prisma.AudienceContactUpsertWithWhereUniqueWithoutWorkspaceInput | Prisma.AudienceContactUpsertWithWhereUniqueWithoutWorkspaceInput[]
-  createMany?: Prisma.AudienceContactCreateManyWorkspaceInputEnvelope
+export type AudienceContactUpdateManyWithoutContactNestedInput = {
+  create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutContactInput, Prisma.AudienceContactUncheckedCreateWithoutContactInput> | Prisma.AudienceContactCreateWithoutContactInput[] | Prisma.AudienceContactUncheckedCreateWithoutContactInput[]
+  connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutContactInput | Prisma.AudienceContactCreateOrConnectWithoutContactInput[]
+  upsert?: Prisma.AudienceContactUpsertWithWhereUniqueWithoutContactInput | Prisma.AudienceContactUpsertWithWhereUniqueWithoutContactInput[]
+  createMany?: Prisma.AudienceContactCreateManyContactInputEnvelope
   set?: Prisma.AudienceContactWhereUniqueInput | Prisma.AudienceContactWhereUniqueInput[]
   disconnect?: Prisma.AudienceContactWhereUniqueInput | Prisma.AudienceContactWhereUniqueInput[]
   delete?: Prisma.AudienceContactWhereUniqueInput | Prisma.AudienceContactWhereUniqueInput[]
   connect?: Prisma.AudienceContactWhereUniqueInput | Prisma.AudienceContactWhereUniqueInput[]
-  update?: Prisma.AudienceContactUpdateWithWhereUniqueWithoutWorkspaceInput | Prisma.AudienceContactUpdateWithWhereUniqueWithoutWorkspaceInput[]
-  updateMany?: Prisma.AudienceContactUpdateManyWithWhereWithoutWorkspaceInput | Prisma.AudienceContactUpdateManyWithWhereWithoutWorkspaceInput[]
+  update?: Prisma.AudienceContactUpdateWithWhereUniqueWithoutContactInput | Prisma.AudienceContactUpdateWithWhereUniqueWithoutContactInput[]
+  updateMany?: Prisma.AudienceContactUpdateManyWithWhereWithoutContactInput | Prisma.AudienceContactUpdateManyWithWhereWithoutContactInput[]
   deleteMany?: Prisma.AudienceContactScalarWhereInput | Prisma.AudienceContactScalarWhereInput[]
 }
 
-export type AudienceContactUncheckedUpdateManyWithoutWorkspaceNestedInput = {
-  create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutWorkspaceInput, Prisma.AudienceContactUncheckedCreateWithoutWorkspaceInput> | Prisma.AudienceContactCreateWithoutWorkspaceInput[] | Prisma.AudienceContactUncheckedCreateWithoutWorkspaceInput[]
-  connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutWorkspaceInput | Prisma.AudienceContactCreateOrConnectWithoutWorkspaceInput[]
-  upsert?: Prisma.AudienceContactUpsertWithWhereUniqueWithoutWorkspaceInput | Prisma.AudienceContactUpsertWithWhereUniqueWithoutWorkspaceInput[]
-  createMany?: Prisma.AudienceContactCreateManyWorkspaceInputEnvelope
+export type AudienceContactUncheckedUpdateManyWithoutContactNestedInput = {
+  create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutContactInput, Prisma.AudienceContactUncheckedCreateWithoutContactInput> | Prisma.AudienceContactCreateWithoutContactInput[] | Prisma.AudienceContactUncheckedCreateWithoutContactInput[]
+  connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutContactInput | Prisma.AudienceContactCreateOrConnectWithoutContactInput[]
+  upsert?: Prisma.AudienceContactUpsertWithWhereUniqueWithoutContactInput | Prisma.AudienceContactUpsertWithWhereUniqueWithoutContactInput[]
+  createMany?: Prisma.AudienceContactCreateManyContactInputEnvelope
   set?: Prisma.AudienceContactWhereUniqueInput | Prisma.AudienceContactWhereUniqueInput[]
   disconnect?: Prisma.AudienceContactWhereUniqueInput | Prisma.AudienceContactWhereUniqueInput[]
   delete?: Prisma.AudienceContactWhereUniqueInput | Prisma.AudienceContactWhereUniqueInput[]
   connect?: Prisma.AudienceContactWhereUniqueInput | Prisma.AudienceContactWhereUniqueInput[]
-  update?: Prisma.AudienceContactUpdateWithWhereUniqueWithoutWorkspaceInput | Prisma.AudienceContactUpdateWithWhereUniqueWithoutWorkspaceInput[]
-  updateMany?: Prisma.AudienceContactUpdateManyWithWhereWithoutWorkspaceInput | Prisma.AudienceContactUpdateManyWithWhereWithoutWorkspaceInput[]
+  update?: Prisma.AudienceContactUpdateWithWhereUniqueWithoutContactInput | Prisma.AudienceContactUpdateWithWhereUniqueWithoutContactInput[]
+  updateMany?: Prisma.AudienceContactUpdateManyWithWhereWithoutContactInput | Prisma.AudienceContactUpdateManyWithWhereWithoutContactInput[]
   deleteMany?: Prisma.AudienceContactScalarWhereInput | Prisma.AudienceContactScalarWhereInput[]
 }
 
@@ -599,14 +411,6 @@ export type AudienceContactUncheckedUpdateManyWithoutAudienceNestedInput = {
   deleteMany?: Prisma.AudienceContactScalarWhereInput | Prisma.AudienceContactScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type AudienceContactCreateNestedManyWithoutSellerInput = {
   create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutSellerInput, Prisma.AudienceContactUncheckedCreateWithoutSellerInput> | Prisma.AudienceContactCreateWithoutSellerInput[] | Prisma.AudienceContactUncheckedCreateWithoutSellerInput[]
   connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutSellerInput | Prisma.AudienceContactCreateOrConnectWithoutSellerInput[]
@@ -649,76 +453,44 @@ export type AudienceContactUncheckedUpdateManyWithoutSellerNestedInput = {
   deleteMany?: Prisma.AudienceContactScalarWhereInput | Prisma.AudienceContactScalarWhereInput[]
 }
 
-export type AudienceContactCreateNestedOneWithoutMessagesInput = {
-  create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutMessagesInput, Prisma.AudienceContactUncheckedCreateWithoutMessagesInput>
-  connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutMessagesInput
-  connect?: Prisma.AudienceContactWhereUniqueInput
-}
-
-export type AudienceContactUpdateOneRequiredWithoutMessagesNestedInput = {
-  create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutMessagesInput, Prisma.AudienceContactUncheckedCreateWithoutMessagesInput>
-  connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutMessagesInput
-  upsert?: Prisma.AudienceContactUpsertWithoutMessagesInput
-  connect?: Prisma.AudienceContactWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.AudienceContactUpdateToOneWithWhereWithoutMessagesInput, Prisma.AudienceContactUpdateWithoutMessagesInput>, Prisma.AudienceContactUncheckedUpdateWithoutMessagesInput>
-}
-
-export type AudienceContactCreateWithoutWorkspaceInput = {
+export type AudienceContactCreateWithoutContactInput = {
   id?: string
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
   createdAt?: Date | string
   audience: Prisma.AudienceCreateNestedOneWithoutContactsInput
-  seller?: Prisma.SellerCreateNestedOneWithoutContactsInput
-  messages?: Prisma.CampaignMessageCreateNestedManyWithoutContactInput
+  seller?: Prisma.SellerCreateNestedOneWithoutAudiencesInput
 }
 
-export type AudienceContactUncheckedCreateWithoutWorkspaceInput = {
+export type AudienceContactUncheckedCreateWithoutContactInput = {
   id?: string
   audienceId: string
   sellerId?: string | null
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
   createdAt?: Date | string
-  messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutContactInput
 }
 
-export type AudienceContactCreateOrConnectWithoutWorkspaceInput = {
+export type AudienceContactCreateOrConnectWithoutContactInput = {
   where: Prisma.AudienceContactWhereUniqueInput
-  create: Prisma.XOR<Prisma.AudienceContactCreateWithoutWorkspaceInput, Prisma.AudienceContactUncheckedCreateWithoutWorkspaceInput>
+  create: Prisma.XOR<Prisma.AudienceContactCreateWithoutContactInput, Prisma.AudienceContactUncheckedCreateWithoutContactInput>
 }
 
-export type AudienceContactCreateManyWorkspaceInputEnvelope = {
-  data: Prisma.AudienceContactCreateManyWorkspaceInput | Prisma.AudienceContactCreateManyWorkspaceInput[]
+export type AudienceContactCreateManyContactInputEnvelope = {
+  data: Prisma.AudienceContactCreateManyContactInput | Prisma.AudienceContactCreateManyContactInput[]
   skipDuplicates?: boolean
 }
 
-export type AudienceContactUpsertWithWhereUniqueWithoutWorkspaceInput = {
+export type AudienceContactUpsertWithWhereUniqueWithoutContactInput = {
   where: Prisma.AudienceContactWhereUniqueInput
-  update: Prisma.XOR<Prisma.AudienceContactUpdateWithoutWorkspaceInput, Prisma.AudienceContactUncheckedUpdateWithoutWorkspaceInput>
-  create: Prisma.XOR<Prisma.AudienceContactCreateWithoutWorkspaceInput, Prisma.AudienceContactUncheckedCreateWithoutWorkspaceInput>
+  update: Prisma.XOR<Prisma.AudienceContactUpdateWithoutContactInput, Prisma.AudienceContactUncheckedUpdateWithoutContactInput>
+  create: Prisma.XOR<Prisma.AudienceContactCreateWithoutContactInput, Prisma.AudienceContactUncheckedCreateWithoutContactInput>
 }
 
-export type AudienceContactUpdateWithWhereUniqueWithoutWorkspaceInput = {
+export type AudienceContactUpdateWithWhereUniqueWithoutContactInput = {
   where: Prisma.AudienceContactWhereUniqueInput
-  data: Prisma.XOR<Prisma.AudienceContactUpdateWithoutWorkspaceInput, Prisma.AudienceContactUncheckedUpdateWithoutWorkspaceInput>
+  data: Prisma.XOR<Prisma.AudienceContactUpdateWithoutContactInput, Prisma.AudienceContactUncheckedUpdateWithoutContactInput>
 }
 
-export type AudienceContactUpdateManyWithWhereWithoutWorkspaceInput = {
+export type AudienceContactUpdateManyWithWhereWithoutContactInput = {
   where: Prisma.AudienceContactScalarWhereInput
-  data: Prisma.XOR<Prisma.AudienceContactUpdateManyMutationInput, Prisma.AudienceContactUncheckedUpdateManyWithoutWorkspaceInput>
+  data: Prisma.XOR<Prisma.AudienceContactUpdateManyMutationInput, Prisma.AudienceContactUncheckedUpdateManyWithoutContactInput>
 }
 
 export type AudienceContactScalarWhereInput = {
@@ -727,49 +499,23 @@ export type AudienceContactScalarWhereInput = {
   NOT?: Prisma.AudienceContactScalarWhereInput | Prisma.AudienceContactScalarWhereInput[]
   id?: Prisma.StringFilter<"AudienceContact"> | string
   audienceId?: Prisma.StringFilter<"AudienceContact"> | string
+  contactId?: Prisma.StringFilter<"AudienceContact"> | string
   sellerId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  name?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  phoneRaw?: Prisma.StringFilter<"AudienceContact"> | string
-  phoneNormalized?: Prisma.StringFilter<"AudienceContact"> | string
-  email?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  hasWhatsapp?: Prisma.BoolFilter<"AudienceContact"> | boolean
-  isBlocked?: Prisma.BoolFilter<"AudienceContact"> | boolean
-  chatwootContactId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  chatwootSourceId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
-  workspaceId?: Prisma.StringFilter<"AudienceContact"> | string
   createdAt?: Prisma.DateTimeFilter<"AudienceContact"> | Date | string
 }
 
 export type AudienceContactCreateWithoutAudienceInput = {
   id?: string
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
   createdAt?: Date | string
-  seller?: Prisma.SellerCreateNestedOneWithoutContactsInput
-  workspace: Prisma.WorkspaceCreateNestedOneWithoutContactsInput
-  messages?: Prisma.CampaignMessageCreateNestedManyWithoutContactInput
+  contact: Prisma.ContactCreateNestedOneWithoutAudiencesInput
+  seller?: Prisma.SellerCreateNestedOneWithoutAudiencesInput
 }
 
 export type AudienceContactUncheckedCreateWithoutAudienceInput = {
   id?: string
+  contactId: string
   sellerId?: string | null
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
-  workspaceId: string
   createdAt?: Date | string
-  messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutContactInput
 }
 
 export type AudienceContactCreateOrConnectWithoutAudienceInput = {
@@ -800,34 +546,16 @@ export type AudienceContactUpdateManyWithWhereWithoutAudienceInput = {
 
 export type AudienceContactCreateWithoutSellerInput = {
   id?: string
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
   createdAt?: Date | string
   audience: Prisma.AudienceCreateNestedOneWithoutContactsInput
-  workspace: Prisma.WorkspaceCreateNestedOneWithoutContactsInput
-  messages?: Prisma.CampaignMessageCreateNestedManyWithoutContactInput
+  contact: Prisma.ContactCreateNestedOneWithoutAudiencesInput
 }
 
 export type AudienceContactUncheckedCreateWithoutSellerInput = {
   id?: string
   audienceId: string
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
-  workspaceId: string
+  contactId: string
   createdAt?: Date | string
-  messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutContactInput
 }
 
 export type AudienceContactCreateOrConnectWithoutSellerInput = {
@@ -856,418 +584,162 @@ export type AudienceContactUpdateManyWithWhereWithoutSellerInput = {
   data: Prisma.XOR<Prisma.AudienceContactUpdateManyMutationInput, Prisma.AudienceContactUncheckedUpdateManyWithoutSellerInput>
 }
 
-export type AudienceContactCreateWithoutMessagesInput = {
-  id?: string
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
-  createdAt?: Date | string
-  audience: Prisma.AudienceCreateNestedOneWithoutContactsInput
-  seller?: Prisma.SellerCreateNestedOneWithoutContactsInput
-  workspace: Prisma.WorkspaceCreateNestedOneWithoutContactsInput
-}
-
-export type AudienceContactUncheckedCreateWithoutMessagesInput = {
+export type AudienceContactCreateManyContactInput = {
   id?: string
   audienceId: string
   sellerId?: string | null
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
-  workspaceId: string
   createdAt?: Date | string
 }
 
-export type AudienceContactCreateOrConnectWithoutMessagesInput = {
-  where: Prisma.AudienceContactWhereUniqueInput
-  create: Prisma.XOR<Prisma.AudienceContactCreateWithoutMessagesInput, Prisma.AudienceContactUncheckedCreateWithoutMessagesInput>
-}
-
-export type AudienceContactUpsertWithoutMessagesInput = {
-  update: Prisma.XOR<Prisma.AudienceContactUpdateWithoutMessagesInput, Prisma.AudienceContactUncheckedUpdateWithoutMessagesInput>
-  create: Prisma.XOR<Prisma.AudienceContactCreateWithoutMessagesInput, Prisma.AudienceContactUncheckedCreateWithoutMessagesInput>
-  where?: Prisma.AudienceContactWhereInput
-}
-
-export type AudienceContactUpdateToOneWithWhereWithoutMessagesInput = {
-  where?: Prisma.AudienceContactWhereInput
-  data: Prisma.XOR<Prisma.AudienceContactUpdateWithoutMessagesInput, Prisma.AudienceContactUncheckedUpdateWithoutMessagesInput>
-}
-
-export type AudienceContactUpdateWithoutMessagesInput = {
+export type AudienceContactUpdateWithoutContactInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audience?: Prisma.AudienceUpdateOneRequiredWithoutContactsNestedInput
-  seller?: Prisma.SellerUpdateOneWithoutContactsNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutContactsNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutAudiencesNestedInput
 }
 
-export type AudienceContactUncheckedUpdateWithoutMessagesInput = {
+export type AudienceContactUncheckedUpdateWithoutContactInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type AudienceContactCreateManyWorkspaceInput = {
-  id?: string
-  audienceId: string
-  sellerId?: string | null
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
-  createdAt?: Date | string
-}
-
-export type AudienceContactUpdateWithoutWorkspaceInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  audience?: Prisma.AudienceUpdateOneRequiredWithoutContactsNestedInput
-  seller?: Prisma.SellerUpdateOneWithoutContactsNestedInput
-  messages?: Prisma.CampaignMessageUpdateManyWithoutContactNestedInput
-}
-
-export type AudienceContactUncheckedUpdateWithoutWorkspaceInput = {
+export type AudienceContactUncheckedUpdateManyWithoutContactInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutContactNestedInput
-}
-
-export type AudienceContactUncheckedUpdateManyWithoutWorkspaceInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  audienceId?: Prisma.StringFieldUpdateOperationsInput | string
-  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AudienceContactCreateManyAudienceInput = {
   id?: string
+  contactId: string
   sellerId?: string | null
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
-  workspaceId: string
   createdAt?: Date | string
 }
 
 export type AudienceContactUpdateWithoutAudienceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  seller?: Prisma.SellerUpdateOneWithoutContactsNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutContactsNestedInput
-  messages?: Prisma.CampaignMessageUpdateManyWithoutContactNestedInput
+  contact?: Prisma.ContactUpdateOneRequiredWithoutAudiencesNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutAudiencesNestedInput
 }
 
 export type AudienceContactUncheckedUpdateWithoutAudienceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutContactNestedInput
 }
 
 export type AudienceContactUncheckedUpdateManyWithoutAudienceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AudienceContactCreateManySellerInput = {
   id?: string
   audienceId: string
-  name?: string | null
-  phoneRaw: string
-  phoneNormalized: string
-  email?: string | null
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: string | null
-  chatwootSourceId?: string | null
-  workspaceId: string
+  contactId: string
   createdAt?: Date | string
 }
 
 export type AudienceContactUpdateWithoutSellerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audience?: Prisma.AudienceUpdateOneRequiredWithoutContactsNestedInput
-  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutContactsNestedInput
-  messages?: Prisma.CampaignMessageUpdateManyWithoutContactNestedInput
+  contact?: Prisma.ContactUpdateOneRequiredWithoutAudiencesNestedInput
 }
 
 export type AudienceContactUncheckedUpdateWithoutSellerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutContactNestedInput
 }
 
 export type AudienceContactUncheckedUpdateManyWithoutSellerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phoneRaw?: Prisma.StringFieldUpdateOperationsInput | string
-  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  hasWhatsapp?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  isBlocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  chatwootContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  chatwootSourceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-
-/**
- * Count Type AudienceContactCountOutputType
- */
-
-export type AudienceContactCountOutputType = {
-  messages: number
-}
-
-export type AudienceContactCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  messages?: boolean | AudienceContactCountOutputTypeCountMessagesArgs
-}
-
-/**
- * AudienceContactCountOutputType without action
- */
-export type AudienceContactCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AudienceContactCountOutputType
-   */
-  select?: Prisma.AudienceContactCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * AudienceContactCountOutputType without action
- */
-export type AudienceContactCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CampaignMessageWhereInput
-}
 
 
 export type AudienceContactSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   audienceId?: boolean
+  contactId?: boolean
   sellerId?: boolean
-  name?: boolean
-  phoneRaw?: boolean
-  phoneNormalized?: boolean
-  email?: boolean
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: boolean
-  chatwootSourceId?: boolean
-  workspaceId?: boolean
   createdAt?: boolean
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   seller?: boolean | Prisma.AudienceContact$sellerArgs<ExtArgs>
-  workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
-  messages?: boolean | Prisma.AudienceContact$messagesArgs<ExtArgs>
-  _count?: boolean | Prisma.AudienceContactCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["audienceContact"]>
 
 export type AudienceContactSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   audienceId?: boolean
+  contactId?: boolean
   sellerId?: boolean
-  name?: boolean
-  phoneRaw?: boolean
-  phoneNormalized?: boolean
-  email?: boolean
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: boolean
-  chatwootSourceId?: boolean
-  workspaceId?: boolean
   createdAt?: boolean
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   seller?: boolean | Prisma.AudienceContact$sellerArgs<ExtArgs>
-  workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["audienceContact"]>
 
 export type AudienceContactSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   audienceId?: boolean
+  contactId?: boolean
   sellerId?: boolean
-  name?: boolean
-  phoneRaw?: boolean
-  phoneNormalized?: boolean
-  email?: boolean
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: boolean
-  chatwootSourceId?: boolean
-  workspaceId?: boolean
   createdAt?: boolean
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   seller?: boolean | Prisma.AudienceContact$sellerArgs<ExtArgs>
-  workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["audienceContact"]>
 
 export type AudienceContactSelectScalar = {
   id?: boolean
   audienceId?: boolean
+  contactId?: boolean
   sellerId?: boolean
-  name?: boolean
-  phoneRaw?: boolean
-  phoneNormalized?: boolean
-  email?: boolean
-  hasWhatsapp?: boolean
-  isBlocked?: boolean
-  chatwootContactId?: boolean
-  chatwootSourceId?: boolean
-  workspaceId?: boolean
   createdAt?: boolean
 }
 
-export type AudienceContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "audienceId" | "sellerId" | "name" | "phoneRaw" | "phoneNormalized" | "email" | "hasWhatsapp" | "isBlocked" | "chatwootContactId" | "chatwootSourceId" | "workspaceId" | "createdAt", ExtArgs["result"]["audienceContact"]>
+export type AudienceContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "audienceId" | "contactId" | "sellerId" | "createdAt", ExtArgs["result"]["audienceContact"]>
 export type AudienceContactInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   seller?: boolean | Prisma.AudienceContact$sellerArgs<ExtArgs>
-  workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
-  messages?: boolean | Prisma.AudienceContact$messagesArgs<ExtArgs>
-  _count?: boolean | Prisma.AudienceContactCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AudienceContactIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   seller?: boolean | Prisma.AudienceContact$sellerArgs<ExtArgs>
-  workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 export type AudienceContactIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
+  contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   seller?: boolean | Prisma.AudienceContact$sellerArgs<ExtArgs>
-  workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
 
 export type $AudienceContactPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "AudienceContact"
   objects: {
     audience: Prisma.$AudiencePayload<ExtArgs>
+    contact: Prisma.$ContactPayload<ExtArgs>
     seller: Prisma.$SellerPayload<ExtArgs> | null
-    workspace: Prisma.$WorkspacePayload<ExtArgs>
-    messages: Prisma.$CampaignMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     audienceId: string
+    contactId: string
     sellerId: string | null
-    name: string | null
-    phoneRaw: string
-    phoneNormalized: string
-    email: string | null
-    hasWhatsapp: boolean
-    isBlocked: boolean
-    chatwootContactId: string | null
-    chatwootSourceId: string | null
-    workspaceId: string
     createdAt: Date
   }, ExtArgs["result"]["audienceContact"]>
   composites: {}
@@ -1664,9 +1136,8 @@ readonly fields: AudienceContactFieldRefs;
 export interface Prisma__AudienceContactClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   audience<T extends Prisma.AudienceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AudienceDefaultArgs<ExtArgs>>): Prisma.Prisma__AudienceClient<runtime.Types.Result.GetResult<Prisma.$AudiencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  contact<T extends Prisma.ContactDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContactDefaultArgs<ExtArgs>>): Prisma.Prisma__ContactClient<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   seller<T extends Prisma.AudienceContact$sellerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AudienceContact$sellerArgs<ExtArgs>>): Prisma.Prisma__SellerClient<runtime.Types.Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  messages<T extends Prisma.AudienceContact$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AudienceContact$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampaignMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1698,16 +1169,8 @@ export interface Prisma__AudienceContactClient<T, Null = never, ExtArgs extends 
 export interface AudienceContactFieldRefs {
   readonly id: Prisma.FieldRef<"AudienceContact", 'String'>
   readonly audienceId: Prisma.FieldRef<"AudienceContact", 'String'>
+  readonly contactId: Prisma.FieldRef<"AudienceContact", 'String'>
   readonly sellerId: Prisma.FieldRef<"AudienceContact", 'String'>
-  readonly name: Prisma.FieldRef<"AudienceContact", 'String'>
-  readonly phoneRaw: Prisma.FieldRef<"AudienceContact", 'String'>
-  readonly phoneNormalized: Prisma.FieldRef<"AudienceContact", 'String'>
-  readonly email: Prisma.FieldRef<"AudienceContact", 'String'>
-  readonly hasWhatsapp: Prisma.FieldRef<"AudienceContact", 'Boolean'>
-  readonly isBlocked: Prisma.FieldRef<"AudienceContact", 'Boolean'>
-  readonly chatwootContactId: Prisma.FieldRef<"AudienceContact", 'String'>
-  readonly chatwootSourceId: Prisma.FieldRef<"AudienceContact", 'String'>
-  readonly workspaceId: Prisma.FieldRef<"AudienceContact", 'String'>
   readonly createdAt: Prisma.FieldRef<"AudienceContact", 'DateTime'>
 }
     
@@ -2126,30 +1589,6 @@ export type AudienceContact$sellerArgs<ExtArgs extends runtime.Types.Extensions.
    */
   include?: Prisma.SellerInclude<ExtArgs> | null
   where?: Prisma.SellerWhereInput
-}
-
-/**
- * AudienceContact.messages
- */
-export type AudienceContact$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CampaignMessage
-   */
-  select?: Prisma.CampaignMessageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CampaignMessage
-   */
-  omit?: Prisma.CampaignMessageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CampaignMessageInclude<ExtArgs> | null
-  where?: Prisma.CampaignMessageWhereInput
-  orderBy?: Prisma.CampaignMessageOrderByWithRelationInput | Prisma.CampaignMessageOrderByWithRelationInput[]
-  cursor?: Prisma.CampaignMessageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CampaignMessageScalarFieldEnum | Prisma.CampaignMessageScalarFieldEnum[]
 }
 
 /**

@@ -9,6 +9,24 @@
 * 🟢 You can import this file directly.
 */
 
+export const TemplateCategory = {
+  MARKETING: 'MARKETING',
+  UTILITY: 'UTILITY',
+  AUTHENTICATION: 'AUTHENTICATION'
+} as const
+
+export type TemplateCategory = (typeof TemplateCategory)[keyof typeof TemplateCategory]
+
+
+export const TemplateStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type TemplateStatus = (typeof TemplateStatus)[keyof typeof TemplateStatus]
+
+
 export const WebhookProvider = {
   META: 'META',
   CHATWOOT: 'CHATWOOT'

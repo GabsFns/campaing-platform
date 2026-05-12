@@ -387,6 +387,7 @@ export const ModelName = {
   Workspace: 'Workspace',
   User: 'User',
   Template: 'Template',
+  Contact: 'Contact',
   Audience: 'Audience',
   AudienceContact: 'AudienceContact',
   Seller: 'Seller',
@@ -394,10 +395,12 @@ export const ModelName = {
   CampaignMessage: 'CampaignMessage',
   CampaignBatch: 'CampaignBatch',
   CampaignStats: 'CampaignStats',
+  ChatwootConnection: 'ChatwootConnection',
   ChatwootConversation: 'ChatwootConversation',
   MessageEvent: 'MessageEvent',
   SenderNumber: 'SenderNumber',
-  WebhookEvent: 'WebhookEvent'
+  WebhookEvent: 'WebhookEvent',
+  MetaConnection: 'MetaConnection'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "workspace" | "user" | "template" | "audience" | "audienceContact" | "seller" | "campaign" | "campaignMessage" | "campaignBatch" | "campaignStats" | "chatwootConversation" | "messageEvent" | "senderNumber" | "webhookEvent"
+    modelProps: "workspace" | "user" | "template" | "contact" | "audience" | "audienceContact" | "seller" | "campaign" | "campaignMessage" | "campaignBatch" | "campaignStats" | "chatwootConnection" | "chatwootConversation" | "messageEvent" | "senderNumber" | "webhookEvent" | "metaConnection"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -636,6 +639,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.TemplateCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.TemplateCountAggregateOutputType> | number
+        }
+      }
+    }
+    Contact: {
+      payload: Prisma.$ContactPayload<ExtArgs>
+      fields: Prisma.ContactFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ContactFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ContactFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        findFirst: {
+          args: Prisma.ContactFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ContactFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        findMany: {
+          args: Prisma.ContactFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>[]
+        }
+        create: {
+          args: Prisma.ContactCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        createMany: {
+          args: Prisma.ContactCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ContactCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>[]
+        }
+        delete: {
+          args: Prisma.ContactDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        update: {
+          args: Prisma.ContactUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        deleteMany: {
+          args: Prisma.ContactDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ContactUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ContactUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>[]
+        }
+        upsert: {
+          args: Prisma.ContactUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ContactPayload>
+        }
+        aggregate: {
+          args: Prisma.ContactAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContact>
+        }
+        groupBy: {
+          args: Prisma.ContactGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ContactCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContactCountAggregateOutputType> | number
         }
       }
     }
@@ -1157,6 +1234,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ChatwootConnection: {
+      payload: Prisma.$ChatwootConnectionPayload<ExtArgs>
+      fields: Prisma.ChatwootConnectionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ChatwootConnectionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ChatwootConnectionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload>
+        }
+        findFirst: {
+          args: Prisma.ChatwootConnectionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ChatwootConnectionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload>
+        }
+        findMany: {
+          args: Prisma.ChatwootConnectionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload>[]
+        }
+        create: {
+          args: Prisma.ChatwootConnectionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload>
+        }
+        createMany: {
+          args: Prisma.ChatwootConnectionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ChatwootConnectionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload>[]
+        }
+        delete: {
+          args: Prisma.ChatwootConnectionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload>
+        }
+        update: {
+          args: Prisma.ChatwootConnectionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload>
+        }
+        deleteMany: {
+          args: Prisma.ChatwootConnectionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ChatwootConnectionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ChatwootConnectionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload>[]
+        }
+        upsert: {
+          args: Prisma.ChatwootConnectionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatwootConnectionPayload>
+        }
+        aggregate: {
+          args: Prisma.ChatwootConnectionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateChatwootConnection>
+        }
+        groupBy: {
+          args: Prisma.ChatwootConnectionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChatwootConnectionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ChatwootConnectionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChatwootConnectionCountAggregateOutputType> | number
+        }
+      }
+    }
     ChatwootConversation: {
       payload: Prisma.$ChatwootConversationPayload<ExtArgs>
       fields: Prisma.ChatwootConversationFieldRefs
@@ -1453,6 +1604,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    MetaConnection: {
+      payload: Prisma.$MetaConnectionPayload<ExtArgs>
+      fields: Prisma.MetaConnectionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MetaConnectionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MetaConnectionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload>
+        }
+        findFirst: {
+          args: Prisma.MetaConnectionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MetaConnectionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload>
+        }
+        findMany: {
+          args: Prisma.MetaConnectionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload>[]
+        }
+        create: {
+          args: Prisma.MetaConnectionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload>
+        }
+        createMany: {
+          args: Prisma.MetaConnectionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MetaConnectionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload>[]
+        }
+        delete: {
+          args: Prisma.MetaConnectionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload>
+        }
+        update: {
+          args: Prisma.MetaConnectionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload>
+        }
+        deleteMany: {
+          args: Prisma.MetaConnectionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MetaConnectionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MetaConnectionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload>[]
+        }
+        upsert: {
+          args: Prisma.MetaConnectionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaConnectionPayload>
+        }
+        aggregate: {
+          args: Prisma.MetaConnectionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMetaConnection>
+        }
+        groupBy: {
+          args: Prisma.MetaConnectionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MetaConnectionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MetaConnectionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MetaConnectionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1516,13 +1741,34 @@ export const TemplateScalarFieldEnum = {
   id: 'id',
   workspaceId: 'workspaceId',
   name: 'name',
-  content: 'content',
+  body: 'body',
   channel: 'channel',
+  category: 'category',
+  language: 'language',
   variables: 'variables',
+  status: 'status',
+  metaTemplateId: 'metaTemplateId',
   createdAt: 'createdAt'
 } as const
 
 export type TemplateScalarFieldEnum = (typeof TemplateScalarFieldEnum)[keyof typeof TemplateScalarFieldEnum]
+
+
+export const ContactScalarFieldEnum = {
+  id: 'id',
+  workspaceId: 'workspaceId',
+  name: 'name',
+  phoneRaw: 'phoneRaw',
+  phoneNormalized: 'phoneNormalized',
+  email: 'email',
+  hasWhatsapp: 'hasWhatsapp',
+  isBlocked: 'isBlocked',
+  chatwootContactId: 'chatwootContactId',
+  chatwootSourceId: 'chatwootSourceId',
+  createdAt: 'createdAt'
+} as const
+
+export type ContactScalarFieldEnum = (typeof ContactScalarFieldEnum)[keyof typeof ContactScalarFieldEnum]
 
 
 export const AudienceScalarFieldEnum = {
@@ -1539,16 +1785,8 @@ export type AudienceScalarFieldEnum = (typeof AudienceScalarFieldEnum)[keyof typ
 export const AudienceContactScalarFieldEnum = {
   id: 'id',
   audienceId: 'audienceId',
+  contactId: 'contactId',
   sellerId: 'sellerId',
-  name: 'name',
-  phoneRaw: 'phoneRaw',
-  phoneNormalized: 'phoneNormalized',
-  email: 'email',
-  hasWhatsapp: 'hasWhatsapp',
-  isBlocked: 'isBlocked',
-  chatwootContactId: 'chatwootContactId',
-  chatwootSourceId: 'chatwootSourceId',
-  workspaceId: 'workspaceId',
   createdAt: 'createdAt'
 } as const
 
@@ -1557,9 +1795,12 @@ export type AudienceContactScalarFieldEnum = (typeof AudienceContactScalarFieldE
 
 export const SellerScalarFieldEnum = {
   id: 'id',
+  workspaceId: 'workspaceId',
   name: 'name',
-  phone: 'phone',
+  phoneRaw: 'phoneRaw',
+  phoneNormalized: 'phoneNormalized',
   chatwootAgentId: 'chatwootAgentId',
+  chatwootAccountId: 'chatwootAccountId',
   createdAt: 'createdAt'
 } as const
 
@@ -1592,6 +1833,7 @@ export const CampaignMessageScalarFieldEnum = {
   phoneNormalized: 'phoneNormalized',
   batchId: 'batchId',
   senderNumberId: 'senderNumberId',
+  workspaceId: 'workspaceId',
   status: 'status',
   error: 'error',
   providerId: 'providerId',
@@ -1603,7 +1845,6 @@ export const CampaignMessageScalarFieldEnum = {
   deliveredAt: 'deliveredAt',
   readAt: 'readAt',
   lockedAt: 'lockedAt',
-  workspaceId: 'workspaceId',
   retryCount: 'retryCount',
   createdAt: 'createdAt'
 } as const
@@ -1637,6 +1878,18 @@ export const CampaignStatsScalarFieldEnum = {
 } as const
 
 export type CampaignStatsScalarFieldEnum = (typeof CampaignStatsScalarFieldEnum)[keyof typeof CampaignStatsScalarFieldEnum]
+
+
+export const ChatwootConnectionScalarFieldEnum = {
+  id: 'id',
+  workspaceId: 'workspaceId',
+  baseUrl: 'baseUrl',
+  apiToken: 'apiToken',
+  accountId: 'accountId',
+  createdAt: 'createdAt'
+} as const
+
+export type ChatwootConnectionScalarFieldEnum = (typeof ChatwootConnectionScalarFieldEnum)[keyof typeof ChatwootConnectionScalarFieldEnum]
 
 
 export const ChatwootConversationScalarFieldEnum = {
@@ -1690,6 +1943,23 @@ export const WebhookEventScalarFieldEnum = {
 } as const
 
 export type WebhookEventScalarFieldEnum = (typeof WebhookEventScalarFieldEnum)[keyof typeof WebhookEventScalarFieldEnum]
+
+
+export const MetaConnectionScalarFieldEnum = {
+  id: 'id',
+  workspaceId: 'workspaceId',
+  accessToken: 'accessToken',
+  businessId: 'businessId',
+  wabaId: 'wabaId',
+  phoneNumberId: 'phoneNumberId',
+  phoneNumber: 'phoneNumber',
+  displayName: 'displayName',
+  webhookToken: 'webhookToken',
+  webhookUrl: 'webhookUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type MetaConnectionScalarFieldEnum = (typeof MetaConnectionScalarFieldEnum)[keyof typeof MetaConnectionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1789,6 +2059,20 @@ export type ListEnumChannelFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
 
 
 /**
+ * Reference to a field of type 'TemplateCategory'
+ */
+export type EnumTemplateCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TemplateCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'TemplateCategory[]'
+ */
+export type ListEnumTemplateCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TemplateCategory[]'>
+    
+
+
+/**
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -1803,6 +2087,27 @@ export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
 
 
 /**
+ * Reference to a field of type 'TemplateStatus'
+ */
+export type EnumTemplateStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TemplateStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'TemplateStatus[]'
+ */
+export type ListEnumTemplateStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TemplateStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1813,13 +2118,6 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -2004,6 +2302,7 @@ export type GlobalOmitConfig = {
   workspace?: Prisma.WorkspaceOmit
   user?: Prisma.UserOmit
   template?: Prisma.TemplateOmit
+  contact?: Prisma.ContactOmit
   audience?: Prisma.AudienceOmit
   audienceContact?: Prisma.AudienceContactOmit
   seller?: Prisma.SellerOmit
@@ -2011,10 +2310,12 @@ export type GlobalOmitConfig = {
   campaignMessage?: Prisma.CampaignMessageOmit
   campaignBatch?: Prisma.CampaignBatchOmit
   campaignStats?: Prisma.CampaignStatsOmit
+  chatwootConnection?: Prisma.ChatwootConnectionOmit
   chatwootConversation?: Prisma.ChatwootConversationOmit
   messageEvent?: Prisma.MessageEventOmit
   senderNumber?: Prisma.SenderNumberOmit
   webhookEvent?: Prisma.WebhookEventOmit
+  metaConnection?: Prisma.MetaConnectionOmit
 }
 
 /* Types for Logging */
