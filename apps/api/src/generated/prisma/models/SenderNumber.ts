@@ -245,6 +245,7 @@ export type SenderNumberWhereInput = {
   lockedAt?: Prisma.DateTimeNullableFilter<"SenderNumber"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"SenderNumber"> | Date | string
   messages?: Prisma.CampaignMessageListRelationFilter
+  campaing?: Prisma.CampaignListRelationFilter
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }
 
@@ -258,6 +259,7 @@ export type SenderNumberOrderByWithRelationInput = {
   lockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   messages?: Prisma.CampaignMessageOrderByRelationAggregateInput
+  campaing?: Prisma.CampaignOrderByRelationAggregateInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
 }
 
@@ -274,6 +276,7 @@ export type SenderNumberWhereUniqueInput = Prisma.AtLeast<{
   lockedAt?: Prisma.DateTimeNullableFilter<"SenderNumber"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"SenderNumber"> | Date | string
   messages?: Prisma.CampaignMessageListRelationFilter
+  campaing?: Prisma.CampaignListRelationFilter
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
 }, "id" | "number">
 
@@ -316,6 +319,7 @@ export type SenderNumberCreateInput = {
   lockedAt?: Date | string | null
   createdAt?: Date | string
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutSenderNumberInput
+  campaing?: Prisma.CampaignCreateNestedManyWithoutSenderNumberInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutNumbersInput
 }
 
@@ -329,6 +333,7 @@ export type SenderNumberUncheckedCreateInput = {
   lockedAt?: Date | string | null
   createdAt?: Date | string
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutSenderNumberInput
+  campaing?: Prisma.CampaignUncheckedCreateNestedManyWithoutSenderNumberInput
 }
 
 export type SenderNumberUpdateInput = {
@@ -340,6 +345,7 @@ export type SenderNumberUpdateInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.CampaignMessageUpdateManyWithoutSenderNumberNestedInput
+  campaing?: Prisma.CampaignUpdateManyWithoutSenderNumberNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutNumbersNestedInput
 }
 
@@ -353,6 +359,7 @@ export type SenderNumberUncheckedUpdateInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutSenderNumberNestedInput
+  campaing?: Prisma.CampaignUncheckedUpdateManyWithoutSenderNumberNestedInput
 }
 
 export type SenderNumberCreateManyInput = {
@@ -487,6 +494,22 @@ export type SenderNumberUncheckedUpdateManyWithoutWorkspaceNestedInput = {
   deleteMany?: Prisma.SenderNumberScalarWhereInput | Prisma.SenderNumberScalarWhereInput[]
 }
 
+export type SenderNumberCreateNestedOneWithoutCampaingInput = {
+  create?: Prisma.XOR<Prisma.SenderNumberCreateWithoutCampaingInput, Prisma.SenderNumberUncheckedCreateWithoutCampaingInput>
+  connectOrCreate?: Prisma.SenderNumberCreateOrConnectWithoutCampaingInput
+  connect?: Prisma.SenderNumberWhereUniqueInput
+}
+
+export type SenderNumberUpdateOneWithoutCampaingNestedInput = {
+  create?: Prisma.XOR<Prisma.SenderNumberCreateWithoutCampaingInput, Prisma.SenderNumberUncheckedCreateWithoutCampaingInput>
+  connectOrCreate?: Prisma.SenderNumberCreateOrConnectWithoutCampaingInput
+  upsert?: Prisma.SenderNumberUpsertWithoutCampaingInput
+  disconnect?: Prisma.SenderNumberWhereInput | boolean
+  delete?: Prisma.SenderNumberWhereInput | boolean
+  connect?: Prisma.SenderNumberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SenderNumberUpdateToOneWithWhereWithoutCampaingInput, Prisma.SenderNumberUpdateWithoutCampaingInput>, Prisma.SenderNumberUncheckedUpdateWithoutCampaingInput>
+}
+
 export type SenderNumberCreateNestedOneWithoutMessagesInput = {
   create?: Prisma.XOR<Prisma.SenderNumberCreateWithoutMessagesInput, Prisma.SenderNumberUncheckedCreateWithoutMessagesInput>
   connectOrCreate?: Prisma.SenderNumberCreateOrConnectWithoutMessagesInput
@@ -520,6 +543,7 @@ export type SenderNumberCreateWithoutWorkspaceInput = {
   lockedAt?: Date | string | null
   createdAt?: Date | string
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutSenderNumberInput
+  campaing?: Prisma.CampaignCreateNestedManyWithoutSenderNumberInput
 }
 
 export type SenderNumberUncheckedCreateWithoutWorkspaceInput = {
@@ -531,6 +555,7 @@ export type SenderNumberUncheckedCreateWithoutWorkspaceInput = {
   lockedAt?: Date | string | null
   createdAt?: Date | string
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutSenderNumberInput
+  campaing?: Prisma.CampaignUncheckedCreateNestedManyWithoutSenderNumberInput
 }
 
 export type SenderNumberCreateOrConnectWithoutWorkspaceInput = {
@@ -573,6 +598,70 @@ export type SenderNumberScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"SenderNumber"> | Date | string
 }
 
+export type SenderNumberCreateWithoutCampaingInput = {
+  id?: string
+  number: string
+  status: string
+  qualityScore?: number
+  maxPerSecond?: number
+  lockedAt?: Date | string | null
+  createdAt?: Date | string
+  messages?: Prisma.CampaignMessageCreateNestedManyWithoutSenderNumberInput
+  workspace: Prisma.WorkspaceCreateNestedOneWithoutNumbersInput
+}
+
+export type SenderNumberUncheckedCreateWithoutCampaingInput = {
+  id?: string
+  workspaceId: string
+  number: string
+  status: string
+  qualityScore?: number
+  maxPerSecond?: number
+  lockedAt?: Date | string | null
+  createdAt?: Date | string
+  messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutSenderNumberInput
+}
+
+export type SenderNumberCreateOrConnectWithoutCampaingInput = {
+  where: Prisma.SenderNumberWhereUniqueInput
+  create: Prisma.XOR<Prisma.SenderNumberCreateWithoutCampaingInput, Prisma.SenderNumberUncheckedCreateWithoutCampaingInput>
+}
+
+export type SenderNumberUpsertWithoutCampaingInput = {
+  update: Prisma.XOR<Prisma.SenderNumberUpdateWithoutCampaingInput, Prisma.SenderNumberUncheckedUpdateWithoutCampaingInput>
+  create: Prisma.XOR<Prisma.SenderNumberCreateWithoutCampaingInput, Prisma.SenderNumberUncheckedCreateWithoutCampaingInput>
+  where?: Prisma.SenderNumberWhereInput
+}
+
+export type SenderNumberUpdateToOneWithWhereWithoutCampaingInput = {
+  where?: Prisma.SenderNumberWhereInput
+  data: Prisma.XOR<Prisma.SenderNumberUpdateWithoutCampaingInput, Prisma.SenderNumberUncheckedUpdateWithoutCampaingInput>
+}
+
+export type SenderNumberUpdateWithoutCampaingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  messages?: Prisma.CampaignMessageUpdateManyWithoutSenderNumberNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutNumbersNestedInput
+}
+
+export type SenderNumberUncheckedUpdateWithoutCampaingInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
+  maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutSenderNumberNestedInput
+}
+
 export type SenderNumberCreateWithoutMessagesInput = {
   id?: string
   number: string
@@ -581,6 +670,7 @@ export type SenderNumberCreateWithoutMessagesInput = {
   maxPerSecond?: number
   lockedAt?: Date | string | null
   createdAt?: Date | string
+  campaing?: Prisma.CampaignCreateNestedManyWithoutSenderNumberInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutNumbersInput
 }
 
@@ -593,6 +683,7 @@ export type SenderNumberUncheckedCreateWithoutMessagesInput = {
   maxPerSecond?: number
   lockedAt?: Date | string | null
   createdAt?: Date | string
+  campaing?: Prisma.CampaignUncheckedCreateNestedManyWithoutSenderNumberInput
 }
 
 export type SenderNumberCreateOrConnectWithoutMessagesInput = {
@@ -619,6 +710,7 @@ export type SenderNumberUpdateWithoutMessagesInput = {
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaing?: Prisma.CampaignUpdateManyWithoutSenderNumberNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutNumbersNestedInput
 }
 
@@ -631,6 +723,7 @@ export type SenderNumberUncheckedUpdateWithoutMessagesInput = {
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaing?: Prisma.CampaignUncheckedUpdateManyWithoutSenderNumberNestedInput
 }
 
 export type SenderNumberCreateManyWorkspaceInput = {
@@ -652,6 +745,7 @@ export type SenderNumberUpdateWithoutWorkspaceInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.CampaignMessageUpdateManyWithoutSenderNumberNestedInput
+  campaing?: Prisma.CampaignUpdateManyWithoutSenderNumberNestedInput
 }
 
 export type SenderNumberUncheckedUpdateWithoutWorkspaceInput = {
@@ -663,6 +757,7 @@ export type SenderNumberUncheckedUpdateWithoutWorkspaceInput = {
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutSenderNumberNestedInput
+  campaing?: Prisma.CampaignUncheckedUpdateManyWithoutSenderNumberNestedInput
 }
 
 export type SenderNumberUncheckedUpdateManyWithoutWorkspaceInput = {
@@ -682,10 +777,12 @@ export type SenderNumberUncheckedUpdateManyWithoutWorkspaceInput = {
 
 export type SenderNumberCountOutputType = {
   messages: number
+  campaing: number
 }
 
 export type SenderNumberCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   messages?: boolean | SenderNumberCountOutputTypeCountMessagesArgs
+  campaing?: boolean | SenderNumberCountOutputTypeCountCampaingArgs
 }
 
 /**
@@ -705,6 +802,13 @@ export type SenderNumberCountOutputTypeCountMessagesArgs<ExtArgs extends runtime
   where?: Prisma.CampaignMessageWhereInput
 }
 
+/**
+ * SenderNumberCountOutputType without action
+ */
+export type SenderNumberCountOutputTypeCountCampaingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CampaignWhereInput
+}
+
 
 export type SenderNumberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -716,6 +820,7 @@ export type SenderNumberSelect<ExtArgs extends runtime.Types.Extensions.Internal
   lockedAt?: boolean
   createdAt?: boolean
   messages?: boolean | Prisma.SenderNumber$messagesArgs<ExtArgs>
+  campaing?: boolean | Prisma.SenderNumber$campaingArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SenderNumberCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["senderNumber"]>
@@ -758,6 +863,7 @@ export type SenderNumberSelectScalar = {
 export type SenderNumberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "number" | "status" | "qualityScore" | "maxPerSecond" | "lockedAt" | "createdAt", ExtArgs["result"]["senderNumber"]>
 export type SenderNumberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   messages?: boolean | Prisma.SenderNumber$messagesArgs<ExtArgs>
+  campaing?: boolean | Prisma.SenderNumber$campaingArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.SenderNumberCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -772,6 +878,7 @@ export type $SenderNumberPayload<ExtArgs extends runtime.Types.Extensions.Intern
   name: "SenderNumber"
   objects: {
     messages: Prisma.$CampaignMessagePayload<ExtArgs>[]
+    campaing: Prisma.$CampaignPayload<ExtArgs>[]
     workspace: Prisma.$WorkspacePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1178,6 +1285,7 @@ readonly fields: SenderNumberFieldRefs;
 export interface Prisma__SenderNumberClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   messages<T extends Prisma.SenderNumber$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SenderNumber$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampaignMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  campaing<T extends Prisma.SenderNumber$campaingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SenderNumber$campaingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampaignPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1638,6 +1746,30 @@ export type SenderNumber$messagesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.CampaignMessageScalarFieldEnum | Prisma.CampaignMessageScalarFieldEnum[]
+}
+
+/**
+ * SenderNumber.campaing
+ */
+export type SenderNumber$campaingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Campaign
+   */
+  select?: Prisma.CampaignSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Campaign
+   */
+  omit?: Prisma.CampaignOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CampaignInclude<ExtArgs> | null
+  where?: Prisma.CampaignWhereInput
+  orderBy?: Prisma.CampaignOrderByWithRelationInput | Prisma.CampaignOrderByWithRelationInput[]
+  cursor?: Prisma.CampaignWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CampaignScalarFieldEnum | Prisma.CampaignScalarFieldEnum[]
 }
 
 /**

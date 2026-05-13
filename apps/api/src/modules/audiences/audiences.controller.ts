@@ -19,6 +19,7 @@ type ContactRow = {
   name?: string;
   phone: string;
   email?: string;
+  sellerEmail?: string;
 };
 
 @UseGuards(JwtAuthGuard)
@@ -57,11 +58,12 @@ export class AudiencesController {
       .split('\n')
       .slice(1)
       .map((line: string) => {
-        const [name, phone, email] = line.split(',');
+        const [name, phone, email, sellerEmail] = line.split(',');
         return {
           name: name?.trim(),
           phone: phone?.trim(),
           email: email?.trim(),
+          sellerEmail: sellerEmail?.trim(),
         };
       })
       .filter((row) => row.phone);

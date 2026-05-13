@@ -46,16 +46,12 @@ export class AudienceRepository {
     });
   }
 
-  async upsertSeller(data: { workspaceId: string; name: string }) {
-    return this.prisma.seller.upsert({
+  findSellerByEmail(workspaceId: string, email: string) {
+    return this.prisma.seller.findFirst({
       where: {
-        workspaceId_name: {
-          workspaceId: data.workspaceId,
-          name: data.name,
-        },
+        workspaceId,
+        email,
       },
-      update: {},
-      create: data,
     });
   }
 

@@ -6,7 +6,7 @@ type ImportRow = {
   name?: string;
   phone: string;
   email?: string;
-  seller?: string;
+  sellerEmail?: string;
 };
 
 @Injectable()
@@ -17,7 +17,9 @@ export class AudiencesService {
     return this.audienceRepository.create({
       name: dto.name,
       workspace: {
-        connect: { id: workspaceId },
+        connect: {
+          id: workspaceId,
+        },
       },
     });
   }
@@ -38,21 +40,23 @@ export class AudiencesService {
 
       const contact = await this.audienceRepository.upsertContact({
         workspaceId,
+
         phoneRaw: row.phone,
         phoneNormalized,
+
         name: row.name ?? null,
         email: row.email ?? null,
       });
 
       let sellerId: string | null = null;
 
-      if (row.seller && row.seller.trim() !== '') {
-        const seller = await this.audienceRepository.upsertSeller({
+      if (row.sellerEmail && row.sellerEmail.trim() !== '') {
+        const seller = await this.audienceRepository.findSellerByEmail(
           workspaceId,
-          name: row.seller.trim(),
-        });
+          row.sellerEmail.trim(),
+        );
 
-        sellerId = seller.id;
+        sellerId = seller?.id ?? null;
       }
 
       await this.audienceRepository.linkContactToAudience({

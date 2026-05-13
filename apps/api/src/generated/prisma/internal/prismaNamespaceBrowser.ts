@@ -166,11 +166,15 @@ export const SellerScalarFieldEnum = {
   id: 'id',
   workspaceId: 'workspaceId',
   name: 'name',
+  email: 'email',
   phoneRaw: 'phoneRaw',
   phoneNormalized: 'phoneNormalized',
   chatwootAgentId: 'chatwootAgentId',
   chatwootAccountId: 'chatwootAccountId',
-  createdAt: 'createdAt'
+  availabilityStatus: 'availabilityStatus',
+  role: 'role',
+  createdAt: 'createdAt',
+  updateAt: 'updateAt'
 } as const
 
 export type SellerScalarFieldEnum = (typeof SellerScalarFieldEnum)[keyof typeof SellerScalarFieldEnum]
@@ -183,6 +187,7 @@ export const CampaignScalarFieldEnum = {
   userId: 'userId',
   templateId: 'templateId',
   audienceId: 'audienceId',
+  senderNumberId: 'senderNumberId',
   status: 'status',
   scheduledAt: 'scheduledAt',
   startedAt: 'startedAt',
@@ -203,6 +208,7 @@ export const CampaignMessageScalarFieldEnum = {
   batchId: 'batchId',
   senderNumberId: 'senderNumberId',
   workspaceId: 'workspaceId',
+  sellerId: 'sellerId',
   status: 'status',
   error: 'error',
   providerId: 'providerId',

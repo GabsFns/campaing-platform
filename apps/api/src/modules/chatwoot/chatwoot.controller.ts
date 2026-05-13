@@ -22,4 +22,8 @@ export class ChatwootController {
   getConnection(@CurrentUser() user: JwtPayload) {
     return this.service.findConnection(user.workspaceId);
   }
+  @Get('agents')
+  getAgents(@CurrentUser() user: JwtPayload) {
+    return this.service.getAgents(user.workspaceId);
+  }
 }

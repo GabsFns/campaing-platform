@@ -46,6 +46,7 @@ export type CampaignMessageMinAggregateOutputType = {
   batchId: string | null
   senderNumberId: string | null
   workspaceId: string | null
+  sellerId: string | null
   status: $Enums.MessageStatus | null
   error: string | null
   providerId: string | null
@@ -69,6 +70,7 @@ export type CampaignMessageMaxAggregateOutputType = {
   batchId: string | null
   senderNumberId: string | null
   workspaceId: string | null
+  sellerId: string | null
   status: $Enums.MessageStatus | null
   error: string | null
   providerId: string | null
@@ -92,6 +94,7 @@ export type CampaignMessageCountAggregateOutputType = {
   batchId: number
   senderNumberId: number
   workspaceId: number
+  sellerId: number
   status: number
   error: number
   providerId: number
@@ -129,6 +132,7 @@ export type CampaignMessageMinAggregateInputType = {
   batchId?: true
   senderNumberId?: true
   workspaceId?: true
+  sellerId?: true
   status?: true
   error?: true
   providerId?: true
@@ -152,6 +156,7 @@ export type CampaignMessageMaxAggregateInputType = {
   batchId?: true
   senderNumberId?: true
   workspaceId?: true
+  sellerId?: true
   status?: true
   error?: true
   providerId?: true
@@ -175,6 +180,7 @@ export type CampaignMessageCountAggregateInputType = {
   batchId?: true
   senderNumberId?: true
   workspaceId?: true
+  sellerId?: true
   status?: true
   error?: true
   providerId?: true
@@ -285,6 +291,7 @@ export type CampaignMessageGroupByOutputType = {
   batchId: string | null
   senderNumberId: string | null
   workspaceId: string
+  sellerId: string | null
   status: $Enums.MessageStatus
   error: string | null
   providerId: string | null
@@ -331,6 +338,7 @@ export type CampaignMessageWhereInput = {
   batchId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   senderNumberId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   workspaceId?: Prisma.StringFilter<"CampaignMessage"> | string
+  sellerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   status?: Prisma.EnumMessageStatusFilter<"CampaignMessage"> | $Enums.MessageStatus
   error?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   providerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
@@ -349,6 +357,7 @@ export type CampaignMessageWhereInput = {
   contact?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
   senderNumber?: Prisma.XOR<Prisma.SenderNumberNullableScalarRelationFilter, Prisma.SenderNumberWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  seller?: Prisma.XOR<Prisma.SellerNullableScalarRelationFilter, Prisma.SellerWhereInput> | null
   events?: Prisma.MessageEventListRelationFilter
 }
 
@@ -360,6 +369,7 @@ export type CampaignMessageOrderByWithRelationInput = {
   batchId?: Prisma.SortOrderInput | Prisma.SortOrder
   senderNumberId?: Prisma.SortOrderInput | Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
+  sellerId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrderInput | Prisma.SortOrder
   providerId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -378,6 +388,7 @@ export type CampaignMessageOrderByWithRelationInput = {
   contact?: Prisma.ContactOrderByWithRelationInput
   senderNumber?: Prisma.SenderNumberOrderByWithRelationInput
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
+  seller?: Prisma.SellerOrderByWithRelationInput
   events?: Prisma.MessageEventOrderByRelationAggregateInput
 }
 
@@ -392,6 +403,7 @@ export type CampaignMessageWhereUniqueInput = Prisma.AtLeast<{
   batchId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   senderNumberId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   workspaceId?: Prisma.StringFilter<"CampaignMessage"> | string
+  sellerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   status?: Prisma.EnumMessageStatusFilter<"CampaignMessage"> | $Enums.MessageStatus
   error?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   providerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
@@ -410,6 +422,7 @@ export type CampaignMessageWhereUniqueInput = Prisma.AtLeast<{
   contact?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
   senderNumber?: Prisma.XOR<Prisma.SenderNumberNullableScalarRelationFilter, Prisma.SenderNumberWhereInput> | null
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
+  seller?: Prisma.XOR<Prisma.SellerNullableScalarRelationFilter, Prisma.SellerWhereInput> | null
   events?: Prisma.MessageEventListRelationFilter
 }, "id">
 
@@ -421,6 +434,7 @@ export type CampaignMessageOrderByWithAggregationInput = {
   batchId?: Prisma.SortOrderInput | Prisma.SortOrder
   senderNumberId?: Prisma.SortOrderInput | Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
+  sellerId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrderInput | Prisma.SortOrder
   providerId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -452,6 +466,7 @@ export type CampaignMessageScalarWhereWithAggregatesInput = {
   batchId?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
   senderNumberId?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
   workspaceId?: Prisma.StringWithAggregatesFilter<"CampaignMessage"> | string
+  sellerId?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
   status?: Prisma.EnumMessageStatusWithAggregatesFilter<"CampaignMessage"> | $Enums.MessageStatus
   error?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
   providerId?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
@@ -488,6 +503,7 @@ export type CampaignMessageCreateInput = {
   contact: Prisma.ContactCreateNestedOneWithoutMessagesInput
   senderNumber?: Prisma.SenderNumberCreateNestedOneWithoutMessagesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMessagesInput
+  seller?: Prisma.SellerCreateNestedOneWithoutCamapingMessageInput
   events?: Prisma.MessageEventCreateNestedManyWithoutMessageInput
 }
 
@@ -499,6 +515,7 @@ export type CampaignMessageUncheckedCreateInput = {
   batchId?: string | null
   senderNumberId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -536,6 +553,7 @@ export type CampaignMessageUpdateInput = {
   contact?: Prisma.ContactUpdateOneRequiredWithoutMessagesNestedInput
   senderNumber?: Prisma.SenderNumberUpdateOneWithoutMessagesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMessagesNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutCamapingMessageNestedInput
   events?: Prisma.MessageEventUpdateManyWithoutMessageNestedInput
 }
 
@@ -547,6 +565,7 @@ export type CampaignMessageUncheckedUpdateInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -571,6 +590,7 @@ export type CampaignMessageCreateManyInput = {
   batchId?: string | null
   senderNumberId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -612,6 +632,7 @@ export type CampaignMessageUncheckedUpdateManyInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -645,6 +666,7 @@ export type CampaignMessageCountOrderByAggregateInput = {
   batchId?: Prisma.SortOrder
   senderNumberId?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
+  sellerId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
@@ -674,6 +696,7 @@ export type CampaignMessageMaxOrderByAggregateInput = {
   batchId?: Prisma.SortOrder
   senderNumberId?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
+  sellerId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
@@ -697,6 +720,7 @@ export type CampaignMessageMinOrderByAggregateInput = {
   batchId?: Prisma.SortOrder
   senderNumberId?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
+  sellerId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
@@ -804,6 +828,48 @@ export type CampaignMessageUncheckedUpdateManyWithoutContactNestedInput = {
   connect?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
   update?: Prisma.CampaignMessageUpdateWithWhereUniqueWithoutContactInput | Prisma.CampaignMessageUpdateWithWhereUniqueWithoutContactInput[]
   updateMany?: Prisma.CampaignMessageUpdateManyWithWhereWithoutContactInput | Prisma.CampaignMessageUpdateManyWithWhereWithoutContactInput[]
+  deleteMany?: Prisma.CampaignMessageScalarWhereInput | Prisma.CampaignMessageScalarWhereInput[]
+}
+
+export type CampaignMessageCreateNestedManyWithoutSellerInput = {
+  create?: Prisma.XOR<Prisma.CampaignMessageCreateWithoutSellerInput, Prisma.CampaignMessageUncheckedCreateWithoutSellerInput> | Prisma.CampaignMessageCreateWithoutSellerInput[] | Prisma.CampaignMessageUncheckedCreateWithoutSellerInput[]
+  connectOrCreate?: Prisma.CampaignMessageCreateOrConnectWithoutSellerInput | Prisma.CampaignMessageCreateOrConnectWithoutSellerInput[]
+  createMany?: Prisma.CampaignMessageCreateManySellerInputEnvelope
+  connect?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
+}
+
+export type CampaignMessageUncheckedCreateNestedManyWithoutSellerInput = {
+  create?: Prisma.XOR<Prisma.CampaignMessageCreateWithoutSellerInput, Prisma.CampaignMessageUncheckedCreateWithoutSellerInput> | Prisma.CampaignMessageCreateWithoutSellerInput[] | Prisma.CampaignMessageUncheckedCreateWithoutSellerInput[]
+  connectOrCreate?: Prisma.CampaignMessageCreateOrConnectWithoutSellerInput | Prisma.CampaignMessageCreateOrConnectWithoutSellerInput[]
+  createMany?: Prisma.CampaignMessageCreateManySellerInputEnvelope
+  connect?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
+}
+
+export type CampaignMessageUpdateManyWithoutSellerNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignMessageCreateWithoutSellerInput, Prisma.CampaignMessageUncheckedCreateWithoutSellerInput> | Prisma.CampaignMessageCreateWithoutSellerInput[] | Prisma.CampaignMessageUncheckedCreateWithoutSellerInput[]
+  connectOrCreate?: Prisma.CampaignMessageCreateOrConnectWithoutSellerInput | Prisma.CampaignMessageCreateOrConnectWithoutSellerInput[]
+  upsert?: Prisma.CampaignMessageUpsertWithWhereUniqueWithoutSellerInput | Prisma.CampaignMessageUpsertWithWhereUniqueWithoutSellerInput[]
+  createMany?: Prisma.CampaignMessageCreateManySellerInputEnvelope
+  set?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
+  disconnect?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
+  delete?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
+  connect?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
+  update?: Prisma.CampaignMessageUpdateWithWhereUniqueWithoutSellerInput | Prisma.CampaignMessageUpdateWithWhereUniqueWithoutSellerInput[]
+  updateMany?: Prisma.CampaignMessageUpdateManyWithWhereWithoutSellerInput | Prisma.CampaignMessageUpdateManyWithWhereWithoutSellerInput[]
+  deleteMany?: Prisma.CampaignMessageScalarWhereInput | Prisma.CampaignMessageScalarWhereInput[]
+}
+
+export type CampaignMessageUncheckedUpdateManyWithoutSellerNestedInput = {
+  create?: Prisma.XOR<Prisma.CampaignMessageCreateWithoutSellerInput, Prisma.CampaignMessageUncheckedCreateWithoutSellerInput> | Prisma.CampaignMessageCreateWithoutSellerInput[] | Prisma.CampaignMessageUncheckedCreateWithoutSellerInput[]
+  connectOrCreate?: Prisma.CampaignMessageCreateOrConnectWithoutSellerInput | Prisma.CampaignMessageCreateOrConnectWithoutSellerInput[]
+  upsert?: Prisma.CampaignMessageUpsertWithWhereUniqueWithoutSellerInput | Prisma.CampaignMessageUpsertWithWhereUniqueWithoutSellerInput[]
+  createMany?: Prisma.CampaignMessageCreateManySellerInputEnvelope
+  set?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
+  disconnect?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
+  delete?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
+  connect?: Prisma.CampaignMessageWhereUniqueInput | Prisma.CampaignMessageWhereUniqueInput[]
+  update?: Prisma.CampaignMessageUpdateWithWhereUniqueWithoutSellerInput | Prisma.CampaignMessageUpdateWithWhereUniqueWithoutSellerInput[]
+  updateMany?: Prisma.CampaignMessageUpdateManyWithWhereWithoutSellerInput | Prisma.CampaignMessageUpdateManyWithWhereWithoutSellerInput[]
   deleteMany?: Prisma.CampaignMessageScalarWhereInput | Prisma.CampaignMessageScalarWhereInput[]
 }
 
@@ -975,6 +1041,7 @@ export type CampaignMessageCreateWithoutWorkspaceInput = {
   campaign: Prisma.CampaignCreateNestedOneWithoutMessagesInput
   contact: Prisma.ContactCreateNestedOneWithoutMessagesInput
   senderNumber?: Prisma.SenderNumberCreateNestedOneWithoutMessagesInput
+  seller?: Prisma.SellerCreateNestedOneWithoutCamapingMessageInput
   events?: Prisma.MessageEventCreateNestedManyWithoutMessageInput
 }
 
@@ -985,6 +1052,7 @@ export type CampaignMessageUncheckedCreateWithoutWorkspaceInput = {
   phoneNormalized: string
   batchId?: string | null
   senderNumberId?: string | null
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1038,6 +1106,7 @@ export type CampaignMessageScalarWhereInput = {
   batchId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   senderNumberId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   workspaceId?: Prisma.StringFilter<"CampaignMessage"> | string
+  sellerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   status?: Prisma.EnumMessageStatusFilter<"CampaignMessage"> | $Enums.MessageStatus
   error?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   providerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
@@ -1073,6 +1142,7 @@ export type CampaignMessageCreateWithoutContactInput = {
   campaign: Prisma.CampaignCreateNestedOneWithoutMessagesInput
   senderNumber?: Prisma.SenderNumberCreateNestedOneWithoutMessagesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMessagesInput
+  seller?: Prisma.SellerCreateNestedOneWithoutCamapingMessageInput
   events?: Prisma.MessageEventCreateNestedManyWithoutMessageInput
 }
 
@@ -1083,6 +1153,7 @@ export type CampaignMessageUncheckedCreateWithoutContactInput = {
   batchId?: string | null
   senderNumberId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1125,6 +1196,80 @@ export type CampaignMessageUpdateManyWithWhereWithoutContactInput = {
   data: Prisma.XOR<Prisma.CampaignMessageUpdateManyMutationInput, Prisma.CampaignMessageUncheckedUpdateManyWithoutContactInput>
 }
 
+export type CampaignMessageCreateWithoutSellerInput = {
+  id?: string
+  phoneNormalized: string
+  status?: $Enums.MessageStatus
+  error?: string | null
+  providerId?: string | null
+  chatwootConversationId?: number | null
+  chatwootInboxId?: number | null
+  lastEventType?: $Enums.MessageEventType | null
+  queuedAt?: Date | string | null
+  sentAt?: Date | string | null
+  deliveredAt?: Date | string | null
+  readAt?: Date | string | null
+  lockedAt?: Date | string | null
+  retryCount?: number
+  createdAt?: Date | string
+  batch?: Prisma.CampaignBatchCreateNestedOneWithoutMessagesInput
+  campaign: Prisma.CampaignCreateNestedOneWithoutMessagesInput
+  contact: Prisma.ContactCreateNestedOneWithoutMessagesInput
+  senderNumber?: Prisma.SenderNumberCreateNestedOneWithoutMessagesInput
+  workspace: Prisma.WorkspaceCreateNestedOneWithoutMessagesInput
+  events?: Prisma.MessageEventCreateNestedManyWithoutMessageInput
+}
+
+export type CampaignMessageUncheckedCreateWithoutSellerInput = {
+  id?: string
+  campaignId: string
+  contactId: string
+  phoneNormalized: string
+  batchId?: string | null
+  senderNumberId?: string | null
+  workspaceId: string
+  status?: $Enums.MessageStatus
+  error?: string | null
+  providerId?: string | null
+  chatwootConversationId?: number | null
+  chatwootInboxId?: number | null
+  lastEventType?: $Enums.MessageEventType | null
+  queuedAt?: Date | string | null
+  sentAt?: Date | string | null
+  deliveredAt?: Date | string | null
+  readAt?: Date | string | null
+  lockedAt?: Date | string | null
+  retryCount?: number
+  createdAt?: Date | string
+  events?: Prisma.MessageEventUncheckedCreateNestedManyWithoutMessageInput
+}
+
+export type CampaignMessageCreateOrConnectWithoutSellerInput = {
+  where: Prisma.CampaignMessageWhereUniqueInput
+  create: Prisma.XOR<Prisma.CampaignMessageCreateWithoutSellerInput, Prisma.CampaignMessageUncheckedCreateWithoutSellerInput>
+}
+
+export type CampaignMessageCreateManySellerInputEnvelope = {
+  data: Prisma.CampaignMessageCreateManySellerInput | Prisma.CampaignMessageCreateManySellerInput[]
+  skipDuplicates?: boolean
+}
+
+export type CampaignMessageUpsertWithWhereUniqueWithoutSellerInput = {
+  where: Prisma.CampaignMessageWhereUniqueInput
+  update: Prisma.XOR<Prisma.CampaignMessageUpdateWithoutSellerInput, Prisma.CampaignMessageUncheckedUpdateWithoutSellerInput>
+  create: Prisma.XOR<Prisma.CampaignMessageCreateWithoutSellerInput, Prisma.CampaignMessageUncheckedCreateWithoutSellerInput>
+}
+
+export type CampaignMessageUpdateWithWhereUniqueWithoutSellerInput = {
+  where: Prisma.CampaignMessageWhereUniqueInput
+  data: Prisma.XOR<Prisma.CampaignMessageUpdateWithoutSellerInput, Prisma.CampaignMessageUncheckedUpdateWithoutSellerInput>
+}
+
+export type CampaignMessageUpdateManyWithWhereWithoutSellerInput = {
+  where: Prisma.CampaignMessageScalarWhereInput
+  data: Prisma.XOR<Prisma.CampaignMessageUpdateManyMutationInput, Prisma.CampaignMessageUncheckedUpdateManyWithoutSellerInput>
+}
+
 export type CampaignMessageCreateWithoutCampaignInput = {
   id?: string
   phoneNormalized: string
@@ -1145,6 +1290,7 @@ export type CampaignMessageCreateWithoutCampaignInput = {
   contact: Prisma.ContactCreateNestedOneWithoutMessagesInput
   senderNumber?: Prisma.SenderNumberCreateNestedOneWithoutMessagesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMessagesInput
+  seller?: Prisma.SellerCreateNestedOneWithoutCamapingMessageInput
   events?: Prisma.MessageEventCreateNestedManyWithoutMessageInput
 }
 
@@ -1155,6 +1301,7 @@ export type CampaignMessageUncheckedCreateWithoutCampaignInput = {
   batchId?: string | null
   senderNumberId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1217,6 +1364,7 @@ export type CampaignMessageCreateWithoutBatchInput = {
   contact: Prisma.ContactCreateNestedOneWithoutMessagesInput
   senderNumber?: Prisma.SenderNumberCreateNestedOneWithoutMessagesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMessagesInput
+  seller?: Prisma.SellerCreateNestedOneWithoutCamapingMessageInput
   events?: Prisma.MessageEventCreateNestedManyWithoutMessageInput
 }
 
@@ -1227,6 +1375,7 @@ export type CampaignMessageUncheckedCreateWithoutBatchInput = {
   phoneNormalized: string
   senderNumberId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1290,6 +1439,7 @@ export type CampaignMessageCreateWithoutEventsInput = {
   contact: Prisma.ContactCreateNestedOneWithoutMessagesInput
   senderNumber?: Prisma.SenderNumberCreateNestedOneWithoutMessagesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMessagesInput
+  seller?: Prisma.SellerCreateNestedOneWithoutCamapingMessageInput
 }
 
 export type CampaignMessageUncheckedCreateWithoutEventsInput = {
@@ -1300,6 +1450,7 @@ export type CampaignMessageUncheckedCreateWithoutEventsInput = {
   batchId?: string | null
   senderNumberId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1352,6 +1503,7 @@ export type CampaignMessageUpdateWithoutEventsInput = {
   contact?: Prisma.ContactUpdateOneRequiredWithoutMessagesNestedInput
   senderNumber?: Prisma.SenderNumberUpdateOneWithoutMessagesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMessagesNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutCamapingMessageNestedInput
 }
 
 export type CampaignMessageUncheckedUpdateWithoutEventsInput = {
@@ -1362,6 +1514,7 @@ export type CampaignMessageUncheckedUpdateWithoutEventsInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1397,6 +1550,7 @@ export type CampaignMessageCreateWithoutSenderNumberInput = {
   campaign: Prisma.CampaignCreateNestedOneWithoutMessagesInput
   contact: Prisma.ContactCreateNestedOneWithoutMessagesInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutMessagesInput
+  seller?: Prisma.SellerCreateNestedOneWithoutCamapingMessageInput
   events?: Prisma.MessageEventCreateNestedManyWithoutMessageInput
 }
 
@@ -1407,6 +1561,7 @@ export type CampaignMessageUncheckedCreateWithoutSenderNumberInput = {
   phoneNormalized: string
   batchId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1456,6 +1611,7 @@ export type CampaignMessageCreateManyWorkspaceInput = {
   phoneNormalized: string
   batchId?: string | null
   senderNumberId?: string | null
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1491,6 +1647,7 @@ export type CampaignMessageUpdateWithoutWorkspaceInput = {
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutMessagesNestedInput
   contact?: Prisma.ContactUpdateOneRequiredWithoutMessagesNestedInput
   senderNumber?: Prisma.SenderNumberUpdateOneWithoutMessagesNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutCamapingMessageNestedInput
   events?: Prisma.MessageEventUpdateManyWithoutMessageNestedInput
 }
 
@@ -1501,6 +1658,7 @@ export type CampaignMessageUncheckedUpdateWithoutWorkspaceInput = {
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1524,6 +1682,7 @@ export type CampaignMessageUncheckedUpdateManyWithoutWorkspaceInput = {
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1546,6 +1705,7 @@ export type CampaignMessageCreateManyContactInput = {
   batchId?: string | null
   senderNumberId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1581,12 +1741,108 @@ export type CampaignMessageUpdateWithoutContactInput = {
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutMessagesNestedInput
   senderNumber?: Prisma.SenderNumberUpdateOneWithoutMessagesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMessagesNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutCamapingMessageNestedInput
   events?: Prisma.MessageEventUpdateManyWithoutMessageNestedInput
 }
 
 export type CampaignMessageUncheckedUpdateWithoutContactInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastEventType?: Prisma.NullableEnumMessageEventTypeFieldUpdateOperationsInput | $Enums.MessageEventType | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  events?: Prisma.MessageEventUncheckedUpdateManyWithoutMessageNestedInput
+}
+
+export type CampaignMessageUncheckedUpdateManyWithoutContactInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastEventType?: Prisma.NullableEnumMessageEventTypeFieldUpdateOperationsInput | $Enums.MessageEventType | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CampaignMessageCreateManySellerInput = {
+  id?: string
+  campaignId: string
+  contactId: string
+  phoneNormalized: string
+  batchId?: string | null
+  senderNumberId?: string | null
+  workspaceId: string
+  status?: $Enums.MessageStatus
+  error?: string | null
+  providerId?: string | null
+  chatwootConversationId?: number | null
+  chatwootInboxId?: number | null
+  lastEventType?: $Enums.MessageEventType | null
+  queuedAt?: Date | string | null
+  sentAt?: Date | string | null
+  deliveredAt?: Date | string | null
+  readAt?: Date | string | null
+  lockedAt?: Date | string | null
+  retryCount?: number
+  createdAt?: Date | string
+}
+
+export type CampaignMessageUpdateWithoutSellerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  lastEventType?: Prisma.NullableEnumMessageEventTypeFieldUpdateOperationsInput | $Enums.MessageEventType | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  batch?: Prisma.CampaignBatchUpdateOneWithoutMessagesNestedInput
+  campaign?: Prisma.CampaignUpdateOneRequiredWithoutMessagesNestedInput
+  contact?: Prisma.ContactUpdateOneRequiredWithoutMessagesNestedInput
+  senderNumber?: Prisma.SenderNumberUpdateOneWithoutMessagesNestedInput
+  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMessagesNestedInput
+  events?: Prisma.MessageEventUpdateManyWithoutMessageNestedInput
+}
+
+export type CampaignMessageUncheckedUpdateWithoutSellerInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1607,9 +1863,10 @@ export type CampaignMessageUncheckedUpdateWithoutContactInput = {
   events?: Prisma.MessageEventUncheckedUpdateManyWithoutMessageNestedInput
 }
 
-export type CampaignMessageUncheckedUpdateManyWithoutContactInput = {
+export type CampaignMessageUncheckedUpdateManyWithoutSellerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   campaignId?: Prisma.StringFieldUpdateOperationsInput | string
+  contactId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1636,6 +1893,7 @@ export type CampaignMessageCreateManyCampaignInput = {
   batchId?: string | null
   senderNumberId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1671,6 +1929,7 @@ export type CampaignMessageUpdateWithoutCampaignInput = {
   contact?: Prisma.ContactUpdateOneRequiredWithoutMessagesNestedInput
   senderNumber?: Prisma.SenderNumberUpdateOneWithoutMessagesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMessagesNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutCamapingMessageNestedInput
   events?: Prisma.MessageEventUpdateManyWithoutMessageNestedInput
 }
 
@@ -1681,6 +1940,7 @@ export type CampaignMessageUncheckedUpdateWithoutCampaignInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1704,6 +1964,7 @@ export type CampaignMessageUncheckedUpdateManyWithoutCampaignInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1726,6 +1987,7 @@ export type CampaignMessageCreateManyBatchInput = {
   phoneNormalized: string
   senderNumberId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1761,6 +2023,7 @@ export type CampaignMessageUpdateWithoutBatchInput = {
   contact?: Prisma.ContactUpdateOneRequiredWithoutMessagesNestedInput
   senderNumber?: Prisma.SenderNumberUpdateOneWithoutMessagesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMessagesNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutCamapingMessageNestedInput
   events?: Prisma.MessageEventUpdateManyWithoutMessageNestedInput
 }
 
@@ -1771,6 +2034,7 @@ export type CampaignMessageUncheckedUpdateWithoutBatchInput = {
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1794,6 +2058,7 @@ export type CampaignMessageUncheckedUpdateManyWithoutBatchInput = {
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1816,6 +2081,7 @@ export type CampaignMessageCreateManySenderNumberInput = {
   phoneNormalized: string
   batchId?: string | null
   workspaceId: string
+  sellerId?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerId?: string | null
@@ -1851,6 +2117,7 @@ export type CampaignMessageUpdateWithoutSenderNumberInput = {
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutMessagesNestedInput
   contact?: Prisma.ContactUpdateOneRequiredWithoutMessagesNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutMessagesNestedInput
+  seller?: Prisma.SellerUpdateOneWithoutCamapingMessageNestedInput
   events?: Prisma.MessageEventUpdateManyWithoutMessageNestedInput
 }
 
@@ -1861,6 +2128,7 @@ export type CampaignMessageUncheckedUpdateWithoutSenderNumberInput = {
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1884,6 +2152,7 @@ export type CampaignMessageUncheckedUpdateManyWithoutSenderNumberInput = {
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1938,6 +2207,7 @@ export type CampaignMessageSelect<ExtArgs extends runtime.Types.Extensions.Inter
   batchId?: boolean
   senderNumberId?: boolean
   workspaceId?: boolean
+  sellerId?: boolean
   status?: boolean
   error?: boolean
   providerId?: boolean
@@ -1956,6 +2226,7 @@ export type CampaignMessageSelect<ExtArgs extends runtime.Types.Extensions.Inter
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   senderNumber?: boolean | Prisma.CampaignMessage$senderNumberArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.CampaignMessage$sellerArgs<ExtArgs>
   events?: boolean | Prisma.CampaignMessage$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignMessageCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campaignMessage"]>
@@ -1968,6 +2239,7 @@ export type CampaignMessageSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   batchId?: boolean
   senderNumberId?: boolean
   workspaceId?: boolean
+  sellerId?: boolean
   status?: boolean
   error?: boolean
   providerId?: boolean
@@ -1986,6 +2258,7 @@ export type CampaignMessageSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   senderNumber?: boolean | Prisma.CampaignMessage$senderNumberArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.CampaignMessage$sellerArgs<ExtArgs>
 }, ExtArgs["result"]["campaignMessage"]>
 
 export type CampaignMessageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1996,6 +2269,7 @@ export type CampaignMessageSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   batchId?: boolean
   senderNumberId?: boolean
   workspaceId?: boolean
+  sellerId?: boolean
   status?: boolean
   error?: boolean
   providerId?: boolean
@@ -2014,6 +2288,7 @@ export type CampaignMessageSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   senderNumber?: boolean | Prisma.CampaignMessage$senderNumberArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.CampaignMessage$sellerArgs<ExtArgs>
 }, ExtArgs["result"]["campaignMessage"]>
 
 export type CampaignMessageSelectScalar = {
@@ -2024,6 +2299,7 @@ export type CampaignMessageSelectScalar = {
   batchId?: boolean
   senderNumberId?: boolean
   workspaceId?: boolean
+  sellerId?: boolean
   status?: boolean
   error?: boolean
   providerId?: boolean
@@ -2039,13 +2315,14 @@ export type CampaignMessageSelectScalar = {
   createdAt?: boolean
 }
 
-export type CampaignMessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaignId" | "contactId" | "phoneNormalized" | "batchId" | "senderNumberId" | "workspaceId" | "status" | "error" | "providerId" | "chatwootConversationId" | "chatwootInboxId" | "lastEventType" | "queuedAt" | "sentAt" | "deliveredAt" | "readAt" | "lockedAt" | "retryCount" | "createdAt", ExtArgs["result"]["campaignMessage"]>
+export type CampaignMessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaignId" | "contactId" | "phoneNormalized" | "batchId" | "senderNumberId" | "workspaceId" | "sellerId" | "status" | "error" | "providerId" | "chatwootConversationId" | "chatwootInboxId" | "lastEventType" | "queuedAt" | "sentAt" | "deliveredAt" | "readAt" | "lockedAt" | "retryCount" | "createdAt", ExtArgs["result"]["campaignMessage"]>
 export type CampaignMessageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch?: boolean | Prisma.CampaignMessage$batchArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   senderNumber?: boolean | Prisma.CampaignMessage$senderNumberArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.CampaignMessage$sellerArgs<ExtArgs>
   events?: boolean | Prisma.CampaignMessage$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignMessageCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -2055,6 +2332,7 @@ export type CampaignMessageIncludeCreateManyAndReturn<ExtArgs extends runtime.Ty
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   senderNumber?: boolean | Prisma.CampaignMessage$senderNumberArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.CampaignMessage$sellerArgs<ExtArgs>
 }
 export type CampaignMessageIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch?: boolean | Prisma.CampaignMessage$batchArgs<ExtArgs>
@@ -2062,6 +2340,7 @@ export type CampaignMessageIncludeUpdateManyAndReturn<ExtArgs extends runtime.Ty
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
   senderNumber?: boolean | Prisma.CampaignMessage$senderNumberArgs<ExtArgs>
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
+  seller?: boolean | Prisma.CampaignMessage$sellerArgs<ExtArgs>
 }
 
 export type $CampaignMessagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2072,6 +2351,7 @@ export type $CampaignMessagePayload<ExtArgs extends runtime.Types.Extensions.Int
     contact: Prisma.$ContactPayload<ExtArgs>
     senderNumber: Prisma.$SenderNumberPayload<ExtArgs> | null
     workspace: Prisma.$WorkspacePayload<ExtArgs>
+    seller: Prisma.$SellerPayload<ExtArgs> | null
     events: Prisma.$MessageEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -2082,6 +2362,7 @@ export type $CampaignMessagePayload<ExtArgs extends runtime.Types.Extensions.Int
     batchId: string | null
     senderNumberId: string | null
     workspaceId: string
+    sellerId: string | null
     status: $Enums.MessageStatus
     error: string | null
     providerId: string | null
@@ -2494,6 +2775,7 @@ export interface Prisma__CampaignMessageClient<T, Null = never, ExtArgs extends 
   contact<T extends Prisma.ContactDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ContactDefaultArgs<ExtArgs>>): Prisma.Prisma__ContactClient<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   senderNumber<T extends Prisma.CampaignMessage$senderNumberArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignMessage$senderNumberArgs<ExtArgs>>): Prisma.Prisma__SenderNumberClient<runtime.Types.Result.GetResult<Prisma.$SenderNumberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  seller<T extends Prisma.CampaignMessage$sellerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignMessage$sellerArgs<ExtArgs>>): Prisma.Prisma__SellerClient<runtime.Types.Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   events<T extends Prisma.CampaignMessage$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CampaignMessage$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessageEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2531,6 +2813,7 @@ export interface CampaignMessageFieldRefs {
   readonly batchId: Prisma.FieldRef<"CampaignMessage", 'String'>
   readonly senderNumberId: Prisma.FieldRef<"CampaignMessage", 'String'>
   readonly workspaceId: Prisma.FieldRef<"CampaignMessage", 'String'>
+  readonly sellerId: Prisma.FieldRef<"CampaignMessage", 'String'>
   readonly status: Prisma.FieldRef<"CampaignMessage", 'MessageStatus'>
   readonly error: Prisma.FieldRef<"CampaignMessage", 'String'>
   readonly providerId: Prisma.FieldRef<"CampaignMessage", 'String'>
@@ -2980,6 +3263,25 @@ export type CampaignMessage$senderNumberArgs<ExtArgs extends runtime.Types.Exten
    */
   include?: Prisma.SenderNumberInclude<ExtArgs> | null
   where?: Prisma.SenderNumberWhereInput
+}
+
+/**
+ * CampaignMessage.seller
+ */
+export type CampaignMessage$sellerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Seller
+   */
+  select?: Prisma.SellerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Seller
+   */
+  omit?: Prisma.SellerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SellerInclude<ExtArgs> | null
+  where?: Prisma.SellerWhereInput
 }
 
 /**

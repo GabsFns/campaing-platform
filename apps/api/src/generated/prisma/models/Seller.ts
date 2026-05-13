@@ -40,33 +40,45 @@ export type SellerMinAggregateOutputType = {
   id: string | null
   workspaceId: string | null
   name: string | null
+  email: string | null
   phoneRaw: string | null
   phoneNormalized: string | null
   chatwootAgentId: number | null
   chatwootAccountId: number | null
+  availabilityStatus: string | null
+  role: string | null
   createdAt: Date | null
+  updateAt: Date | null
 }
 
 export type SellerMaxAggregateOutputType = {
   id: string | null
   workspaceId: string | null
   name: string | null
+  email: string | null
   phoneRaw: string | null
   phoneNormalized: string | null
   chatwootAgentId: number | null
   chatwootAccountId: number | null
+  availabilityStatus: string | null
+  role: string | null
   createdAt: Date | null
+  updateAt: Date | null
 }
 
 export type SellerCountAggregateOutputType = {
   id: number
   workspaceId: number
   name: number
+  email: number
   phoneRaw: number
   phoneNormalized: number
   chatwootAgentId: number
   chatwootAccountId: number
+  availabilityStatus: number
+  role: number
   createdAt: number
+  updateAt: number
   _all: number
 }
 
@@ -85,33 +97,45 @@ export type SellerMinAggregateInputType = {
   id?: true
   workspaceId?: true
   name?: true
+  email?: true
   phoneRaw?: true
   phoneNormalized?: true
   chatwootAgentId?: true
   chatwootAccountId?: true
+  availabilityStatus?: true
+  role?: true
   createdAt?: true
+  updateAt?: true
 }
 
 export type SellerMaxAggregateInputType = {
   id?: true
   workspaceId?: true
   name?: true
+  email?: true
   phoneRaw?: true
   phoneNormalized?: true
   chatwootAgentId?: true
   chatwootAccountId?: true
+  availabilityStatus?: true
+  role?: true
   createdAt?: true
+  updateAt?: true
 }
 
 export type SellerCountAggregateInputType = {
   id?: true
   workspaceId?: true
   name?: true
+  email?: true
   phoneRaw?: true
   phoneNormalized?: true
   chatwootAgentId?: true
   chatwootAccountId?: true
+  availabilityStatus?: true
+  role?: true
   createdAt?: true
+  updateAt?: true
   _all?: true
 }
 
@@ -205,11 +229,15 @@ export type SellerGroupByOutputType = {
   id: string
   workspaceId: string
   name: string
+  email: string | null
   phoneRaw: string | null
   phoneNormalized: string | null
   chatwootAgentId: number | null
   chatwootAccountId: number | null
+  availabilityStatus: string | null
+  role: string | null
   createdAt: Date
+  updateAt: Date
   _count: SellerCountAggregateOutputType | null
   _avg: SellerAvgAggregateOutputType | null
   _sum: SellerSumAggregateOutputType | null
@@ -239,26 +267,36 @@ export type SellerWhereInput = {
   id?: Prisma.StringFilter<"Seller"> | string
   workspaceId?: Prisma.StringFilter<"Seller"> | string
   name?: Prisma.StringFilter<"Seller"> | string
+  email?: Prisma.StringNullableFilter<"Seller"> | string | null
   phoneRaw?: Prisma.StringNullableFilter<"Seller"> | string | null
   phoneNormalized?: Prisma.StringNullableFilter<"Seller"> | string | null
   chatwootAgentId?: Prisma.IntNullableFilter<"Seller"> | number | null
   chatwootAccountId?: Prisma.IntNullableFilter<"Seller"> | number | null
+  availabilityStatus?: Prisma.StringNullableFilter<"Seller"> | string | null
+  role?: Prisma.StringNullableFilter<"Seller"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Seller"> | Date | string
+  updateAt?: Prisma.DateTimeFilter<"Seller"> | Date | string
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
   audiences?: Prisma.AudienceContactListRelationFilter
+  camapingMessage?: Prisma.CampaignMessageListRelationFilter
 }
 
 export type SellerOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneRaw?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneNormalized?: Prisma.SortOrderInput | Prisma.SortOrder
   chatwootAgentId?: Prisma.SortOrderInput | Prisma.SortOrder
   chatwootAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
+  availabilityStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  role?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updateAt?: Prisma.SortOrder
   workspace?: Prisma.WorkspaceOrderByWithRelationInput
   audiences?: Prisma.AudienceContactOrderByRelationAggregateInput
+  camapingMessage?: Prisma.CampaignMessageOrderByRelationAggregateInput
 }
 
 export type SellerWhereUniqueInput = Prisma.AtLeast<{
@@ -269,24 +307,33 @@ export type SellerWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.SellerWhereInput | Prisma.SellerWhereInput[]
   workspaceId?: Prisma.StringFilter<"Seller"> | string
   name?: Prisma.StringFilter<"Seller"> | string
+  email?: Prisma.StringNullableFilter<"Seller"> | string | null
   phoneRaw?: Prisma.StringNullableFilter<"Seller"> | string | null
   phoneNormalized?: Prisma.StringNullableFilter<"Seller"> | string | null
   chatwootAgentId?: Prisma.IntNullableFilter<"Seller"> | number | null
   chatwootAccountId?: Prisma.IntNullableFilter<"Seller"> | number | null
+  availabilityStatus?: Prisma.StringNullableFilter<"Seller"> | string | null
+  role?: Prisma.StringNullableFilter<"Seller"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Seller"> | Date | string
+  updateAt?: Prisma.DateTimeFilter<"Seller"> | Date | string
   workspace?: Prisma.XOR<Prisma.WorkspaceScalarRelationFilter, Prisma.WorkspaceWhereInput>
   audiences?: Prisma.AudienceContactListRelationFilter
+  camapingMessage?: Prisma.CampaignMessageListRelationFilter
 }, "id" | "workspaceId_chatwootAgentId">
 
 export type SellerOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneRaw?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneNormalized?: Prisma.SortOrderInput | Prisma.SortOrder
   chatwootAgentId?: Prisma.SortOrderInput | Prisma.SortOrder
   chatwootAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
+  availabilityStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  role?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updateAt?: Prisma.SortOrder
   _count?: Prisma.SellerCountOrderByAggregateInput
   _avg?: Prisma.SellerAvgOrderByAggregateInput
   _max?: Prisma.SellerMaxOrderByAggregateInput
@@ -301,91 +348,127 @@ export type SellerScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Seller"> | string
   workspaceId?: Prisma.StringWithAggregatesFilter<"Seller"> | string
   name?: Prisma.StringWithAggregatesFilter<"Seller"> | string
+  email?: Prisma.StringNullableWithAggregatesFilter<"Seller"> | string | null
   phoneRaw?: Prisma.StringNullableWithAggregatesFilter<"Seller"> | string | null
   phoneNormalized?: Prisma.StringNullableWithAggregatesFilter<"Seller"> | string | null
   chatwootAgentId?: Prisma.IntNullableWithAggregatesFilter<"Seller"> | number | null
   chatwootAccountId?: Prisma.IntNullableWithAggregatesFilter<"Seller"> | number | null
+  availabilityStatus?: Prisma.StringNullableWithAggregatesFilter<"Seller"> | string | null
+  role?: Prisma.StringNullableWithAggregatesFilter<"Seller"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Seller"> | Date | string
+  updateAt?: Prisma.DateTimeWithAggregatesFilter<"Seller"> | Date | string
 }
 
 export type SellerCreateInput = {
   id?: string
   name: string
+  email?: string | null
   phoneRaw?: string | null
   phoneNormalized?: string | null
   chatwootAgentId?: number | null
   chatwootAccountId?: number | null
+  availabilityStatus?: string | null
+  role?: string | null
   createdAt?: Date | string
+  updateAt?: Date | string
   workspace: Prisma.WorkspaceCreateNestedOneWithoutSellerInput
   audiences?: Prisma.AudienceContactCreateNestedManyWithoutSellerInput
+  camapingMessage?: Prisma.CampaignMessageCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateInput = {
   id?: string
   workspaceId: string
   name: string
+  email?: string | null
   phoneRaw?: string | null
   phoneNormalized?: string | null
   chatwootAgentId?: number | null
   chatwootAccountId?: number | null
+  availabilityStatus?: string | null
+  role?: string | null
   createdAt?: Date | string
+  updateAt?: Date | string
   audiences?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutSellerInput
+  camapingMessage?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutSellerNestedInput
   audiences?: Prisma.AudienceContactUpdateManyWithoutSellerNestedInput
+  camapingMessage?: Prisma.CampaignMessageUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceContactUncheckedUpdateManyWithoutSellerNestedInput
+  camapingMessage?: Prisma.CampaignMessageUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerCreateManyInput = {
   id?: string
   workspaceId: string
   name: string
+  email?: string | null
   phoneRaw?: string | null
   phoneNormalized?: string | null
   chatwootAgentId?: number | null
   chatwootAccountId?: number | null
+  availabilityStatus?: string | null
+  role?: string | null
   createdAt?: Date | string
+  updateAt?: Date | string
 }
 
 export type SellerUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SellerUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SellerListRelationFilter = {
@@ -412,11 +495,15 @@ export type SellerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   phoneRaw?: Prisma.SortOrder
   phoneNormalized?: Prisma.SortOrder
   chatwootAgentId?: Prisma.SortOrder
   chatwootAccountId?: Prisma.SortOrder
+  availabilityStatus?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updateAt?: Prisma.SortOrder
 }
 
 export type SellerAvgOrderByAggregateInput = {
@@ -428,22 +515,30 @@ export type SellerMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   phoneRaw?: Prisma.SortOrder
   phoneNormalized?: Prisma.SortOrder
   chatwootAgentId?: Prisma.SortOrder
   chatwootAccountId?: Prisma.SortOrder
+  availabilityStatus?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updateAt?: Prisma.SortOrder
 }
 
 export type SellerMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  email?: Prisma.SortOrder
   phoneRaw?: Prisma.SortOrder
   phoneNormalized?: Prisma.SortOrder
   chatwootAgentId?: Prisma.SortOrder
   chatwootAccountId?: Prisma.SortOrder
+  availabilityStatus?: Prisma.SortOrder
+  role?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updateAt?: Prisma.SortOrder
 }
 
 export type SellerSumOrderByAggregateInput = {
@@ -517,26 +612,52 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type SellerCreateNestedOneWithoutCamapingMessageInput = {
+  create?: Prisma.XOR<Prisma.SellerCreateWithoutCamapingMessageInput, Prisma.SellerUncheckedCreateWithoutCamapingMessageInput>
+  connectOrCreate?: Prisma.SellerCreateOrConnectWithoutCamapingMessageInput
+  connect?: Prisma.SellerWhereUniqueInput
+}
+
+export type SellerUpdateOneWithoutCamapingMessageNestedInput = {
+  create?: Prisma.XOR<Prisma.SellerCreateWithoutCamapingMessageInput, Prisma.SellerUncheckedCreateWithoutCamapingMessageInput>
+  connectOrCreate?: Prisma.SellerCreateOrConnectWithoutCamapingMessageInput
+  upsert?: Prisma.SellerUpsertWithoutCamapingMessageInput
+  disconnect?: Prisma.SellerWhereInput | boolean
+  delete?: Prisma.SellerWhereInput | boolean
+  connect?: Prisma.SellerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SellerUpdateToOneWithWhereWithoutCamapingMessageInput, Prisma.SellerUpdateWithoutCamapingMessageInput>, Prisma.SellerUncheckedUpdateWithoutCamapingMessageInput>
+}
+
 export type SellerCreateWithoutWorkspaceInput = {
   id?: string
   name: string
+  email?: string | null
   phoneRaw?: string | null
   phoneNormalized?: string | null
   chatwootAgentId?: number | null
   chatwootAccountId?: number | null
+  availabilityStatus?: string | null
+  role?: string | null
   createdAt?: Date | string
+  updateAt?: Date | string
   audiences?: Prisma.AudienceContactCreateNestedManyWithoutSellerInput
+  camapingMessage?: Prisma.CampaignMessageCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateWithoutWorkspaceInput = {
   id?: string
   name: string
+  email?: string | null
   phoneRaw?: string | null
   phoneNormalized?: string | null
   chatwootAgentId?: number | null
   chatwootAccountId?: number | null
+  availabilityStatus?: string | null
+  role?: string | null
   createdAt?: Date | string
+  updateAt?: Date | string
   audiences?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutSellerInput
+  camapingMessage?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerCreateOrConnectWithoutWorkspaceInput = {
@@ -572,33 +693,47 @@ export type SellerScalarWhereInput = {
   id?: Prisma.StringFilter<"Seller"> | string
   workspaceId?: Prisma.StringFilter<"Seller"> | string
   name?: Prisma.StringFilter<"Seller"> | string
+  email?: Prisma.StringNullableFilter<"Seller"> | string | null
   phoneRaw?: Prisma.StringNullableFilter<"Seller"> | string | null
   phoneNormalized?: Prisma.StringNullableFilter<"Seller"> | string | null
   chatwootAgentId?: Prisma.IntNullableFilter<"Seller"> | number | null
   chatwootAccountId?: Prisma.IntNullableFilter<"Seller"> | number | null
+  availabilityStatus?: Prisma.StringNullableFilter<"Seller"> | string | null
+  role?: Prisma.StringNullableFilter<"Seller"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Seller"> | Date | string
+  updateAt?: Prisma.DateTimeFilter<"Seller"> | Date | string
 }
 
 export type SellerCreateWithoutAudiencesInput = {
   id?: string
   name: string
+  email?: string | null
   phoneRaw?: string | null
   phoneNormalized?: string | null
   chatwootAgentId?: number | null
   chatwootAccountId?: number | null
+  availabilityStatus?: string | null
+  role?: string | null
   createdAt?: Date | string
+  updateAt?: Date | string
   workspace: Prisma.WorkspaceCreateNestedOneWithoutSellerInput
+  camapingMessage?: Prisma.CampaignMessageCreateNestedManyWithoutSellerInput
 }
 
 export type SellerUncheckedCreateWithoutAudiencesInput = {
   id?: string
   workspaceId: string
   name: string
+  email?: string | null
   phoneRaw?: string | null
   phoneNormalized?: string | null
   chatwootAgentId?: number | null
   chatwootAccountId?: number | null
+  availabilityStatus?: string | null
+  role?: string | null
   createdAt?: Date | string
+  updateAt?: Date | string
+  camapingMessage?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutSellerInput
 }
 
 export type SellerCreateOrConnectWithoutAudiencesInput = {
@@ -620,65 +755,173 @@ export type SellerUpdateToOneWithWhereWithoutAudiencesInput = {
 export type SellerUpdateWithoutAudiencesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutSellerNestedInput
+  camapingMessage?: Prisma.CampaignMessageUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateWithoutAudiencesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  camapingMessage?: Prisma.CampaignMessageUncheckedUpdateManyWithoutSellerNestedInput
+}
+
+export type SellerCreateWithoutCamapingMessageInput = {
+  id?: string
+  name: string
+  email?: string | null
+  phoneRaw?: string | null
+  phoneNormalized?: string | null
+  chatwootAgentId?: number | null
+  chatwootAccountId?: number | null
+  availabilityStatus?: string | null
+  role?: string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  workspace: Prisma.WorkspaceCreateNestedOneWithoutSellerInput
+  audiences?: Prisma.AudienceContactCreateNestedManyWithoutSellerInput
+}
+
+export type SellerUncheckedCreateWithoutCamapingMessageInput = {
+  id?: string
+  workspaceId: string
+  name: string
+  email?: string | null
+  phoneRaw?: string | null
+  phoneNormalized?: string | null
+  chatwootAgentId?: number | null
+  chatwootAccountId?: number | null
+  availabilityStatus?: string | null
+  role?: string | null
+  createdAt?: Date | string
+  updateAt?: Date | string
+  audiences?: Prisma.AudienceContactUncheckedCreateNestedManyWithoutSellerInput
+}
+
+export type SellerCreateOrConnectWithoutCamapingMessageInput = {
+  where: Prisma.SellerWhereUniqueInput
+  create: Prisma.XOR<Prisma.SellerCreateWithoutCamapingMessageInput, Prisma.SellerUncheckedCreateWithoutCamapingMessageInput>
+}
+
+export type SellerUpsertWithoutCamapingMessageInput = {
+  update: Prisma.XOR<Prisma.SellerUpdateWithoutCamapingMessageInput, Prisma.SellerUncheckedUpdateWithoutCamapingMessageInput>
+  create: Prisma.XOR<Prisma.SellerCreateWithoutCamapingMessageInput, Prisma.SellerUncheckedCreateWithoutCamapingMessageInput>
+  where?: Prisma.SellerWhereInput
+}
+
+export type SellerUpdateToOneWithWhereWithoutCamapingMessageInput = {
+  where?: Prisma.SellerWhereInput
+  data: Prisma.XOR<Prisma.SellerUpdateWithoutCamapingMessageInput, Prisma.SellerUncheckedUpdateWithoutCamapingMessageInput>
+}
+
+export type SellerUpdateWithoutCamapingMessageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutSellerNestedInput
+  audiences?: Prisma.AudienceContactUpdateManyWithoutSellerNestedInput
+}
+
+export type SellerUncheckedUpdateWithoutCamapingMessageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  audiences?: Prisma.AudienceContactUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerCreateManyWorkspaceInput = {
   id?: string
   name: string
+  email?: string | null
   phoneRaw?: string | null
   phoneNormalized?: string | null
   chatwootAgentId?: number | null
   chatwootAccountId?: number | null
+  availabilityStatus?: string | null
+  role?: string | null
   createdAt?: Date | string
+  updateAt?: Date | string
 }
 
 export type SellerUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceContactUpdateManyWithoutSellerNestedInput
+  camapingMessage?: Prisma.CampaignMessageUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audiences?: Prisma.AudienceContactUncheckedUpdateManyWithoutSellerNestedInput
+  camapingMessage?: Prisma.CampaignMessageUncheckedUpdateManyWithoutSellerNestedInput
 }
 
 export type SellerUncheckedUpdateManyWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneRaw?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNormalized?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootAgentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootAccountId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  availabilityStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -688,10 +931,12 @@ export type SellerUncheckedUpdateManyWithoutWorkspaceInput = {
 
 export type SellerCountOutputType = {
   audiences: number
+  camapingMessage: number
 }
 
 export type SellerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   audiences?: boolean | SellerCountOutputTypeCountAudiencesArgs
+  camapingMessage?: boolean | SellerCountOutputTypeCountCamapingMessageArgs
 }
 
 /**
@@ -711,18 +956,30 @@ export type SellerCountOutputTypeCountAudiencesArgs<ExtArgs extends runtime.Type
   where?: Prisma.AudienceContactWhereInput
 }
 
+/**
+ * SellerCountOutputType without action
+ */
+export type SellerCountOutputTypeCountCamapingMessageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CampaignMessageWhereInput
+}
+
 
 export type SellerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   workspaceId?: boolean
   name?: boolean
+  email?: boolean
   phoneRaw?: boolean
   phoneNormalized?: boolean
   chatwootAgentId?: boolean
   chatwootAccountId?: boolean
+  availabilityStatus?: boolean
+  role?: boolean
   createdAt?: boolean
+  updateAt?: boolean
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
   audiences?: boolean | Prisma.Seller$audiencesArgs<ExtArgs>
+  camapingMessage?: boolean | Prisma.Seller$camapingMessageArgs<ExtArgs>
   _count?: boolean | Prisma.SellerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["seller"]>
 
@@ -730,11 +987,15 @@ export type SellerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   id?: boolean
   workspaceId?: boolean
   name?: boolean
+  email?: boolean
   phoneRaw?: boolean
   phoneNormalized?: boolean
   chatwootAgentId?: boolean
   chatwootAccountId?: boolean
+  availabilityStatus?: boolean
+  role?: boolean
   createdAt?: boolean
+  updateAt?: boolean
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["seller"]>
 
@@ -742,11 +1003,15 @@ export type SellerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   id?: boolean
   workspaceId?: boolean
   name?: boolean
+  email?: boolean
   phoneRaw?: boolean
   phoneNormalized?: boolean
   chatwootAgentId?: boolean
   chatwootAccountId?: boolean
+  availabilityStatus?: boolean
+  role?: boolean
   createdAt?: boolean
+  updateAt?: boolean
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["seller"]>
 
@@ -754,17 +1019,22 @@ export type SellerSelectScalar = {
   id?: boolean
   workspaceId?: boolean
   name?: boolean
+  email?: boolean
   phoneRaw?: boolean
   phoneNormalized?: boolean
   chatwootAgentId?: boolean
   chatwootAccountId?: boolean
+  availabilityStatus?: boolean
+  role?: boolean
   createdAt?: boolean
+  updateAt?: boolean
 }
 
-export type SellerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "name" | "phoneRaw" | "phoneNormalized" | "chatwootAgentId" | "chatwootAccountId" | "createdAt", ExtArgs["result"]["seller"]>
+export type SellerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "name" | "email" | "phoneRaw" | "phoneNormalized" | "chatwootAgentId" | "chatwootAccountId" | "availabilityStatus" | "role" | "createdAt" | "updateAt", ExtArgs["result"]["seller"]>
 export type SellerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
   audiences?: boolean | Prisma.Seller$audiencesArgs<ExtArgs>
+  camapingMessage?: boolean | Prisma.Seller$camapingMessageArgs<ExtArgs>
   _count?: boolean | Prisma.SellerCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SellerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -779,16 +1049,21 @@ export type $SellerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     workspace: Prisma.$WorkspacePayload<ExtArgs>
     audiences: Prisma.$AudienceContactPayload<ExtArgs>[]
+    camapingMessage: Prisma.$CampaignMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     workspaceId: string
     name: string
+    email: string | null
     phoneRaw: string | null
     phoneNormalized: string | null
     chatwootAgentId: number | null
     chatwootAccountId: number | null
+    availabilityStatus: string | null
+    role: string | null
     createdAt: Date
+    updateAt: Date
   }, ExtArgs["result"]["seller"]>
   composites: {}
 }
@@ -1185,6 +1460,7 @@ export interface Prisma__SellerClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   workspace<T extends Prisma.WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkspaceDefaultArgs<ExtArgs>>): Prisma.Prisma__WorkspaceClient<runtime.Types.Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   audiences<T extends Prisma.Seller$audiencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Seller$audiencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AudienceContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  camapingMessage<T extends Prisma.Seller$camapingMessageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Seller$camapingMessageArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CampaignMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1217,11 +1493,15 @@ export interface SellerFieldRefs {
   readonly id: Prisma.FieldRef<"Seller", 'String'>
   readonly workspaceId: Prisma.FieldRef<"Seller", 'String'>
   readonly name: Prisma.FieldRef<"Seller", 'String'>
+  readonly email: Prisma.FieldRef<"Seller", 'String'>
   readonly phoneRaw: Prisma.FieldRef<"Seller", 'String'>
   readonly phoneNormalized: Prisma.FieldRef<"Seller", 'String'>
   readonly chatwootAgentId: Prisma.FieldRef<"Seller", 'Int'>
   readonly chatwootAccountId: Prisma.FieldRef<"Seller", 'Int'>
+  readonly availabilityStatus: Prisma.FieldRef<"Seller", 'String'>
+  readonly role: Prisma.FieldRef<"Seller", 'String'>
   readonly createdAt: Prisma.FieldRef<"Seller", 'DateTime'>
+  readonly updateAt: Prisma.FieldRef<"Seller", 'DateTime'>
 }
     
 
@@ -1644,6 +1924,30 @@ export type Seller$audiencesArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.AudienceContactScalarFieldEnum | Prisma.AudienceContactScalarFieldEnum[]
+}
+
+/**
+ * Seller.camapingMessage
+ */
+export type Seller$camapingMessageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CampaignMessage
+   */
+  select?: Prisma.CampaignMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CampaignMessage
+   */
+  omit?: Prisma.CampaignMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CampaignMessageInclude<ExtArgs> | null
+  where?: Prisma.CampaignMessageWhereInput
+  orderBy?: Prisma.CampaignMessageOrderByWithRelationInput | Prisma.CampaignMessageOrderByWithRelationInput[]
+  cursor?: Prisma.CampaignMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CampaignMessageScalarFieldEnum | Prisma.CampaignMessageScalarFieldEnum[]
 }
 
 /**

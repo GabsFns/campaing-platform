@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ChatwootRepository } from './chatwoot.repository.js';
 import { ChatwootApiService } from './chatwoot-api.service.js';
 import { CreateChatwootConnectionDto } from './dto/create-chatwoot-connect.dto.js';
@@ -34,5 +38,19 @@ export class ChatwootService {
 
   findConnection(workspaceId: string) {
     return this.repository.findByWorkspace(workspaceId);
+  }
+
+  async getAgents(workspaceId: string) {
+    const connection = await this.repository.findByWorkspace(workspaceId);
+
+    if (!connection) {
+      throw new NotFoundException('Chatwoot connection not found');
+    }
+
+    return this.apiChatwoot.getAgents(
+      connection.baseUrl,
+      connection.apiToken,
+      connection.accountId,
+    );
   }
 }

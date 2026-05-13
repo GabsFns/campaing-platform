@@ -14,6 +14,9 @@ import { ConfigModule } from '@nestjs/config';
 import { TemplatesModule } from './modules/template/templates.module.js';
 import { MetaModule } from './modules/meta/meta.module.js';
 import { ChatwootModule } from './modules/chatwoot/chatwoot.module';
+import { SellersController } from './modules/sellers/sellers.controller';
+import { SellersService } from './modules/sellers/sellers.service';
+import { SellersModule } from './modules/sellers/sellers.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -32,8 +35,9 @@ import { ChatwootModule } from './modules/chatwoot/chatwoot.module';
     TemplatesModule,
     MetaModule,
     ChatwootModule,
+    SellersModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, SellersController],
+  providers: [AppService, SellersService],
 })
 export class AppModule {}

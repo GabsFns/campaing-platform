@@ -59,6 +59,7 @@ export type Channel = (typeof Channel)[keyof typeof Channel]
 export const CampaignStatus = {
   DRAFT: 'DRAFT',
   SCHEDULED: 'SCHEDULED',
+  PROCESSING: 'PROCESSING',
   RUNNING: 'RUNNING',
   PAUSED: 'PAUSED',
   FINISHED: 'FINISHED',
@@ -84,7 +85,9 @@ export const MessageStatus = {
   SENT: 'SENT',
   FAILED: 'FAILED',
   DELIVERED: 'DELIVERED',
-  READ: 'READ'
+  READ: 'READ',
+  LOCKED: 'LOCKED',
+  RETRYING: 'RETRYING'
 } as const
 
 export type MessageStatus = (typeof MessageStatus)[keyof typeof MessageStatus]
