@@ -68,6 +68,11 @@ export type CampaignMessage = Prisma.CampaignMessageModel
  */
 export type CampaignBatch = Prisma.CampaignBatchModel
 /**
+ * Model DeadLetterMessage
+ * 
+ */
+export type DeadLetterMessage = Prisma.DeadLetterMessageModel
+/**
  * Model CampaignStats
  * 
  */

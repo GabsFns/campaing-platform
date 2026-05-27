@@ -394,6 +394,7 @@ export const ModelName = {
   Campaign: 'Campaign',
   CampaignMessage: 'CampaignMessage',
   CampaignBatch: 'CampaignBatch',
+  DeadLetterMessage: 'DeadLetterMessage',
   CampaignStats: 'CampaignStats',
   ChatwootConnection: 'ChatwootConnection',
   ChatwootConversation: 'ChatwootConversation',
@@ -416,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "workspace" | "user" | "template" | "contact" | "audience" | "audienceContact" | "seller" | "campaign" | "campaignMessage" | "campaignBatch" | "campaignStats" | "chatwootConnection" | "chatwootConversation" | "messageEvent" | "senderNumber" | "webhookEvent" | "metaConnection"
+    modelProps: "workspace" | "user" | "template" | "contact" | "audience" | "audienceContact" | "seller" | "campaign" | "campaignMessage" | "campaignBatch" | "deadLetterMessage" | "campaignStats" | "chatwootConnection" | "chatwootConversation" | "messageEvent" | "senderNumber" | "webhookEvent" | "metaConnection"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1160,6 +1161,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DeadLetterMessage: {
+      payload: Prisma.$DeadLetterMessagePayload<ExtArgs>
+      fields: Prisma.DeadLetterMessageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DeadLetterMessageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DeadLetterMessageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload>
+        }
+        findFirst: {
+          args: Prisma.DeadLetterMessageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DeadLetterMessageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload>
+        }
+        findMany: {
+          args: Prisma.DeadLetterMessageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload>[]
+        }
+        create: {
+          args: Prisma.DeadLetterMessageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload>
+        }
+        createMany: {
+          args: Prisma.DeadLetterMessageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DeadLetterMessageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload>[]
+        }
+        delete: {
+          args: Prisma.DeadLetterMessageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload>
+        }
+        update: {
+          args: Prisma.DeadLetterMessageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload>
+        }
+        deleteMany: {
+          args: Prisma.DeadLetterMessageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DeadLetterMessageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DeadLetterMessageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload>[]
+        }
+        upsert: {
+          args: Prisma.DeadLetterMessageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DeadLetterMessagePayload>
+        }
+        aggregate: {
+          args: Prisma.DeadLetterMessageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDeadLetterMessage>
+        }
+        groupBy: {
+          args: Prisma.DeadLetterMessageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeadLetterMessageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DeadLetterMessageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DeadLetterMessageCountAggregateOutputType> | number
+        }
+      }
+    }
     CampaignStats: {
       payload: Prisma.$CampaignStatsPayload<ExtArgs>
       fields: Prisma.CampaignStatsFieldRefs
@@ -1842,6 +1917,7 @@ export const CampaignMessageScalarFieldEnum = {
   sellerId: 'sellerId',
   status: 'status',
   error: 'error',
+  providerPayload: 'providerPayload',
   providerId: 'providerId',
   chatwootConversationId: 'chatwootConversationId',
   chatwootInboxId: 'chatwootInboxId',
@@ -1852,6 +1928,7 @@ export const CampaignMessageScalarFieldEnum = {
   readAt: 'readAt',
   lockedAt: 'lockedAt',
   retryCount: 'retryCount',
+  nextRetryAt: 'nextRetryAt',
   createdAt: 'createdAt'
 } as const
 
@@ -1870,6 +1947,20 @@ export const CampaignBatchScalarFieldEnum = {
 } as const
 
 export type CampaignBatchScalarFieldEnum = (typeof CampaignBatchScalarFieldEnum)[keyof typeof CampaignBatchScalarFieldEnum]
+
+
+export const DeadLetterMessageScalarFieldEnum = {
+  id: 'id',
+  campaignMessageId: 'campaignMessageId',
+  payload: 'payload',
+  error: 'error',
+  queueName: 'queueName',
+  jobName: 'jobName',
+  failedAt: 'failedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type DeadLetterMessageScalarFieldEnum = (typeof DeadLetterMessageScalarFieldEnum)[keyof typeof DeadLetterMessageScalarFieldEnum]
 
 
 export const CampaignStatsScalarFieldEnum = {
@@ -1960,6 +2051,7 @@ export const MetaConnectionScalarFieldEnum = {
   phoneNumberId: 'phoneNumberId',
   phoneNumber: 'phoneNumber',
   displayName: 'displayName',
+  status: 'status',
   webhookToken: 'webhookToken',
   webhookUrl: 'webhookUrl',
   createdAt: 'createdAt'
@@ -2210,6 +2302,20 @@ export type EnumWebhookProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$
 export type ListEnumWebhookProviderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WebhookProvider[]'>
     
 
+
+/**
+ * Reference to a field of type 'MetaConnectionStatus'
+ */
+export type EnumMetaConnectionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MetaConnectionStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'MetaConnectionStatus[]'
+ */
+export type ListEnumMetaConnectionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MetaConnectionStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -2315,6 +2421,7 @@ export type GlobalOmitConfig = {
   campaign?: Prisma.CampaignOmit
   campaignMessage?: Prisma.CampaignMessageOmit
   campaignBatch?: Prisma.CampaignBatchOmit
+  deadLetterMessage?: Prisma.DeadLetterMessageOmit
   campaignStats?: Prisma.CampaignStatsOmit
   chatwootConnection?: Prisma.ChatwootConnectionOmit
   chatwootConversation?: Prisma.ChatwootConversationOmit

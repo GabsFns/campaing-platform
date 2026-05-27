@@ -144,7 +144,7 @@ export class TemplateService {
         (component: any) => component.type === 'BODY',
       );
 
-      const metaBody = bodyComponent?.text ?? '';
+      const metaBody: string = bodyComponent?.text ?? '';
 
       /**
        * NÃO TEM COMO RECUPERAR O MAPEAMENTO INTERNO
@@ -152,8 +152,8 @@ export class TemplateService {
        *
        * ENTÃO SALVAMOS COMO RAW
        */
-      const variables = this.extractMetaVariables(metaBody);
 
+      const variables = this.extractMetaVariables(metaBody);
       await this.templateRepository.upsert({
         where: {
           workspaceId_metaTemplateId: {
@@ -228,10 +228,7 @@ export class TemplateService {
   }
 
   async findById(id: string, workspaceId: string) {
-    const template = await this.templateRepository.findById(
-      id,
-      workspaceId,
-    );
+    const template = await this.templateRepository.findById(id, workspaceId);
 
     if (!template) {
       throw new NotFoundException('Template not found');
@@ -240,14 +237,8 @@ export class TemplateService {
     return template;
   }
 
-  async update(
-    id: string,
-    workspaceId: string,
-    dto: UpdateTemplateDto,
-  ) {
-    const connection = await this.metaRepository.findByWorkspace(
-      workspaceId,
-    );
+  async update(id: string, workspaceId: string, dto: UpdateTemplateDto) {
+    const connection = await this.metaRepository.findByWorkspace(workspaceId);
 
     if (!connection) {
       throw new NotFoundException('Meta connection not found');
@@ -291,11 +282,9 @@ export class TemplateService {
 
       name: dto.name ?? existingTemplate.name,
 
-      category:
-        dto.category ?? existingTemplate.category,
+      category: dto.category ?? existingTemplate.category,
 
-      language:
-        dto.language ?? existingTemplate.language,
+      language: dto.language ?? existingTemplate.language,
 
       components: metaComponents,
     });
@@ -305,14 +294,11 @@ export class TemplateService {
 
       body: internalBody,
 
-      category:
-        dto.category ?? existingTemplate.category,
+      category: dto.category ?? existingTemplate.category,
 
-      language:
-        dto.language ?? existingTemplate.language,
+      language: dto.language ?? existingTemplate.language,
 
-      channel:
-        dto.channel ?? existingTemplate.channel,
+      channel: dto.channel ?? existingTemplate.channel,
 
       variables,
 
@@ -327,9 +313,7 @@ export class TemplateService {
   }
 
   async delete(id: string, workspaceId: string) {
-    const connection = await this.metaRepository.findByWorkspace(
-      workspaceId,
-    );
+    const connection = await this.metaRepository.findByWorkspace(workspaceId);
 
     if (!connection) {
       throw new NotFoundException('Meta connection not found');
@@ -363,9 +347,7 @@ export class TemplateService {
    * =========================================
    */
 
-  private extractVariables(
-    body: string,
-  ): InternalTemplateVariable[] {
+  private extractVariables(body: string): InternalTemplateVariable[] {
     const regex = /{{(.*?)}}/g;
 
     const matches = [...body.matchAll(regex)];

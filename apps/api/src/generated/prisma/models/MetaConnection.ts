@@ -33,6 +33,7 @@ export type MetaConnectionMinAggregateOutputType = {
   phoneNumberId: string | null
   phoneNumber: string | null
   displayName: string | null
+  status: $Enums.MetaConnectionStatus | null
   webhookToken: string | null
   webhookUrl: string | null
   createdAt: Date | null
@@ -47,6 +48,7 @@ export type MetaConnectionMaxAggregateOutputType = {
   phoneNumberId: string | null
   phoneNumber: string | null
   displayName: string | null
+  status: $Enums.MetaConnectionStatus | null
   webhookToken: string | null
   webhookUrl: string | null
   createdAt: Date | null
@@ -61,6 +63,7 @@ export type MetaConnectionCountAggregateOutputType = {
   phoneNumberId: number
   phoneNumber: number
   displayName: number
+  status: number
   webhookToken: number
   webhookUrl: number
   createdAt: number
@@ -77,6 +80,7 @@ export type MetaConnectionMinAggregateInputType = {
   phoneNumberId?: true
   phoneNumber?: true
   displayName?: true
+  status?: true
   webhookToken?: true
   webhookUrl?: true
   createdAt?: true
@@ -91,6 +95,7 @@ export type MetaConnectionMaxAggregateInputType = {
   phoneNumberId?: true
   phoneNumber?: true
   displayName?: true
+  status?: true
   webhookToken?: true
   webhookUrl?: true
   createdAt?: true
@@ -105,6 +110,7 @@ export type MetaConnectionCountAggregateInputType = {
   phoneNumberId?: true
   phoneNumber?: true
   displayName?: true
+  status?: true
   webhookToken?: true
   webhookUrl?: true
   createdAt?: true
@@ -192,6 +198,7 @@ export type MetaConnectionGroupByOutputType = {
   phoneNumberId: string
   phoneNumber: string | null
   displayName: string | null
+  status: $Enums.MetaConnectionStatus
   webhookToken: string | null
   webhookUrl: string | null
   createdAt: Date
@@ -227,6 +234,7 @@ export type MetaConnectionWhereInput = {
   phoneNumberId?: Prisma.StringFilter<"MetaConnection"> | string
   phoneNumber?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
   displayName?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
+  status?: Prisma.EnumMetaConnectionStatusFilter<"MetaConnection"> | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
   webhookUrl?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MetaConnection"> | Date | string
@@ -242,6 +250,7 @@ export type MetaConnectionOrderByWithRelationInput = {
   phoneNumberId?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   displayName?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   webhookToken?: Prisma.SortOrderInput | Prisma.SortOrder
   webhookUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -260,6 +269,7 @@ export type MetaConnectionWhereUniqueInput = Prisma.AtLeast<{
   phoneNumberId?: Prisma.StringFilter<"MetaConnection"> | string
   phoneNumber?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
   displayName?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
+  status?: Prisma.EnumMetaConnectionStatusFilter<"MetaConnection"> | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
   webhookUrl?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MetaConnection"> | Date | string
@@ -275,6 +285,7 @@ export type MetaConnectionOrderByWithAggregationInput = {
   phoneNumberId?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   displayName?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   webhookToken?: Prisma.SortOrderInput | Prisma.SortOrder
   webhookUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -295,6 +306,7 @@ export type MetaConnectionScalarWhereWithAggregatesInput = {
   phoneNumberId?: Prisma.StringWithAggregatesFilter<"MetaConnection"> | string
   phoneNumber?: Prisma.StringNullableWithAggregatesFilter<"MetaConnection"> | string | null
   displayName?: Prisma.StringNullableWithAggregatesFilter<"MetaConnection"> | string | null
+  status?: Prisma.EnumMetaConnectionStatusWithAggregatesFilter<"MetaConnection"> | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.StringNullableWithAggregatesFilter<"MetaConnection"> | string | null
   webhookUrl?: Prisma.StringNullableWithAggregatesFilter<"MetaConnection"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"MetaConnection"> | Date | string
@@ -308,6 +320,7 @@ export type MetaConnectionCreateInput = {
   phoneNumberId: string
   phoneNumber?: string | null
   displayName?: string | null
+  status?: $Enums.MetaConnectionStatus
   webhookToken?: string | null
   webhookUrl?: string | null
   createdAt?: Date | string
@@ -323,6 +336,7 @@ export type MetaConnectionUncheckedCreateInput = {
   phoneNumberId: string
   phoneNumber?: string | null
   displayName?: string | null
+  status?: $Enums.MetaConnectionStatus
   webhookToken?: string | null
   webhookUrl?: string | null
   createdAt?: Date | string
@@ -336,6 +350,7 @@ export type MetaConnectionUpdateInput = {
   phoneNumberId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMetaConnectionStatusFieldUpdateOperationsInput | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   webhookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -351,6 +366,7 @@ export type MetaConnectionUncheckedUpdateInput = {
   phoneNumberId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMetaConnectionStatusFieldUpdateOperationsInput | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   webhookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -365,6 +381,7 @@ export type MetaConnectionCreateManyInput = {
   phoneNumberId: string
   phoneNumber?: string | null
   displayName?: string | null
+  status?: $Enums.MetaConnectionStatus
   webhookToken?: string | null
   webhookUrl?: string | null
   createdAt?: Date | string
@@ -378,6 +395,7 @@ export type MetaConnectionUpdateManyMutationInput = {
   phoneNumberId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMetaConnectionStatusFieldUpdateOperationsInput | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   webhookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -392,6 +410,7 @@ export type MetaConnectionUncheckedUpdateManyInput = {
   phoneNumberId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMetaConnectionStatusFieldUpdateOperationsInput | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   webhookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -416,6 +435,7 @@ export type MetaConnectionCountOrderByAggregateInput = {
   phoneNumberId?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   displayName?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   webhookToken?: Prisma.SortOrder
   webhookUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -430,6 +450,7 @@ export type MetaConnectionMaxOrderByAggregateInput = {
   phoneNumberId?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   displayName?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   webhookToken?: Prisma.SortOrder
   webhookUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -444,6 +465,7 @@ export type MetaConnectionMinOrderByAggregateInput = {
   phoneNumberId?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
   displayName?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   webhookToken?: Prisma.SortOrder
   webhookUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -491,6 +513,10 @@ export type MetaConnectionUncheckedUpdateManyWithoutWorkspaceNestedInput = {
   deleteMany?: Prisma.MetaConnectionScalarWhereInput | Prisma.MetaConnectionScalarWhereInput[]
 }
 
+export type EnumMetaConnectionStatusFieldUpdateOperationsInput = {
+  set?: $Enums.MetaConnectionStatus
+}
+
 export type MetaConnectionCreateWithoutWorkspaceInput = {
   id?: string
   accessToken: string
@@ -499,6 +525,7 @@ export type MetaConnectionCreateWithoutWorkspaceInput = {
   phoneNumberId: string
   phoneNumber?: string | null
   displayName?: string | null
+  status?: $Enums.MetaConnectionStatus
   webhookToken?: string | null
   webhookUrl?: string | null
   createdAt?: Date | string
@@ -512,6 +539,7 @@ export type MetaConnectionUncheckedCreateWithoutWorkspaceInput = {
   phoneNumberId: string
   phoneNumber?: string | null
   displayName?: string | null
+  status?: $Enums.MetaConnectionStatus
   webhookToken?: string | null
   webhookUrl?: string | null
   createdAt?: Date | string
@@ -555,6 +583,7 @@ export type MetaConnectionScalarWhereInput = {
   phoneNumberId?: Prisma.StringFilter<"MetaConnection"> | string
   phoneNumber?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
   displayName?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
+  status?: Prisma.EnumMetaConnectionStatusFilter<"MetaConnection"> | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
   webhookUrl?: Prisma.StringNullableFilter<"MetaConnection"> | string | null
   createdAt?: Prisma.DateTimeFilter<"MetaConnection"> | Date | string
@@ -568,6 +597,7 @@ export type MetaConnectionCreateManyWorkspaceInput = {
   phoneNumberId: string
   phoneNumber?: string | null
   displayName?: string | null
+  status?: $Enums.MetaConnectionStatus
   webhookToken?: string | null
   webhookUrl?: string | null
   createdAt?: Date | string
@@ -581,6 +611,7 @@ export type MetaConnectionUpdateWithoutWorkspaceInput = {
   phoneNumberId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMetaConnectionStatusFieldUpdateOperationsInput | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   webhookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -594,6 +625,7 @@ export type MetaConnectionUncheckedUpdateWithoutWorkspaceInput = {
   phoneNumberId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMetaConnectionStatusFieldUpdateOperationsInput | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   webhookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -607,6 +639,7 @@ export type MetaConnectionUncheckedUpdateManyWithoutWorkspaceInput = {
   phoneNumberId?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumMetaConnectionStatusFieldUpdateOperationsInput | $Enums.MetaConnectionStatus
   webhookToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   webhookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -623,6 +656,7 @@ export type MetaConnectionSelect<ExtArgs extends runtime.Types.Extensions.Intern
   phoneNumberId?: boolean
   phoneNumber?: boolean
   displayName?: boolean
+  status?: boolean
   webhookToken?: boolean
   webhookUrl?: boolean
   createdAt?: boolean
@@ -638,6 +672,7 @@ export type MetaConnectionSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   phoneNumberId?: boolean
   phoneNumber?: boolean
   displayName?: boolean
+  status?: boolean
   webhookToken?: boolean
   webhookUrl?: boolean
   createdAt?: boolean
@@ -653,6 +688,7 @@ export type MetaConnectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   phoneNumberId?: boolean
   phoneNumber?: boolean
   displayName?: boolean
+  status?: boolean
   webhookToken?: boolean
   webhookUrl?: boolean
   createdAt?: boolean
@@ -668,12 +704,13 @@ export type MetaConnectionSelectScalar = {
   phoneNumberId?: boolean
   phoneNumber?: boolean
   displayName?: boolean
+  status?: boolean
   webhookToken?: boolean
   webhookUrl?: boolean
   createdAt?: boolean
 }
 
-export type MetaConnectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "accessToken" | "businessId" | "wabaId" | "phoneNumberId" | "phoneNumber" | "displayName" | "webhookToken" | "webhookUrl" | "createdAt", ExtArgs["result"]["metaConnection"]>
+export type MetaConnectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "accessToken" | "businessId" | "wabaId" | "phoneNumberId" | "phoneNumber" | "displayName" | "status" | "webhookToken" | "webhookUrl" | "createdAt", ExtArgs["result"]["metaConnection"]>
 export type MetaConnectionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workspace?: boolean | Prisma.WorkspaceDefaultArgs<ExtArgs>
 }
@@ -698,6 +735,7 @@ export type $MetaConnectionPayload<ExtArgs extends runtime.Types.Extensions.Inte
     phoneNumberId: string
     phoneNumber: string | null
     displayName: string | null
+    status: $Enums.MetaConnectionStatus
     webhookToken: string | null
     webhookUrl: string | null
     createdAt: Date
@@ -1133,6 +1171,7 @@ export interface MetaConnectionFieldRefs {
   readonly phoneNumberId: Prisma.FieldRef<"MetaConnection", 'String'>
   readonly phoneNumber: Prisma.FieldRef<"MetaConnection", 'String'>
   readonly displayName: Prisma.FieldRef<"MetaConnection", 'String'>
+  readonly status: Prisma.FieldRef<"MetaConnection", 'MetaConnectionStatus'>
   readonly webhookToken: Prisma.FieldRef<"MetaConnection", 'String'>
   readonly webhookUrl: Prisma.FieldRef<"MetaConnection", 'String'>
   readonly createdAt: Prisma.FieldRef<"MetaConnection", 'DateTime'>

@@ -189,6 +189,7 @@ model CampaignMessage {
   status                 MessageStatus     @default(PENDING)
   error                  String?
 
+  providerPayload        Json?
   providerId             String?
   chatwootConversationId Int?
   chatwootInboxId        Int?
@@ -199,8 +200,10 @@ model CampaignMessage {
   deliveredAt            DateTime?
   readAt                 DateTime?
   lockedAt               DateTime?
+  processingStartedAt    DateTime?
   
   retryCount             Int               @default(0)
+  nextRetryAt            DateTime?
   createdAt              DateTime          @default(now())
 
   batch                  CampaignBatch?    @relation(fields: [batchId], references: [id])
@@ -208,8 +211,9 @@ model CampaignMessage {
   contact                Contact           @relation(fields: [contactId], references: [id])
   senderNumber           SenderNumber?     @relation(fields: [senderNumberId], references: [id])
   workspace              Workspace         @relation(fields: [workspaceId], references: [id])
-  seller                 Seller? @relation(fields: [sellerId], references: [id])
+  seller                 Seller?           @relation(fields: [sellerId], references: [id])
   events                 MessageEvent[]
+  deadLetters            DeadLetterMessage[]
 
   @@index([campaignId])
   @@index([campaignId, status])
@@ -237,6 +241,27 @@ model CampaignBatch {
   messages   CampaignMessage[]
 
   @@index([campaignId])
+}
+
+model DeadLetterMessage {
+  id              String   @id @default(uuid())
+
+  campaignMessageId String
+
+  payload         Json
+  error           String
+
+  queueName       String?
+  jobName         String?
+
+  failedAt        DateTime
+
+  createdAt       DateTime @default(now())
+
+  campaignMessage CampaignMessage @relation(fields: [campaignMessageId], references: [id])
+
+  @@index([campaignMessageId])
+  @@index([failedAt])
 }
 
 model CampaignStats {
@@ -338,6 +363,8 @@ model MetaConnection {
   phoneNumber     String?
   displayName     String?
 
+  status MetaConnectionStatus @default(CONNECTED)
+
   webhookToken    String?
   webhookUrl      String?
 
@@ -392,6 +419,7 @@ enum BatchStatus {
   PENDING
   RUNNING
   FINISHED
+  PARTIAL
   FAILED
 }
 
@@ -404,4 +432,12 @@ enum MessageStatus {
   READ
   LOCKED
   RETRYING
+  PROCESSING
+}
+
+enum MetaConnectionStatus {
+  CONNECTED
+  DISCONNECTED
+  EXPIRED
+  BLOCKED
 }

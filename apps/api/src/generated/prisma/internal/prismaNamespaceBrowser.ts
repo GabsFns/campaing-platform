@@ -61,6 +61,7 @@ export const ModelName = {
   Campaign: 'Campaign',
   CampaignMessage: 'CampaignMessage',
   CampaignBatch: 'CampaignBatch',
+  DeadLetterMessage: 'DeadLetterMessage',
   CampaignStats: 'CampaignStats',
   ChatwootConnection: 'ChatwootConnection',
   ChatwootConversation: 'ChatwootConversation',
@@ -211,6 +212,7 @@ export const CampaignMessageScalarFieldEnum = {
   sellerId: 'sellerId',
   status: 'status',
   error: 'error',
+  providerPayload: 'providerPayload',
   providerId: 'providerId',
   chatwootConversationId: 'chatwootConversationId',
   chatwootInboxId: 'chatwootInboxId',
@@ -221,6 +223,7 @@ export const CampaignMessageScalarFieldEnum = {
   readAt: 'readAt',
   lockedAt: 'lockedAt',
   retryCount: 'retryCount',
+  nextRetryAt: 'nextRetryAt',
   createdAt: 'createdAt'
 } as const
 
@@ -239,6 +242,20 @@ export const CampaignBatchScalarFieldEnum = {
 } as const
 
 export type CampaignBatchScalarFieldEnum = (typeof CampaignBatchScalarFieldEnum)[keyof typeof CampaignBatchScalarFieldEnum]
+
+
+export const DeadLetterMessageScalarFieldEnum = {
+  id: 'id',
+  campaignMessageId: 'campaignMessageId',
+  payload: 'payload',
+  error: 'error',
+  queueName: 'queueName',
+  jobName: 'jobName',
+  failedAt: 'failedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type DeadLetterMessageScalarFieldEnum = (typeof DeadLetterMessageScalarFieldEnum)[keyof typeof DeadLetterMessageScalarFieldEnum]
 
 
 export const CampaignStatsScalarFieldEnum = {
@@ -329,6 +346,7 @@ export const MetaConnectionScalarFieldEnum = {
   phoneNumberId: 'phoneNumberId',
   phoneNumber: 'phoneNumber',
   displayName: 'displayName',
+  status: 'status',
   webhookToken: 'webhookToken',
   webhookUrl: 'webhookUrl',
   createdAt: 'createdAt'

@@ -1,0 +1,391 @@
+{
+
+  "workbench.colorTheme": "Dark Pink",
+
+  "files.autoSave": "afterDelay",
+
+  "editor.formatOnSave": true,
+
+  "php.validate.executablePath": "",
+
+  "workbench.productIconTheme": "el-vsc-v1-icons",
+
+  "workbench.iconTheme": "catppuccin-mocha",
+
+  "liveServer.settings.donotShowInfoMsg": true,
+
+  "window.zoomLevel": -1,
+
+  "workbench.settings.useSplitJSON": true,
+
+  "workbench.editor.showTabs": "single",
+
+  "editor.cursorBlinking": "smooth",
+
+  "editor.cursorSmoothCaretAnimation": "on",
+
+  "editor.hideCursorInOverviewRuler": true,
+
+
+
+  // === JANELA ESTILO MAC ===
+
+  "window.titleBarStyle": "custom",
+
+  "window.customTitleBarVisibility": "auto",
+
+  "apc.electron": {
+
+    "titleBarStyle": "hiddenInset"
+
+  },
+
+
+
+  "workbench.statusBar.visible": false,
+
+  "editor.scrollbar.vertical": "hidden",
+
+  "editor.fontFamily": "'JetBrains Mono', monospace",
+
+  "editor.fontSize": 12,
+
+  "workbench.activityBar.location": "hidden",
+
+  "editor.lineHeight": 1.7,
+
+  "editor.rulers": [80, 120],
+
+  "workbench.startupEditor": "newUntitledFile",
+
+  "editor.renderLineHighlight": "gutter",
+
+  "editor.fontLigatures": true,
+
+  "workbench.editor.labelFormat": "short",
+
+  "explorer.compactFolders": false,
+
+  "editor.semanticHighlighting.enabled": true,
+
+  "editor.minimap.enabled": false,
+
+  "breadcrumbs.enabled": false,
+
+  "window.commandCenter": false,
+
+  "docker.extension.enableComposeLanguageServer": false,
+
+  "vsicons.dontShowNewVersionMessage": true,
+
+  "workbench.secondarySideBar.defaultVisibility": "visible",
+
+
+
+  "workbench.colorCustomizations": {
+
+    // === BORDAS E CONTORNOS DA JANELA (Agora em Rosé Minimalista) ===
+
+    "window.activeBorder": "#e8a2b5",           // Contorno externo sutil em Rosa Rosé
+
+    "window.inactiveBorder": "#2d1b4e",         // Contorno em Roxo Escuro ao perder foco
+
+
+
+    // === FUNDOS E COMPONENTES ===
+
+    "sideBarForeground": "#e0e0e0",
+
+
+
+    // === CUSTOMIZAÇÃO GIT (Tons de Rosa Pastel / Suaves) ===
+
+    "gitDecoration.modifiedResourceForeground": "#e8a2b5",   // Modificados: Rosé Principal
+
+    "gitDecoration.untrackedResourceForeground": "#f2c4ce",  // Novos: Rosé Bebê bem claro
+
+    "gitDecoration.conflictingResourceForeground": "#c9829c", // Conflitos: Rosé Queimado/Escuro
+
+    "gitDecoration.deletedResourceForeground": "#a37788",     // Deletados: Rosé Acizentado
+
+
+
+    // === SELEÇÃO E CURSOR ===
+
+    "editor.cursorForeground": "#e8a2b5",       // Cursor Rosé deslizando suavemente
+
+    "editor.selectionBackground": "#5a32a844",   // Seleção roxa bem discreta com transparência
+
+    "editor.findMatchBackground": "#e8a2b555",   // Destaque de busca em Rosé translúcido
+
+   
+
+    // === ACENTOS E HIGHLIGHTS ===
+
+    "editor.lineHighlightBackground": "#2d1b4e33",
+
+    "editorLineNumber.activeForeground": "#e8a2b5", // Linha atual em Rosé
+
+    "editorLineNumber.foreground": "#5c4d70",
+
+
+
+    // === BORDAS INTERNAS E DIVISÓRIAS ===
+
+    "sideBar.border": "#00000000",
+
+    "editorGroup.border": "#2d1b4e",
+
+   
+
+    // === ABAS (TABS) COMPATÍVEIS ===
+
+    "tab.activeBackground": "#1e1233",
+
+    "tab.activeForeground": "#ffffff",
+
+    "tab.inactiveBackground": "#140c24",
+
+    "tab.inactiveForeground": "#5c4d70",
+
+    "tab.activeBorderTop": "#e8a2b5",           // Detalhe Rosé no topo da aba ativa
+
+
+
+    // === MENUS EXPANSÍVEIS (DROPDOWNS / SUGGESTIONS) ===
+
+    "editorSuggestWidget.background": "#140c24",
+
+    "editorSuggestWidget.border": "#e8a2b533",
+
+    "editorSuggestWidget.selectedBackground": "#e8a2b522",
+
+    "editorRuler.foreground": "#2d1b4e"
+
+  },
+
+
+
+  // === CUSTOMIZAÇÃO DE CORES DE SINTAXE (Estilo Rose Gold & Clean) ===
+
+  "editor.tokenColorCustomizations": {
+
+    "textMateRules": [
+
+      {
+
+        // Apenas o essencial em Rosa Rosé Muted (class, constructor, private, this, etc)
+
+        "scope": [
+
+          "keyword",
+
+          "keyword.control",
+
+          "storage.type",
+
+          "storage.modifier",
+
+          "variable.language.this"
+
+        ],
+
+        "settings": {
+
+          "foreground": "#e8a2b5"
+
+        }
+
+      },
+
+      {
+
+        // Todo o resto do código limpo em Branco Puro
+
+        "scope": [
+
+          "variable",
+
+          "variable.parameter",
+
+          "variable.other.property",
+
+          "variable.other.readwrite",
+
+          "variable.other.object",
+
+          "meta.definition.variable",
+
+          "entity.name.type",
+
+          "entity.name.class",
+
+          "source"
+
+        ],
+
+        "settings": {
+
+          "foreground": "#ffffff"
+
+        }
+
+      }
+
+    ]
+
+  },
+
+  "[typescript]": {
+
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+
+  },
+
+  "gitlens.graph.minimap.additionalTypes": [
+
+    "localBranches",
+
+    "stashes",
+
+    "tags",
+
+    "pullRequests",
+
+    "remoteBranches"
+
+  ]
+
+} 
+
+//MODO CLARO
+{
+  "workbench.colorTheme": "Quiet Light",
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+  "php.validate.executablePath": "",
+  "workbench.productIconTheme": "el-vsc-v1-icons",
+  "workbench.iconTheme": "catppuccin-latte",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "window.zoomLevel": -1,
+  "workbench.settings.useSplitJSON": true,
+  "workbench.editor.showTabs": "single",
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.hideCursorInOverviewRuler": true,
+
+  // === JANELA ESTILO MAC ===
+  "window.titleBarStyle": "custom",
+  "window.customTitleBarVisibility": "auto",
+  "apc.electron": {
+    "titleBarStyle": "hiddenInset"
+  },
+
+  "workbench.statusBar.visible": false,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.fontFamily": "'JetBrains Mono', monospace",
+  "editor.fontSize": 12,
+  "workbench.activityBar.location": "hidden",
+  "editor.lineHeight": 1.7,
+  "editor.rulers": [80, 120],
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.renderLineHighlight": "gutter",
+  "editor.fontLigatures": true,
+  "workbench.editor.labelFormat": "short",
+  "explorer.compactFolders": false,
+  "editor.semanticHighlighting.enabled": true,
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": false,
+  "window.commandCenter": false,
+  "docker.extension.enableComposeLanguageServer": false,
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.secondarySideBar.defaultVisibility": "visible",
+
+  "workbench.colorCustomizations": {
+    // === BORDAS E CONTORNOS DA JANELA (Rosé Minimalista no Claro) ===
+    "window.activeBorder": "#d16d87",           // Contorno externo em Rosa Rosé mais vivo para fundo claro
+    "window.inactiveBorder": "#e0e0e0",         // Contorno cinza claro ao perder o foco
+
+    // === FUNDOS E COMPONENTES ===
+    "sideBarForeground": "#4a4a4a",
+
+    // === CUSTOMIZAÇÃO GIT (Adaptado para fundo claro) ===
+    "gitDecoration.modifiedResourceForeground": "#b54f6d",   // Modificados: Rosé Marcante
+    "gitDecoration.untrackedResourceForeground": "#d98299",  // Novos: Rosé Suave
+    "gitDecoration.conflictingResourceForeground": "#a13d59", // Conflitos: Rosé Escuro
+    "gitDecoration.deletedResourceForeground": "#8a7379",     // Deletados: Rosé Cinzento
+
+    // === SELEÇÃO E CURSOR ===
+    "editor.cursorForeground": "#d16d87",       // Cursor Rosé deslizando suavemente
+    "editor.selectionBackground": "#d16d8733",   // Seleção rosé translúcida
+    "editor.findMatchBackground": "#d16d8755",   // Destaque de busca
+
+    // === ACENTOS E HIGHLIGHTS ===
+    "editor.lineHighlightBackground": "#f5f5f5", // Destaque de linha sutil
+    "editorLineNumber.activeForeground": "#d16d87", // Linha atual em Rosé
+    "editorLineNumber.foreground": "#b0a0a5",
+
+    // === BORDAS INTERNAS E DIVISÓRIAS ===
+    "sideBar.border": "#00000000",
+    "editorGroup.border": "#e8e8e8",
+
+    // === ABAS (TABS) COMPATÍVEIS ===
+    "tab.activeBackground": "#ffffff",
+    "tab.activeForeground": "#2d2d2d",
+    "tab.inactiveBackground": "#f0f0f0",
+    "tab.inactiveForeground": "#7d7d7d",
+    "tab.activeBorderTop": "#d16d87",           // Detalhe Rosé no topo da aba ativa
+
+    // === MENUS EXPANSÍVEIS (DROPDOWNS / SUGGESTIONS) ===
+    "editorSuggestWidget.background": "#ffffff",
+    "editorSuggestWidget.border": "#d16d8733",
+    "editorSuggestWidget.selectedBackground": "#d16d8722",
+    "editorRuler.foreground": "#e8e8e8"
+  },
+
+  // === CUSTOMIZAÇÃO DE CORES DE SINTAXE (Estilo Rose Gold & Clean para Fundo Claro) ===
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        // Palavras-chave essenciais em Rosa Rosé Profundo para dar leitura no claro
+        "scope": [
+          "keyword",
+          "keyword.control",
+          "storage.type",
+          "storage.modifier",
+          "variable.language.this"
+        ],
+        "settings": {
+          "foreground": "#b54f6d"
+        }
+      },
+      {
+        // Todo o resto do código limpo em Grafite Escuro (substituindo o branco puro)
+        "scope": [
+          "variable",
+          "variable.parameter",
+          "variable.other.property",
+          "variable.other.readwrite",
+          "variable.other.object",
+          "meta.definition.variable",
+          "entity.name.type",
+          "entity.name.class",
+          "source"
+        ],
+        "settings": {
+          "foreground": "#2d2d2d"
+        }
+      }
+    ]
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "gitlens.graph.minimap.additionalTypes": [
+    "localBranches",
+    "stashes",
+    "tags",
+    "pullRequests",
+    "remoteBranches"
+  ]
+}

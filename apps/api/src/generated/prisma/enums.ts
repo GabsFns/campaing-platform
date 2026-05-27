@@ -73,6 +73,7 @@ export const BatchStatus = {
   PENDING: 'PENDING',
   RUNNING: 'RUNNING',
   FINISHED: 'FINISHED',
+  PARTIAL: 'PARTIAL',
   FAILED: 'FAILED'
 } as const
 
@@ -87,7 +88,18 @@ export const MessageStatus = {
   DELIVERED: 'DELIVERED',
   READ: 'READ',
   LOCKED: 'LOCKED',
-  RETRYING: 'RETRYING'
+  RETRYING: 'RETRYING',
+  PROCESSING: 'PROCESSING'
 } as const
 
 export type MessageStatus = (typeof MessageStatus)[keyof typeof MessageStatus]
+
+
+export const MetaConnectionStatus = {
+  CONNECTED: 'CONNECTED',
+  DISCONNECTED: 'DISCONNECTED',
+  EXPIRED: 'EXPIRED',
+  BLOCKED: 'BLOCKED'
+} as const
+
+export type MetaConnectionStatus = (typeof MetaConnectionStatus)[keyof typeof MetaConnectionStatus]

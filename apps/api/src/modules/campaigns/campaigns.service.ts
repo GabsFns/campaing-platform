@@ -8,14 +8,21 @@ import { CampaignRepository } from './campaigns.repository.js';
 import { CreateCampaignDto } from './dto/create-campaign.dto.js';
 
 import { PrismaService } from '../../prisma/prisma.service.js';
+import { VariableResolverService } from '../variable-resolver/variable-resolver.service.js';
+import { CampaignMessageProcessor } from './processors/campaign-message.processor.js';
 
 @Injectable()
 export class CampaignsService {
   constructor(
     private readonly campaignRepository: CampaignRepository,
     private readonly prisma: PrismaService,
+    private readonly variableResolver: VariableResolverService,
+    private readonly campaignMessageProcessor: CampaignMessageProcessor,
   ) {}
-  // Funcao de criacao de campanha
+
+  /**
+   * CREATE CAMPAIGN
+   */
   async create(workspaceId: string, userId: string, dto: CreateCampaignDto) {
     const audience = await this.prisma.audience.findFirst({
       where: {
@@ -23,6 +30,7 @@ export class CampaignsService {
         workspaceId,
       },
     });
+
     if (!audience) {
       throw new NotFoundException('Audience not found');
     }
@@ -98,10 +106,16 @@ export class CampaignsService {
     return campaign;
   }
 
+  /**
+   * FIND ALL
+   */
   async findAll(workspaceId: string) {
     return this.campaignRepository.findAll(workspaceId);
   }
 
+  /**
+   * FIND BY ID
+   */
   async findById(id: string, workspaceId: string) {
     const campaign = await this.campaignRepository.findById(id, workspaceId);
 
@@ -112,11 +126,21 @@ export class CampaignsService {
     return campaign;
   }
 
+  /**
+   * START CAMPAIGN
+   */
   async start(workspaceId: string, campaignId: string) {
+    /**
+     * BUSCA CAMPANHA
+     */
     const campaign = await this.prisma.campaign.findFirst({
       where: {
         id: campaignId,
         workspaceId,
+      },
+
+      include: {
+        template: true,
       },
     });
 
@@ -124,10 +148,34 @@ export class CampaignsService {
       throw new NotFoundException('Campaign not found');
     }
 
-    if (campaign.status === 'RUNNING' || campaign.status === 'FINISHED') {
-      throw new BadRequestException('Campaign already processed');
+    /**
+     * EVITA DUPLICIDADE
+     */
+    const updatedCampaign = await this.prisma.campaign.updateMany({
+      where: {
+        id: campaignId,
+        workspaceId,
+
+        status: {
+          in: ['DRAFT', 'SCHEDULED'],
+        },
+      },
+
+      data: {
+        status: 'PROCESSING',
+        startedAt: new Date(),
+      },
+    });
+
+    if (updatedCampaign.count === 0) {
+      throw new BadRequestException(
+        'Campaign already started or invalid status',
+      );
     }
 
+    /**
+     * BUSCA CONTACTS
+     */
     const audienceContacts = await this.campaignRepository.findAudienceContacts(
       campaign.audienceId,
     );
@@ -136,25 +184,80 @@ export class CampaignsService {
       throw new BadRequestException('Audience has no contacts');
     }
 
-    const messages = audienceContacts.map((item) => ({
-      campaignId: campaign.id,
+    /**
+     * MONTA MESSAGES
+     */
+    const messages = audienceContacts.map((item) => {
+      const finalMessage = this.variableResolver.resolve(
+        campaign.template.body,
+        {
+          contact: item.contact,
+          seller: item.seller ?? undefined,
+        },
+      );
 
-      workspaceId,
+      return {
+        campaignId: campaign.id,
 
-      contactId: item.contact.id,
+        workspaceId,
 
-      sellerId: item.sellerId ?? null,
+        contactId: item.contact.id,
 
-      phoneNormalized: item.contact.phoneNormalized,
+        sellerId: item.sellerId ?? null,
 
-      senderNumberId: campaign.senderNumberId ?? null,
+        phoneNormalized: item.contact.phoneNormalized,
 
-      status: 'PENDING' as const,
-    }));
+        senderNumberId: campaign.senderNumberId ?? null,
 
-    await this.campaignRepository.createCampaignMessages(messages);
+        status: 'PENDING' as const,
 
-    await this.campaignRepository.updateStatus(campaign.id, 'RUNNING');
+        providerPayload: {
+          text: finalMessage,
+        },
+      };
+    });
+
+    /**
+     * TRANSACTION
+     *
+     * → cria messages
+     * → garante atomicidade
+     * → evita campanha parcial
+     */
+    await this.prisma.$transaction(async (tx) => {
+      /**
+       * CREATE MANY MESSAGES
+       */
+      await tx.campaignMessage.createMany({
+        data: messages,
+      });
+
+      /**
+       * UPDATE CAMPAIGN
+       */
+      await tx.campaign.update({
+        where: {
+          id: campaign.id,
+        },
+
+        data: {
+          status: 'PROCESSING',
+          startedAt: new Date(),
+        },
+      });
+    });
+
+    /**
+     * PROCESSAMENTO ASSÍNCRONO
+     *
+     * → batches
+     * → queue
+     * → bullmq
+     * → redis
+     *
+     * FORA DA TRANSACTION
+     */
+    await this.campaignMessageProcessor.process(campaign.id);
 
     return {
       success: true,

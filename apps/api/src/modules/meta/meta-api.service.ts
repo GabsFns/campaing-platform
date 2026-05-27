@@ -154,4 +154,45 @@ export class MetaApiService {
       components: params.components,
     });
   }
+
+  async sendTextMessage(params: {
+    accessToken: string;
+    phoneNumberId: string;
+    to: string;
+    body: string;
+  }) {
+    const response = await fetch(
+      `https://graph.facebook.com/v22.0/${params.phoneNumberId}/messages`,
+      {
+        method: 'POST',
+
+        headers: {
+          Authorization: `Bearer ${params.accessToken}`,
+          'Content-Type': 'application/json',
+        },
+
+        body: JSON.stringify({
+          messaging_product: 'whatsapp',
+
+          to: params.to,
+
+          type: 'text',
+
+          text: {
+            body: params.body,
+          },
+        }),
+      },
+    );
+
+    if (!response.ok) {
+      const error = await response.json();
+
+      console.error(error);
+
+      throw new Error('Meta message send failed');
+    }
+
+    return response.json();
+  }
 }
