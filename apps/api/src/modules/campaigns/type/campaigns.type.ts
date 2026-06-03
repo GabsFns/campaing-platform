@@ -21,3 +21,18 @@ export enum CampaignErrorType {
   AUTH = 'AUTH',
   UNKNOWN = 'UNKNOWN',
 }
+
+export interface MetaSendMessageResponse {
+  messaging_product: string;
+
+  contacts?: Array<{
+    input: string;
+    wa_id: string;
+  }>;
+
+  messages?: Array<{
+    id: string;
+    message_status?: string;
+    timestamp?: string;
+  }>;
+}

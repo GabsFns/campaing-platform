@@ -1862,6 +1862,7 @@ export const AudienceContactScalarFieldEnum = {
   audienceId: 'audienceId',
   contactId: 'contactId',
   sellerId: 'sellerId',
+  sequence: 'sequence',
   createdAt: 'createdAt'
 } as const
 
@@ -1900,7 +1901,8 @@ export const CampaignScalarFieldEnum = {
   finishedAt: 'finishedAt',
   totalContacts: 'totalContacts',
   processedContacts: 'processedContacts',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  generationCompletedAt: 'generationCompletedAt'
 } as const
 
 export type CampaignScalarFieldEnum = (typeof CampaignScalarFieldEnum)[keyof typeof CampaignScalarFieldEnum]
@@ -1915,9 +1917,13 @@ export const CampaignMessageScalarFieldEnum = {
   senderNumberId: 'senderNumberId',
   workspaceId: 'workspaceId',
   sellerId: 'sellerId',
+  generationKey: 'generationKey',
   status: 'status',
   error: 'error',
   providerPayload: 'providerPayload',
+  providerRawResponse: 'providerRawResponse',
+  providerTimestamp: 'providerTimestamp',
+  providerStatus: 'providerStatus',
   providerId: 'providerId',
   chatwootConversationId: 'chatwootConversationId',
   chatwootInboxId: 'chatwootInboxId',
@@ -1927,6 +1933,8 @@ export const CampaignMessageScalarFieldEnum = {
   deliveredAt: 'deliveredAt',
   readAt: 'readAt',
   lockedAt: 'lockedAt',
+  processedAt: 'processedAt',
+  processingStartedAt: 'processingStartedAt',
   retryCount: 'retryCount',
   nextRetryAt: 'nextRetryAt',
   createdAt: 'createdAt'
@@ -1941,9 +1949,23 @@ export const CampaignBatchScalarFieldEnum = {
   batchIndex: 'batchIndex',
   size: 'size',
   status: 'status',
+  startSequence: 'startSequence',
+  endSequence: 'endSequence',
+  startContactId: 'startContactId',
+  endContactId: 'endContactId',
+  processedCount: 'processedCount',
+  successCount: 'successCount',
+  failedCount: 'failedCount',
+  retryCount: 'retryCount',
+  lockedAt: 'lockedAt',
+  lockToken: 'lockToken',
+  queuedAt: 'queuedAt',
   startedAt: 'startedAt',
   finishedAt: 'finishedAt',
-  createdAt: 'createdAt'
+  lastHeartbeatAt: 'lastHeartbeatAt',
+  error: 'error',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type CampaignBatchScalarFieldEnum = (typeof CampaignBatchScalarFieldEnum)[keyof typeof CampaignBatchScalarFieldEnum]
@@ -2018,6 +2040,9 @@ export const SenderNumberScalarFieldEnum = {
   id: 'id',
   workspaceId: 'workspaceId',
   number: 'number',
+  throughputLimit: 'throughputLimit',
+  qualityRating: 'qualityRating',
+  currentTier: 'currentTier',
   status: 'status',
   qualityScore: 'qualityScore',
   maxPerSecond: 'maxPerSecond',
@@ -2216,6 +2241,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'BigInt'
+ */
+export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
+    
+
+
+/**
+ * Reference to a field of type 'BigInt[]'
+ */
+export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
     
 
 

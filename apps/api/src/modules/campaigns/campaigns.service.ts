@@ -4,19 +4,26 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 
+import { BatchStatus } from '@prisma/client';
+
 import { CampaignRepository } from './campaigns.repository.js';
 import { CreateCampaignDto } from './dto/create-campaign.dto.js';
 
 import { PrismaService } from '../../prisma/prisma.service.js';
+
 import { VariableResolverService } from '../variable-resolver/variable-resolver.service.js';
+
 import { CampaignMessageProcessor } from './processors/campaign-message.processor.js';
 
 @Injectable()
 export class CampaignsService {
   constructor(
     private readonly campaignRepository: CampaignRepository,
+
     private readonly prisma: PrismaService,
+
     private readonly variableResolver: VariableResolverService,
+
     private readonly campaignMessageProcessor: CampaignMessageProcessor,
   ) {}
 
@@ -24,6 +31,9 @@ export class CampaignsService {
    * CREATE CAMPAIGN
    */
   async create(workspaceId: string, userId: string, dto: CreateCampaignDto) {
+    /**
+     * AUDIENCE
+     */
     const audience = await this.prisma.audience.findFirst({
       where: {
         id: dto.audienceId,
@@ -35,6 +45,9 @@ export class CampaignsService {
       throw new NotFoundException('Audience not found');
     }
 
+    /**
+     * TEMPLATE
+     */
     const template = await this.prisma.template.findFirst({
       where: {
         id: dto.templateId,
@@ -46,6 +59,9 @@ export class CampaignsService {
       throw new NotFoundException('Template not found');
     }
 
+    /**
+     * SENDER
+     */
     if (dto.senderNumberId) {
       const sender = await this.prisma.senderNumber.findFirst({
         where: {
@@ -59,6 +75,9 @@ export class CampaignsService {
       }
     }
 
+    /**
+     * CREATE CAMPAIGN
+     */
     const campaign = await this.campaignRepository.create({
       name: dto.name,
 
@@ -101,6 +120,9 @@ export class CampaignsService {
       }),
     });
 
+    /**
+     * CREATE STATS
+     */
     await this.campaignRepository.createStats(campaign.id);
 
     return campaign;
@@ -128,34 +150,19 @@ export class CampaignsService {
 
   /**
    * START CAMPAIGN
+   *
+   * PROTEÇÕES:
+   * - race condition
+   * - duplicate execution
+   * - duplicate messages
+   * - multi-instance safe
+   * - kubernetes safe
    */
   async start(workspaceId: string, campaignId: string) {
-    /**
-     * BUSCA CAMPANHA
-     */
-    const campaign = await this.prisma.campaign.findFirst({
+    const lock = await this.prisma.campaign.updateMany({
       where: {
         id: campaignId,
         workspaceId,
-      },
-
-      include: {
-        template: true,
-      },
-    });
-
-    if (!campaign) {
-      throw new NotFoundException('Campaign not found');
-    }
-
-    /**
-     * EVITA DUPLICIDADE
-     */
-    const updatedCampaign = await this.prisma.campaign.updateMany({
-      where: {
-        id: campaignId,
-        workspaceId,
-
         status: {
           in: ['DRAFT', 'SCHEDULED'],
         },
@@ -167,101 +174,107 @@ export class CampaignsService {
       },
     });
 
-    if (updatedCampaign.count === 0) {
+    if (lock.count === 0) {
       throw new BadRequestException(
         'Campaign already started or invalid status',
       );
     }
 
-    /**
-     * BUSCA CONTACTS
-     */
-    const audienceContacts = await this.campaignRepository.findAudienceContacts(
+    const campaign = await this.prisma.campaign.findFirst({
+      where: {
+        id: campaignId,
+        workspaceId,
+      },
+
+      select: {
+        id: true,
+        audienceId: true,
+        totalContacts: true,
+      },
+    });
+
+    if (!campaign) {
+      throw new NotFoundException('Campaign not found');
+    }
+
+    const range = await this.campaignRepository.getAudienceRange(
       campaign.audienceId,
     );
 
-    if (audienceContacts.length === 0) {
-      throw new BadRequestException('Audience has no contacts');
-    }
-
-    /**
-     * MONTA MESSAGES
-     */
-    const messages = audienceContacts.map((item) => {
-      const finalMessage = this.variableResolver.resolve(
-        campaign.template.body,
-        {
-          contact: item.contact,
-          seller: item.seller ?? undefined,
-        },
-      );
-
-      return {
-        campaignId: campaign.id,
-
-        workspaceId,
-
-        contactId: item.contact.id,
-
-        sellerId: item.sellerId ?? null,
-
-        phoneNormalized: item.contact.phoneNormalized,
-
-        senderNumberId: campaign.senderNumberId ?? null,
-
-        status: 'PENDING' as const,
-
-        providerPayload: {
-          text: finalMessage,
-        },
-      };
-    });
-
-    /**
-     * TRANSACTION
-     *
-     * → cria messages
-     * → garante atomicidade
-     * → evita campanha parcial
-     */
-    await this.prisma.$transaction(async (tx) => {
-      /**
-       * CREATE MANY MESSAGES
-       */
-      await tx.campaignMessage.createMany({
-        data: messages,
-      });
-
-      /**
-       * UPDATE CAMPAIGN
-       */
-      await tx.campaign.update({
+    if (range.startSequence === null || range.endSequence === null) {
+      await this.prisma.campaign.update({
         where: {
           id: campaign.id,
         },
 
         data: {
-          status: 'PROCESSING',
-          startedAt: new Date(),
+          status: 'FAILED',
         },
       });
+
+      throw new BadRequestException('Audience has no contacts');
+    }
+
+    const batchSize = 1000n;
+
+    const batches = [];
+
+    let batchIndex = 0;
+
+    for (
+      let current = range.startSequence;
+      current <= range.endSequence;
+      current += batchSize
+    ) {
+      const startSequence = current;
+
+      const endSequence =
+        current + batchSize - 1n > range.endSequence
+          ? range.endSequence
+          : current + batchSize - 1n;
+      const size = Number(endSequence - startSequence) + 1;
+
+      batches.push({
+        campaignId: campaign.id,
+
+        batchIndex,
+
+        size,
+
+        status: BatchStatus.PENDING,
+
+        startSequence,
+
+        endSequence,
+      });
+
+      batchIndex++;
+    }
+
+    await this.prisma.campaignBatch.createMany({
+      data: batches as any,
     });
 
-    /**
-     * PROCESSAMENTO ASSÍNCRONO
-     *
-     * → batches
-     * → queue
-     * → bullmq
-     * → redis
-     *
-     * FORA DA TRANSACTION
-     */
+    await this.prisma.campaign.update({
+      where: {
+        id: campaign.id,
+      },
+
+      data: {
+        generationCompletedAt: new Date(),
+      },
+    });
+
     await this.campaignMessageProcessor.process(campaign.id);
 
     return {
       success: true,
-      totalMessages: messages.length,
+
+      campaignId: campaign.id,
+
+      totalBatches: batches.length,
+
+      totalContacts: campaign.totalContacts ?? 0,
     };
   }
 }

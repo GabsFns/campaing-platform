@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { MetaSendMessageResponse } from '../campaigns/type/campaigns.type.js';
 
 @Injectable()
 export class MetaApiService {
@@ -160,7 +161,7 @@ export class MetaApiService {
     phoneNumberId: string;
     to: string;
     body: string;
-  }) {
+  }): Promise<MetaSendMessageResponse> {
     const response = await fetch(
       `https://graph.facebook.com/v22.0/${params.phoneNumberId}/messages`,
       {

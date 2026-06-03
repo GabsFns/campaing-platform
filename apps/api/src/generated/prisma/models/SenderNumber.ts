@@ -27,11 +27,13 @@ export type AggregateSenderNumber = {
 }
 
 export type SenderNumberAvgAggregateOutputType = {
+  throughputLimit: number | null
   qualityScore: number | null
   maxPerSecond: number | null
 }
 
 export type SenderNumberSumAggregateOutputType = {
+  throughputLimit: number | null
   qualityScore: number | null
   maxPerSecond: number | null
 }
@@ -40,6 +42,9 @@ export type SenderNumberMinAggregateOutputType = {
   id: string | null
   workspaceId: string | null
   number: string | null
+  throughputLimit: number | null
+  qualityRating: string | null
+  currentTier: string | null
   status: string | null
   qualityScore: number | null
   maxPerSecond: number | null
@@ -51,6 +56,9 @@ export type SenderNumberMaxAggregateOutputType = {
   id: string | null
   workspaceId: string | null
   number: string | null
+  throughputLimit: number | null
+  qualityRating: string | null
+  currentTier: string | null
   status: string | null
   qualityScore: number | null
   maxPerSecond: number | null
@@ -62,6 +70,9 @@ export type SenderNumberCountAggregateOutputType = {
   id: number
   workspaceId: number
   number: number
+  throughputLimit: number
+  qualityRating: number
+  currentTier: number
   status: number
   qualityScore: number
   maxPerSecond: number
@@ -72,11 +83,13 @@ export type SenderNumberCountAggregateOutputType = {
 
 
 export type SenderNumberAvgAggregateInputType = {
+  throughputLimit?: true
   qualityScore?: true
   maxPerSecond?: true
 }
 
 export type SenderNumberSumAggregateInputType = {
+  throughputLimit?: true
   qualityScore?: true
   maxPerSecond?: true
 }
@@ -85,6 +98,9 @@ export type SenderNumberMinAggregateInputType = {
   id?: true
   workspaceId?: true
   number?: true
+  throughputLimit?: true
+  qualityRating?: true
+  currentTier?: true
   status?: true
   qualityScore?: true
   maxPerSecond?: true
@@ -96,6 +112,9 @@ export type SenderNumberMaxAggregateInputType = {
   id?: true
   workspaceId?: true
   number?: true
+  throughputLimit?: true
+  qualityRating?: true
+  currentTier?: true
   status?: true
   qualityScore?: true
   maxPerSecond?: true
@@ -107,6 +126,9 @@ export type SenderNumberCountAggregateInputType = {
   id?: true
   workspaceId?: true
   number?: true
+  throughputLimit?: true
+  qualityRating?: true
+  currentTier?: true
   status?: true
   qualityScore?: true
   maxPerSecond?: true
@@ -205,6 +227,9 @@ export type SenderNumberGroupByOutputType = {
   id: string
   workspaceId: string
   number: string
+  throughputLimit: number
+  qualityRating: string | null
+  currentTier: string | null
   status: string
   qualityScore: number
   maxPerSecond: number
@@ -239,6 +264,9 @@ export type SenderNumberWhereInput = {
   id?: Prisma.StringFilter<"SenderNumber"> | string
   workspaceId?: Prisma.StringFilter<"SenderNumber"> | string
   number?: Prisma.StringFilter<"SenderNumber"> | string
+  throughputLimit?: Prisma.IntFilter<"SenderNumber"> | number
+  qualityRating?: Prisma.StringNullableFilter<"SenderNumber"> | string | null
+  currentTier?: Prisma.StringNullableFilter<"SenderNumber"> | string | null
   status?: Prisma.StringFilter<"SenderNumber"> | string
   qualityScore?: Prisma.FloatFilter<"SenderNumber"> | number
   maxPerSecond?: Prisma.IntFilter<"SenderNumber"> | number
@@ -253,6 +281,9 @@ export type SenderNumberOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   number?: Prisma.SortOrder
+  throughputLimit?: Prisma.SortOrder
+  qualityRating?: Prisma.SortOrderInput | Prisma.SortOrder
+  currentTier?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   qualityScore?: Prisma.SortOrder
   maxPerSecond?: Prisma.SortOrder
@@ -270,6 +301,9 @@ export type SenderNumberWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.SenderNumberWhereInput[]
   NOT?: Prisma.SenderNumberWhereInput | Prisma.SenderNumberWhereInput[]
   workspaceId?: Prisma.StringFilter<"SenderNumber"> | string
+  throughputLimit?: Prisma.IntFilter<"SenderNumber"> | number
+  qualityRating?: Prisma.StringNullableFilter<"SenderNumber"> | string | null
+  currentTier?: Prisma.StringNullableFilter<"SenderNumber"> | string | null
   status?: Prisma.StringFilter<"SenderNumber"> | string
   qualityScore?: Prisma.FloatFilter<"SenderNumber"> | number
   maxPerSecond?: Prisma.IntFilter<"SenderNumber"> | number
@@ -284,6 +318,9 @@ export type SenderNumberOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   number?: Prisma.SortOrder
+  throughputLimit?: Prisma.SortOrder
+  qualityRating?: Prisma.SortOrderInput | Prisma.SortOrder
+  currentTier?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   qualityScore?: Prisma.SortOrder
   maxPerSecond?: Prisma.SortOrder
@@ -303,6 +340,9 @@ export type SenderNumberScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"SenderNumber"> | string
   workspaceId?: Prisma.StringWithAggregatesFilter<"SenderNumber"> | string
   number?: Prisma.StringWithAggregatesFilter<"SenderNumber"> | string
+  throughputLimit?: Prisma.IntWithAggregatesFilter<"SenderNumber"> | number
+  qualityRating?: Prisma.StringNullableWithAggregatesFilter<"SenderNumber"> | string | null
+  currentTier?: Prisma.StringNullableWithAggregatesFilter<"SenderNumber"> | string | null
   status?: Prisma.StringWithAggregatesFilter<"SenderNumber"> | string
   qualityScore?: Prisma.FloatWithAggregatesFilter<"SenderNumber"> | number
   maxPerSecond?: Prisma.IntWithAggregatesFilter<"SenderNumber"> | number
@@ -313,6 +353,9 @@ export type SenderNumberScalarWhereWithAggregatesInput = {
 export type SenderNumberCreateInput = {
   id?: string
   number: string
+  throughputLimit?: number
+  qualityRating?: string | null
+  currentTier?: string | null
   status: string
   qualityScore?: number
   maxPerSecond?: number
@@ -327,6 +370,9 @@ export type SenderNumberUncheckedCreateInput = {
   id?: string
   workspaceId: string
   number: string
+  throughputLimit?: number
+  qualityRating?: string | null
+  currentTier?: string | null
   status: string
   qualityScore?: number
   maxPerSecond?: number
@@ -339,6 +385,9 @@ export type SenderNumberUncheckedCreateInput = {
 export type SenderNumberUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -353,6 +402,9 @@ export type SenderNumberUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -366,6 +418,9 @@ export type SenderNumberCreateManyInput = {
   id?: string
   workspaceId: string
   number: string
+  throughputLimit?: number
+  qualityRating?: string | null
+  currentTier?: string | null
   status: string
   qualityScore?: number
   maxPerSecond?: number
@@ -376,6 +431,9 @@ export type SenderNumberCreateManyInput = {
 export type SenderNumberUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -387,6 +445,9 @@ export type SenderNumberUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -413,6 +474,9 @@ export type SenderNumberCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   number?: Prisma.SortOrder
+  throughputLimit?: Prisma.SortOrder
+  qualityRating?: Prisma.SortOrder
+  currentTier?: Prisma.SortOrder
   status?: Prisma.SortOrder
   qualityScore?: Prisma.SortOrder
   maxPerSecond?: Prisma.SortOrder
@@ -421,6 +485,7 @@ export type SenderNumberCountOrderByAggregateInput = {
 }
 
 export type SenderNumberAvgOrderByAggregateInput = {
+  throughputLimit?: Prisma.SortOrder
   qualityScore?: Prisma.SortOrder
   maxPerSecond?: Prisma.SortOrder
 }
@@ -429,6 +494,9 @@ export type SenderNumberMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   number?: Prisma.SortOrder
+  throughputLimit?: Prisma.SortOrder
+  qualityRating?: Prisma.SortOrder
+  currentTier?: Prisma.SortOrder
   status?: Prisma.SortOrder
   qualityScore?: Prisma.SortOrder
   maxPerSecond?: Prisma.SortOrder
@@ -440,6 +508,9 @@ export type SenderNumberMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   number?: Prisma.SortOrder
+  throughputLimit?: Prisma.SortOrder
+  qualityRating?: Prisma.SortOrder
+  currentTier?: Prisma.SortOrder
   status?: Prisma.SortOrder
   qualityScore?: Prisma.SortOrder
   maxPerSecond?: Prisma.SortOrder
@@ -448,6 +519,7 @@ export type SenderNumberMinOrderByAggregateInput = {
 }
 
 export type SenderNumberSumOrderByAggregateInput = {
+  throughputLimit?: Prisma.SortOrder
   qualityScore?: Prisma.SortOrder
   maxPerSecond?: Prisma.SortOrder
 }
@@ -537,6 +609,9 @@ export type FloatFieldUpdateOperationsInput = {
 export type SenderNumberCreateWithoutWorkspaceInput = {
   id?: string
   number: string
+  throughputLimit?: number
+  qualityRating?: string | null
+  currentTier?: string | null
   status: string
   qualityScore?: number
   maxPerSecond?: number
@@ -549,6 +624,9 @@ export type SenderNumberCreateWithoutWorkspaceInput = {
 export type SenderNumberUncheckedCreateWithoutWorkspaceInput = {
   id?: string
   number: string
+  throughputLimit?: number
+  qualityRating?: string | null
+  currentTier?: string | null
   status: string
   qualityScore?: number
   maxPerSecond?: number
@@ -591,6 +669,9 @@ export type SenderNumberScalarWhereInput = {
   id?: Prisma.StringFilter<"SenderNumber"> | string
   workspaceId?: Prisma.StringFilter<"SenderNumber"> | string
   number?: Prisma.StringFilter<"SenderNumber"> | string
+  throughputLimit?: Prisma.IntFilter<"SenderNumber"> | number
+  qualityRating?: Prisma.StringNullableFilter<"SenderNumber"> | string | null
+  currentTier?: Prisma.StringNullableFilter<"SenderNumber"> | string | null
   status?: Prisma.StringFilter<"SenderNumber"> | string
   qualityScore?: Prisma.FloatFilter<"SenderNumber"> | number
   maxPerSecond?: Prisma.IntFilter<"SenderNumber"> | number
@@ -601,6 +682,9 @@ export type SenderNumberScalarWhereInput = {
 export type SenderNumberCreateWithoutCampaingInput = {
   id?: string
   number: string
+  throughputLimit?: number
+  qualityRating?: string | null
+  currentTier?: string | null
   status: string
   qualityScore?: number
   maxPerSecond?: number
@@ -614,6 +698,9 @@ export type SenderNumberUncheckedCreateWithoutCampaingInput = {
   id?: string
   workspaceId: string
   number: string
+  throughputLimit?: number
+  qualityRating?: string | null
+  currentTier?: string | null
   status: string
   qualityScore?: number
   maxPerSecond?: number
@@ -641,6 +728,9 @@ export type SenderNumberUpdateToOneWithWhereWithoutCampaingInput = {
 export type SenderNumberUpdateWithoutCampaingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -654,6 +744,9 @@ export type SenderNumberUncheckedUpdateWithoutCampaingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -665,6 +758,9 @@ export type SenderNumberUncheckedUpdateWithoutCampaingInput = {
 export type SenderNumberCreateWithoutMessagesInput = {
   id?: string
   number: string
+  throughputLimit?: number
+  qualityRating?: string | null
+  currentTier?: string | null
   status: string
   qualityScore?: number
   maxPerSecond?: number
@@ -678,6 +774,9 @@ export type SenderNumberUncheckedCreateWithoutMessagesInput = {
   id?: string
   workspaceId: string
   number: string
+  throughputLimit?: number
+  qualityRating?: string | null
+  currentTier?: string | null
   status: string
   qualityScore?: number
   maxPerSecond?: number
@@ -705,6 +804,9 @@ export type SenderNumberUpdateToOneWithWhereWithoutMessagesInput = {
 export type SenderNumberUpdateWithoutMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -718,6 +820,9 @@ export type SenderNumberUncheckedUpdateWithoutMessagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -729,6 +834,9 @@ export type SenderNumberUncheckedUpdateWithoutMessagesInput = {
 export type SenderNumberCreateManyWorkspaceInput = {
   id?: string
   number: string
+  throughputLimit?: number
+  qualityRating?: string | null
+  currentTier?: string | null
   status: string
   qualityScore?: number
   maxPerSecond?: number
@@ -739,6 +847,9 @@ export type SenderNumberCreateManyWorkspaceInput = {
 export type SenderNumberUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -751,6 +862,9 @@ export type SenderNumberUpdateWithoutWorkspaceInput = {
 export type SenderNumberUncheckedUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -763,6 +877,9 @@ export type SenderNumberUncheckedUpdateWithoutWorkspaceInput = {
 export type SenderNumberUncheckedUpdateManyWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   number?: Prisma.StringFieldUpdateOperationsInput | string
+  throughputLimit?: Prisma.IntFieldUpdateOperationsInput | number
+  qualityRating?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currentTier?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   qualityScore?: Prisma.FloatFieldUpdateOperationsInput | number
   maxPerSecond?: Prisma.IntFieldUpdateOperationsInput | number
@@ -814,6 +931,9 @@ export type SenderNumberSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   workspaceId?: boolean
   number?: boolean
+  throughputLimit?: boolean
+  qualityRating?: boolean
+  currentTier?: boolean
   status?: boolean
   qualityScore?: boolean
   maxPerSecond?: boolean
@@ -829,6 +949,9 @@ export type SenderNumberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   workspaceId?: boolean
   number?: boolean
+  throughputLimit?: boolean
+  qualityRating?: boolean
+  currentTier?: boolean
   status?: boolean
   qualityScore?: boolean
   maxPerSecond?: boolean
@@ -841,6 +964,9 @@ export type SenderNumberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   workspaceId?: boolean
   number?: boolean
+  throughputLimit?: boolean
+  qualityRating?: boolean
+  currentTier?: boolean
   status?: boolean
   qualityScore?: boolean
   maxPerSecond?: boolean
@@ -853,6 +979,9 @@ export type SenderNumberSelectScalar = {
   id?: boolean
   workspaceId?: boolean
   number?: boolean
+  throughputLimit?: boolean
+  qualityRating?: boolean
+  currentTier?: boolean
   status?: boolean
   qualityScore?: boolean
   maxPerSecond?: boolean
@@ -860,7 +989,7 @@ export type SenderNumberSelectScalar = {
   createdAt?: boolean
 }
 
-export type SenderNumberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "number" | "status" | "qualityScore" | "maxPerSecond" | "lockedAt" | "createdAt", ExtArgs["result"]["senderNumber"]>
+export type SenderNumberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "number" | "throughputLimit" | "qualityRating" | "currentTier" | "status" | "qualityScore" | "maxPerSecond" | "lockedAt" | "createdAt", ExtArgs["result"]["senderNumber"]>
 export type SenderNumberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   messages?: boolean | Prisma.SenderNumber$messagesArgs<ExtArgs>
   campaing?: boolean | Prisma.SenderNumber$campaingArgs<ExtArgs>
@@ -885,6 +1014,9 @@ export type $SenderNumberPayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     workspaceId: string
     number: string
+    throughputLimit: number
+    qualityRating: string | null
+    currentTier: string | null
     status: string
     qualityScore: number
     maxPerSecond: number
@@ -1319,6 +1451,9 @@ export interface SenderNumberFieldRefs {
   readonly id: Prisma.FieldRef<"SenderNumber", 'String'>
   readonly workspaceId: Prisma.FieldRef<"SenderNumber", 'String'>
   readonly number: Prisma.FieldRef<"SenderNumber", 'String'>
+  readonly throughputLimit: Prisma.FieldRef<"SenderNumber", 'Int'>
+  readonly qualityRating: Prisma.FieldRef<"SenderNumber", 'String'>
+  readonly currentTier: Prisma.FieldRef<"SenderNumber", 'String'>
   readonly status: Prisma.FieldRef<"SenderNumber", 'String'>
   readonly qualityScore: Prisma.FieldRef<"SenderNumber", 'Float'>
   readonly maxPerSecond: Prisma.FieldRef<"SenderNumber", 'Int'>

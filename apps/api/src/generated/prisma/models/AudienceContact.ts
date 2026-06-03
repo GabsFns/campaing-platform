@@ -20,8 +20,18 @@ export type AudienceContactModel = runtime.Types.Result.DefaultSelection<Prisma.
 
 export type AggregateAudienceContact = {
   _count: AudienceContactCountAggregateOutputType | null
+  _avg: AudienceContactAvgAggregateOutputType | null
+  _sum: AudienceContactSumAggregateOutputType | null
   _min: AudienceContactMinAggregateOutputType | null
   _max: AudienceContactMaxAggregateOutputType | null
+}
+
+export type AudienceContactAvgAggregateOutputType = {
+  sequence: number | null
+}
+
+export type AudienceContactSumAggregateOutputType = {
+  sequence: bigint | null
 }
 
 export type AudienceContactMinAggregateOutputType = {
@@ -29,6 +39,7 @@ export type AudienceContactMinAggregateOutputType = {
   audienceId: string | null
   contactId: string | null
   sellerId: string | null
+  sequence: bigint | null
   createdAt: Date | null
 }
 
@@ -37,6 +48,7 @@ export type AudienceContactMaxAggregateOutputType = {
   audienceId: string | null
   contactId: string | null
   sellerId: string | null
+  sequence: bigint | null
   createdAt: Date | null
 }
 
@@ -45,16 +57,26 @@ export type AudienceContactCountAggregateOutputType = {
   audienceId: number
   contactId: number
   sellerId: number
+  sequence: number
   createdAt: number
   _all: number
 }
 
+
+export type AudienceContactAvgAggregateInputType = {
+  sequence?: true
+}
+
+export type AudienceContactSumAggregateInputType = {
+  sequence?: true
+}
 
 export type AudienceContactMinAggregateInputType = {
   id?: true
   audienceId?: true
   contactId?: true
   sellerId?: true
+  sequence?: true
   createdAt?: true
 }
 
@@ -63,6 +85,7 @@ export type AudienceContactMaxAggregateInputType = {
   audienceId?: true
   contactId?: true
   sellerId?: true
+  sequence?: true
   createdAt?: true
 }
 
@@ -71,6 +94,7 @@ export type AudienceContactCountAggregateInputType = {
   audienceId?: true
   contactId?: true
   sellerId?: true
+  sequence?: true
   createdAt?: true
   _all?: true
 }
@@ -113,6 +137,18 @@ export type AudienceContactAggregateArgs<ExtArgs extends runtime.Types.Extension
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: AudienceContactAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: AudienceContactSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: AudienceContactMinAggregateInputType
@@ -143,6 +179,8 @@ export type AudienceContactGroupByArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   _count?: AudienceContactCountAggregateInputType | true
+  _avg?: AudienceContactAvgAggregateInputType
+  _sum?: AudienceContactSumAggregateInputType
   _min?: AudienceContactMinAggregateInputType
   _max?: AudienceContactMaxAggregateInputType
 }
@@ -152,8 +190,11 @@ export type AudienceContactGroupByOutputType = {
   audienceId: string
   contactId: string
   sellerId: string | null
+  sequence: bigint
   createdAt: Date
   _count: AudienceContactCountAggregateOutputType | null
+  _avg: AudienceContactAvgAggregateOutputType | null
+  _sum: AudienceContactSumAggregateOutputType | null
   _min: AudienceContactMinAggregateOutputType | null
   _max: AudienceContactMaxAggregateOutputType | null
 }
@@ -181,6 +222,7 @@ export type AudienceContactWhereInput = {
   audienceId?: Prisma.StringFilter<"AudienceContact"> | string
   contactId?: Prisma.StringFilter<"AudienceContact"> | string
   sellerId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
+  sequence?: Prisma.BigIntFilter<"AudienceContact"> | bigint | number
   createdAt?: Prisma.DateTimeFilter<"AudienceContact"> | Date | string
   audience?: Prisma.XOR<Prisma.AudienceScalarRelationFilter, Prisma.AudienceWhereInput>
   contact?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
@@ -192,6 +234,7 @@ export type AudienceContactOrderByWithRelationInput = {
   audienceId?: Prisma.SortOrder
   contactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  sequence?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   audience?: Prisma.AudienceOrderByWithRelationInput
   contact?: Prisma.ContactOrderByWithRelationInput
@@ -207,6 +250,7 @@ export type AudienceContactWhereUniqueInput = Prisma.AtLeast<{
   audienceId?: Prisma.StringFilter<"AudienceContact"> | string
   contactId?: Prisma.StringFilter<"AudienceContact"> | string
   sellerId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
+  sequence?: Prisma.BigIntFilter<"AudienceContact"> | bigint | number
   createdAt?: Prisma.DateTimeFilter<"AudienceContact"> | Date | string
   audience?: Prisma.XOR<Prisma.AudienceScalarRelationFilter, Prisma.AudienceWhereInput>
   contact?: Prisma.XOR<Prisma.ContactScalarRelationFilter, Prisma.ContactWhereInput>
@@ -218,10 +262,13 @@ export type AudienceContactOrderByWithAggregationInput = {
   audienceId?: Prisma.SortOrder
   contactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  sequence?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.AudienceContactCountOrderByAggregateInput
+  _avg?: Prisma.AudienceContactAvgOrderByAggregateInput
   _max?: Prisma.AudienceContactMaxOrderByAggregateInput
   _min?: Prisma.AudienceContactMinOrderByAggregateInput
+  _sum?: Prisma.AudienceContactSumOrderByAggregateInput
 }
 
 export type AudienceContactScalarWhereWithAggregatesInput = {
@@ -232,11 +279,13 @@ export type AudienceContactScalarWhereWithAggregatesInput = {
   audienceId?: Prisma.StringWithAggregatesFilter<"AudienceContact"> | string
   contactId?: Prisma.StringWithAggregatesFilter<"AudienceContact"> | string
   sellerId?: Prisma.StringNullableWithAggregatesFilter<"AudienceContact"> | string | null
+  sequence?: Prisma.BigIntWithAggregatesFilter<"AudienceContact"> | bigint | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AudienceContact"> | Date | string
 }
 
 export type AudienceContactCreateInput = {
   id?: string
+  sequence?: bigint | number
   createdAt?: Date | string
   audience: Prisma.AudienceCreateNestedOneWithoutContactsInput
   contact: Prisma.ContactCreateNestedOneWithoutAudiencesInput
@@ -248,11 +297,13 @@ export type AudienceContactUncheckedCreateInput = {
   audienceId: string
   contactId: string
   sellerId?: string | null
+  sequence?: bigint | number
   createdAt?: Date | string
 }
 
 export type AudienceContactUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audience?: Prisma.AudienceUpdateOneRequiredWithoutContactsNestedInput
   contact?: Prisma.ContactUpdateOneRequiredWithoutAudiencesNestedInput
@@ -264,6 +315,7 @@ export type AudienceContactUncheckedUpdateInput = {
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
   contactId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -272,11 +324,13 @@ export type AudienceContactCreateManyInput = {
   audienceId: string
   contactId: string
   sellerId?: string | null
+  sequence?: bigint | number
   createdAt?: Date | string
 }
 
 export type AudienceContactUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -285,6 +339,7 @@ export type AudienceContactUncheckedUpdateManyInput = {
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
   contactId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -308,7 +363,12 @@ export type AudienceContactCountOrderByAggregateInput = {
   audienceId?: Prisma.SortOrder
   contactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
+  sequence?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+}
+
+export type AudienceContactAvgOrderByAggregateInput = {
+  sequence?: Prisma.SortOrder
 }
 
 export type AudienceContactMaxOrderByAggregateInput = {
@@ -316,6 +376,7 @@ export type AudienceContactMaxOrderByAggregateInput = {
   audienceId?: Prisma.SortOrder
   contactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
+  sequence?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -324,7 +385,12 @@ export type AudienceContactMinOrderByAggregateInput = {
   audienceId?: Prisma.SortOrder
   contactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
+  sequence?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+}
+
+export type AudienceContactSumOrderByAggregateInput = {
+  sequence?: Prisma.SortOrder
 }
 
 export type AudienceContactCreateNestedManyWithoutContactInput = {
@@ -411,6 +477,14 @@ export type AudienceContactUncheckedUpdateManyWithoutAudienceNestedInput = {
   deleteMany?: Prisma.AudienceContactScalarWhereInput | Prisma.AudienceContactScalarWhereInput[]
 }
 
+export type BigIntFieldUpdateOperationsInput = {
+  set?: bigint | number
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
+}
+
 export type AudienceContactCreateNestedManyWithoutSellerInput = {
   create?: Prisma.XOR<Prisma.AudienceContactCreateWithoutSellerInput, Prisma.AudienceContactUncheckedCreateWithoutSellerInput> | Prisma.AudienceContactCreateWithoutSellerInput[] | Prisma.AudienceContactUncheckedCreateWithoutSellerInput[]
   connectOrCreate?: Prisma.AudienceContactCreateOrConnectWithoutSellerInput | Prisma.AudienceContactCreateOrConnectWithoutSellerInput[]
@@ -455,6 +529,7 @@ export type AudienceContactUncheckedUpdateManyWithoutSellerNestedInput = {
 
 export type AudienceContactCreateWithoutContactInput = {
   id?: string
+  sequence?: bigint | number
   createdAt?: Date | string
   audience: Prisma.AudienceCreateNestedOneWithoutContactsInput
   seller?: Prisma.SellerCreateNestedOneWithoutAudiencesInput
@@ -464,6 +539,7 @@ export type AudienceContactUncheckedCreateWithoutContactInput = {
   id?: string
   audienceId: string
   sellerId?: string | null
+  sequence?: bigint | number
   createdAt?: Date | string
 }
 
@@ -501,11 +577,13 @@ export type AudienceContactScalarWhereInput = {
   audienceId?: Prisma.StringFilter<"AudienceContact"> | string
   contactId?: Prisma.StringFilter<"AudienceContact"> | string
   sellerId?: Prisma.StringNullableFilter<"AudienceContact"> | string | null
+  sequence?: Prisma.BigIntFilter<"AudienceContact"> | bigint | number
   createdAt?: Prisma.DateTimeFilter<"AudienceContact"> | Date | string
 }
 
 export type AudienceContactCreateWithoutAudienceInput = {
   id?: string
+  sequence?: bigint | number
   createdAt?: Date | string
   contact: Prisma.ContactCreateNestedOneWithoutAudiencesInput
   seller?: Prisma.SellerCreateNestedOneWithoutAudiencesInput
@@ -515,6 +593,7 @@ export type AudienceContactUncheckedCreateWithoutAudienceInput = {
   id?: string
   contactId: string
   sellerId?: string | null
+  sequence?: bigint | number
   createdAt?: Date | string
 }
 
@@ -546,6 +625,7 @@ export type AudienceContactUpdateManyWithWhereWithoutAudienceInput = {
 
 export type AudienceContactCreateWithoutSellerInput = {
   id?: string
+  sequence?: bigint | number
   createdAt?: Date | string
   audience: Prisma.AudienceCreateNestedOneWithoutContactsInput
   contact: Prisma.ContactCreateNestedOneWithoutAudiencesInput
@@ -555,6 +635,7 @@ export type AudienceContactUncheckedCreateWithoutSellerInput = {
   id?: string
   audienceId: string
   contactId: string
+  sequence?: bigint | number
   createdAt?: Date | string
 }
 
@@ -588,11 +669,13 @@ export type AudienceContactCreateManyContactInput = {
   id?: string
   audienceId: string
   sellerId?: string | null
+  sequence?: bigint | number
   createdAt?: Date | string
 }
 
 export type AudienceContactUpdateWithoutContactInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audience?: Prisma.AudienceUpdateOneRequiredWithoutContactsNestedInput
   seller?: Prisma.SellerUpdateOneWithoutAudiencesNestedInput
@@ -602,6 +685,7 @@ export type AudienceContactUncheckedUpdateWithoutContactInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -609,6 +693,7 @@ export type AudienceContactUncheckedUpdateManyWithoutContactInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -616,11 +701,13 @@ export type AudienceContactCreateManyAudienceInput = {
   id?: string
   contactId: string
   sellerId?: string | null
+  sequence?: bigint | number
   createdAt?: Date | string
 }
 
 export type AudienceContactUpdateWithoutAudienceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   contact?: Prisma.ContactUpdateOneRequiredWithoutAudiencesNestedInput
   seller?: Prisma.SellerUpdateOneWithoutAudiencesNestedInput
@@ -630,6 +717,7 @@ export type AudienceContactUncheckedUpdateWithoutAudienceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   contactId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -637,6 +725,7 @@ export type AudienceContactUncheckedUpdateManyWithoutAudienceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   contactId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -644,11 +733,13 @@ export type AudienceContactCreateManySellerInput = {
   id?: string
   audienceId: string
   contactId: string
+  sequence?: bigint | number
   createdAt?: Date | string
 }
 
 export type AudienceContactUpdateWithoutSellerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   audience?: Prisma.AudienceUpdateOneRequiredWithoutContactsNestedInput
   contact?: Prisma.ContactUpdateOneRequiredWithoutAudiencesNestedInput
@@ -658,6 +749,7 @@ export type AudienceContactUncheckedUpdateWithoutSellerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
   contactId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -665,6 +757,7 @@ export type AudienceContactUncheckedUpdateManyWithoutSellerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   audienceId?: Prisma.StringFieldUpdateOperationsInput | string
   contactId?: Prisma.StringFieldUpdateOperationsInput | string
+  sequence?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -675,6 +768,7 @@ export type AudienceContactSelect<ExtArgs extends runtime.Types.Extensions.Inter
   audienceId?: boolean
   contactId?: boolean
   sellerId?: boolean
+  sequence?: boolean
   createdAt?: boolean
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
@@ -686,6 +780,7 @@ export type AudienceContactSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   audienceId?: boolean
   contactId?: boolean
   sellerId?: boolean
+  sequence?: boolean
   createdAt?: boolean
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
@@ -697,6 +792,7 @@ export type AudienceContactSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   audienceId?: boolean
   contactId?: boolean
   sellerId?: boolean
+  sequence?: boolean
   createdAt?: boolean
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
@@ -708,10 +804,11 @@ export type AudienceContactSelectScalar = {
   audienceId?: boolean
   contactId?: boolean
   sellerId?: boolean
+  sequence?: boolean
   createdAt?: boolean
 }
 
-export type AudienceContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "audienceId" | "contactId" | "sellerId" | "createdAt", ExtArgs["result"]["audienceContact"]>
+export type AudienceContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "audienceId" | "contactId" | "sellerId" | "sequence" | "createdAt", ExtArgs["result"]["audienceContact"]>
 export type AudienceContactInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
   contact?: boolean | Prisma.ContactDefaultArgs<ExtArgs>
@@ -740,6 +837,7 @@ export type $AudienceContactPayload<ExtArgs extends runtime.Types.Extensions.Int
     audienceId: string
     contactId: string
     sellerId: string | null
+    sequence: bigint
     createdAt: Date
   }, ExtArgs["result"]["audienceContact"]>
   composites: {}
@@ -1171,6 +1269,7 @@ export interface AudienceContactFieldRefs {
   readonly audienceId: Prisma.FieldRef<"AudienceContact", 'String'>
   readonly contactId: Prisma.FieldRef<"AudienceContact", 'String'>
   readonly sellerId: Prisma.FieldRef<"AudienceContact", 'String'>
+  readonly sequence: Prisma.FieldRef<"AudienceContact", 'BigInt'>
   readonly createdAt: Prisma.FieldRef<"AudienceContact", 'DateTime'>
 }
     

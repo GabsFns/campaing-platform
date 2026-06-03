@@ -106,6 +106,8 @@ model AudienceContact {
   audienceId  String
   contactId   String
   sellerId    String?
+  
+  sequence BigInt @default(autoincrement())
 
   createdAt   DateTime @default(now())
 
@@ -114,6 +116,7 @@ model AudienceContact {
   seller      Seller?  @relation(fields: [sellerId], references: [id])
 
   @@unique([audienceId, contactId])
+  @@index([audienceId, sequence])
   @@index([contactId])
   @@index([sellerId])
 }
@@ -161,6 +164,7 @@ model Campaign {
   processedContacts Int?
 
   createdAt         DateTime          @default(now())
+  generationCompletedAt DateTime?
 
   audience          Audience          @relation(fields: [audienceId], references: [id])
   
@@ -185,11 +189,14 @@ model CampaignMessage {
   senderNumberId         String?
   workspaceId            String
   sellerId               String?
-
+  generationKey          String?
   status                 MessageStatus     @default(PENDING)
   error                  String?
 
   providerPayload        Json?
+  providerRawResponse    Json?
+  providerTimestamp      DateTime?
+  providerStatus         String?
   providerId             String?
   chatwootConversationId Int?
   chatwootInboxId        Int?
@@ -200,6 +207,7 @@ model CampaignMessage {
   deliveredAt            DateTime?
   readAt                 DateTime?
   lockedAt               DateTime?
+  processedAt            DateTime?
   processingStartedAt    DateTime?
   
   retryCount             Int               @default(0)
@@ -216,12 +224,16 @@ model CampaignMessage {
   deadLetters            DeadLetterMessage[]
 
   @@index([campaignId])
+  @@unique([campaignId, contactId])
   @@index([campaignId, status])
   @@index([status, retryCount])
+  @@index([status, nextRetryAt])
   @@index([phoneNormalized])
   @@index([providerId])
   @@index([chatwootConversationId])
   @@index([sellerId])
+  @@index([processedAt])
+  @@index([lockedAt])
 }
 
 model CampaignBatch {
@@ -232,15 +244,34 @@ model CampaignBatch {
   size       Int
   status     BatchStatus       @default(PENDING)
 
+  startSequence BigInt?
+  endSequence BigInt?
+
+  startContactId String?
+  endContactId   String?
+  
+  processedCount Int           @default(0)
+  successCount   Int           @default(0)
+  failedCount    Int           @default(0)
+
+  retryCount Int               @default(0)
+  lockedAt DateTime?
+  lockToken String?
+  queuedAt   DateTime?
   startedAt  DateTime?
   finishedAt DateTime?
 
-  createdAt  DateTime          @default(now())
+  lastHeartbeatAt DateTime?
+  error String?
 
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
   campaign   Campaign          @relation(fields: [campaignId], references: [id], onDelete: Cascade)
   messages   CampaignMessage[]
 
   @@index([campaignId])
+  @@index([status])
+  @@index([lockedAt])
 }
 
 model DeadLetterMessage {
@@ -329,11 +360,20 @@ model SenderNumber {
   id           String            @id @default(uuid())
   workspaceId  String
   number       String            @unique
+  
+  throughputLimit Int             @default(80)
+  qualityRating  String?
+  currentTier    String?
+
   status       String
+  
   qualityScore Float             @default(1.0)
   maxPerSecond Int               @default(20)
+  
   lockedAt     DateTime?
+  
   createdAt    DateTime          @default(now())
+
   messages     CampaignMessage[]
   campaing     Campaign[]
 
@@ -421,6 +461,7 @@ enum BatchStatus {
   FINISHED
   PARTIAL
   FAILED
+  QUEUED
 }
 
 enum MessageStatus {

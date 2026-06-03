@@ -51,6 +51,7 @@ export type CampaignMinAggregateOutputType = {
   totalContacts: number | null
   processedContacts: number | null
   createdAt: Date | null
+  generationCompletedAt: Date | null
 }
 
 export type CampaignMaxAggregateOutputType = {
@@ -68,6 +69,7 @@ export type CampaignMaxAggregateOutputType = {
   totalContacts: number | null
   processedContacts: number | null
   createdAt: Date | null
+  generationCompletedAt: Date | null
 }
 
 export type CampaignCountAggregateOutputType = {
@@ -85,6 +87,7 @@ export type CampaignCountAggregateOutputType = {
   totalContacts: number
   processedContacts: number
   createdAt: number
+  generationCompletedAt: number
   _all: number
 }
 
@@ -114,6 +117,7 @@ export type CampaignMinAggregateInputType = {
   totalContacts?: true
   processedContacts?: true
   createdAt?: true
+  generationCompletedAt?: true
 }
 
 export type CampaignMaxAggregateInputType = {
@@ -131,6 +135,7 @@ export type CampaignMaxAggregateInputType = {
   totalContacts?: true
   processedContacts?: true
   createdAt?: true
+  generationCompletedAt?: true
 }
 
 export type CampaignCountAggregateInputType = {
@@ -148,6 +153,7 @@ export type CampaignCountAggregateInputType = {
   totalContacts?: true
   processedContacts?: true
   createdAt?: true
+  generationCompletedAt?: true
   _all?: true
 }
 
@@ -252,6 +258,7 @@ export type CampaignGroupByOutputType = {
   totalContacts: number | null
   processedContacts: number | null
   createdAt: Date
+  generationCompletedAt: Date | null
   _count: CampaignCountAggregateOutputType | null
   _avg: CampaignAvgAggregateOutputType | null
   _sum: CampaignSumAggregateOutputType | null
@@ -292,6 +299,7 @@ export type CampaignWhereInput = {
   totalContacts?: Prisma.IntNullableFilter<"Campaign"> | number | null
   processedContacts?: Prisma.IntNullableFilter<"Campaign"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Campaign"> | Date | string
+  generationCompletedAt?: Prisma.DateTimeNullableFilter<"Campaign"> | Date | string | null
   audience?: Prisma.XOR<Prisma.AudienceScalarRelationFilter, Prisma.AudienceWhereInput>
   template?: Prisma.XOR<Prisma.TemplateScalarRelationFilter, Prisma.TemplateWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -317,6 +325,7 @@ export type CampaignOrderByWithRelationInput = {
   totalContacts?: Prisma.SortOrderInput | Prisma.SortOrder
   processedContacts?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  generationCompletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   audience?: Prisma.AudienceOrderByWithRelationInput
   template?: Prisma.TemplateOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
@@ -345,6 +354,7 @@ export type CampaignWhereUniqueInput = Prisma.AtLeast<{
   totalContacts?: Prisma.IntNullableFilter<"Campaign"> | number | null
   processedContacts?: Prisma.IntNullableFilter<"Campaign"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Campaign"> | Date | string
+  generationCompletedAt?: Prisma.DateTimeNullableFilter<"Campaign"> | Date | string | null
   audience?: Prisma.XOR<Prisma.AudienceScalarRelationFilter, Prisma.AudienceWhereInput>
   template?: Prisma.XOR<Prisma.TemplateScalarRelationFilter, Prisma.TemplateWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -370,6 +380,7 @@ export type CampaignOrderByWithAggregationInput = {
   totalContacts?: Prisma.SortOrderInput | Prisma.SortOrder
   processedContacts?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  generationCompletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CampaignCountOrderByAggregateInput
   _avg?: Prisma.CampaignAvgOrderByAggregateInput
   _max?: Prisma.CampaignMaxOrderByAggregateInput
@@ -395,6 +406,7 @@ export type CampaignScalarWhereWithAggregatesInput = {
   totalContacts?: Prisma.IntNullableWithAggregatesFilter<"Campaign"> | number | null
   processedContacts?: Prisma.IntNullableWithAggregatesFilter<"Campaign"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Campaign"> | Date | string
+  generationCompletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Campaign"> | Date | string | null
 }
 
 export type CampaignCreateInput = {
@@ -407,6 +419,7 @@ export type CampaignCreateInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   audience: Prisma.AudienceCreateNestedOneWithoutCampaignsInput
   template: Prisma.TemplateCreateNestedOneWithoutCampaignsInput
   user: Prisma.UserCreateNestedOneWithoutCampaignsInput
@@ -432,6 +445,7 @@ export type CampaignUncheckedCreateInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   batches?: Prisma.CampaignBatchUncheckedCreateNestedManyWithoutCampaignInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutCampaignInput
   stats?: Prisma.CampaignStatsUncheckedCreateNestedOneWithoutCampaignInput
@@ -447,6 +461,7 @@ export type CampaignUpdateInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   audience?: Prisma.AudienceUpdateOneRequiredWithoutCampaignsNestedInput
   template?: Prisma.TemplateUpdateOneRequiredWithoutCampaignsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
@@ -472,6 +487,7 @@ export type CampaignUncheckedUpdateInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batches?: Prisma.CampaignBatchUncheckedUpdateManyWithoutCampaignNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutCampaignNestedInput
   stats?: Prisma.CampaignStatsUncheckedUpdateOneWithoutCampaignNestedInput
@@ -492,6 +508,7 @@ export type CampaignCreateManyInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
 }
 
 export type CampaignUpdateManyMutationInput = {
@@ -504,6 +521,7 @@ export type CampaignUpdateManyMutationInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CampaignUncheckedUpdateManyInput = {
@@ -521,6 +539,7 @@ export type CampaignUncheckedUpdateManyInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CampaignListRelationFilter = {
@@ -548,6 +567,7 @@ export type CampaignCountOrderByAggregateInput = {
   totalContacts?: Prisma.SortOrder
   processedContacts?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  generationCompletedAt?: Prisma.SortOrder
 }
 
 export type CampaignAvgOrderByAggregateInput = {
@@ -570,6 +590,7 @@ export type CampaignMaxOrderByAggregateInput = {
   totalContacts?: Prisma.SortOrder
   processedContacts?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  generationCompletedAt?: Prisma.SortOrder
 }
 
 export type CampaignMinOrderByAggregateInput = {
@@ -587,6 +608,7 @@ export type CampaignMinOrderByAggregateInput = {
   totalContacts?: Prisma.SortOrder
   processedContacts?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  generationCompletedAt?: Prisma.SortOrder
 }
 
 export type CampaignSumOrderByAggregateInput = {
@@ -869,6 +891,7 @@ export type CampaignCreateWithoutWorkspaceInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   audience: Prisma.AudienceCreateNestedOneWithoutCampaignsInput
   template: Prisma.TemplateCreateNestedOneWithoutCampaignsInput
   user: Prisma.UserCreateNestedOneWithoutCampaignsInput
@@ -892,6 +915,7 @@ export type CampaignUncheckedCreateWithoutWorkspaceInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   batches?: Prisma.CampaignBatchUncheckedCreateNestedManyWithoutCampaignInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutCampaignInput
   stats?: Prisma.CampaignStatsUncheckedCreateNestedOneWithoutCampaignInput
@@ -941,6 +965,7 @@ export type CampaignScalarWhereInput = {
   totalContacts?: Prisma.IntNullableFilter<"Campaign"> | number | null
   processedContacts?: Prisma.IntNullableFilter<"Campaign"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Campaign"> | Date | string
+  generationCompletedAt?: Prisma.DateTimeNullableFilter<"Campaign"> | Date | string | null
 }
 
 export type CampaignCreateWithoutUserInput = {
@@ -953,6 +978,7 @@ export type CampaignCreateWithoutUserInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   audience: Prisma.AudienceCreateNestedOneWithoutCampaignsInput
   template: Prisma.TemplateCreateNestedOneWithoutCampaignsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutCampaignsInput
@@ -976,6 +1002,7 @@ export type CampaignUncheckedCreateWithoutUserInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   batches?: Prisma.CampaignBatchUncheckedCreateNestedManyWithoutCampaignInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutCampaignInput
   stats?: Prisma.CampaignStatsUncheckedCreateNestedOneWithoutCampaignInput
@@ -1017,6 +1044,7 @@ export type CampaignCreateWithoutTemplateInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   audience: Prisma.AudienceCreateNestedOneWithoutCampaignsInput
   user: Prisma.UserCreateNestedOneWithoutCampaignsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutCampaignsInput
@@ -1040,6 +1068,7 @@ export type CampaignUncheckedCreateWithoutTemplateInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   batches?: Prisma.CampaignBatchUncheckedCreateNestedManyWithoutCampaignInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutCampaignInput
   stats?: Prisma.CampaignStatsUncheckedCreateNestedOneWithoutCampaignInput
@@ -1081,6 +1110,7 @@ export type CampaignCreateWithoutAudienceInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   template: Prisma.TemplateCreateNestedOneWithoutCampaignsInput
   user: Prisma.UserCreateNestedOneWithoutCampaignsInput
   workspace: Prisma.WorkspaceCreateNestedOneWithoutCampaignsInput
@@ -1104,6 +1134,7 @@ export type CampaignUncheckedCreateWithoutAudienceInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   batches?: Prisma.CampaignBatchUncheckedCreateNestedManyWithoutCampaignInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutCampaignInput
   stats?: Prisma.CampaignStatsUncheckedCreateNestedOneWithoutCampaignInput
@@ -1145,6 +1176,7 @@ export type CampaignCreateWithoutMessagesInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   audience: Prisma.AudienceCreateNestedOneWithoutCampaignsInput
   template: Prisma.TemplateCreateNestedOneWithoutCampaignsInput
   user: Prisma.UserCreateNestedOneWithoutCampaignsInput
@@ -1169,6 +1201,7 @@ export type CampaignUncheckedCreateWithoutMessagesInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   batches?: Prisma.CampaignBatchUncheckedCreateNestedManyWithoutCampaignInput
   stats?: Prisma.CampaignStatsUncheckedCreateNestedOneWithoutCampaignInput
 }
@@ -1199,6 +1232,7 @@ export type CampaignUpdateWithoutMessagesInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   audience?: Prisma.AudienceUpdateOneRequiredWithoutCampaignsNestedInput
   template?: Prisma.TemplateUpdateOneRequiredWithoutCampaignsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
@@ -1223,6 +1257,7 @@ export type CampaignUncheckedUpdateWithoutMessagesInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batches?: Prisma.CampaignBatchUncheckedUpdateManyWithoutCampaignNestedInput
   stats?: Prisma.CampaignStatsUncheckedUpdateOneWithoutCampaignNestedInput
 }
@@ -1237,6 +1272,7 @@ export type CampaignCreateWithoutBatchesInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   audience: Prisma.AudienceCreateNestedOneWithoutCampaignsInput
   template: Prisma.TemplateCreateNestedOneWithoutCampaignsInput
   user: Prisma.UserCreateNestedOneWithoutCampaignsInput
@@ -1261,6 +1297,7 @@ export type CampaignUncheckedCreateWithoutBatchesInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutCampaignInput
   stats?: Prisma.CampaignStatsUncheckedCreateNestedOneWithoutCampaignInput
 }
@@ -1291,6 +1328,7 @@ export type CampaignUpdateWithoutBatchesInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   audience?: Prisma.AudienceUpdateOneRequiredWithoutCampaignsNestedInput
   template?: Prisma.TemplateUpdateOneRequiredWithoutCampaignsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
@@ -1315,6 +1353,7 @@ export type CampaignUncheckedUpdateWithoutBatchesInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutCampaignNestedInput
   stats?: Prisma.CampaignStatsUncheckedUpdateOneWithoutCampaignNestedInput
 }
@@ -1329,6 +1368,7 @@ export type CampaignCreateWithoutStatsInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   audience: Prisma.AudienceCreateNestedOneWithoutCampaignsInput
   template: Prisma.TemplateCreateNestedOneWithoutCampaignsInput
   user: Prisma.UserCreateNestedOneWithoutCampaignsInput
@@ -1353,6 +1393,7 @@ export type CampaignUncheckedCreateWithoutStatsInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   batches?: Prisma.CampaignBatchUncheckedCreateNestedManyWithoutCampaignInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutCampaignInput
 }
@@ -1383,6 +1424,7 @@ export type CampaignUpdateWithoutStatsInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   audience?: Prisma.AudienceUpdateOneRequiredWithoutCampaignsNestedInput
   template?: Prisma.TemplateUpdateOneRequiredWithoutCampaignsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
@@ -1407,6 +1449,7 @@ export type CampaignUncheckedUpdateWithoutStatsInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batches?: Prisma.CampaignBatchUncheckedUpdateManyWithoutCampaignNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutCampaignNestedInput
 }
@@ -1421,6 +1464,7 @@ export type CampaignCreateWithoutSenderNumberInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   audience: Prisma.AudienceCreateNestedOneWithoutCampaignsInput
   template: Prisma.TemplateCreateNestedOneWithoutCampaignsInput
   user: Prisma.UserCreateNestedOneWithoutCampaignsInput
@@ -1444,6 +1488,7 @@ export type CampaignUncheckedCreateWithoutSenderNumberInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
   batches?: Prisma.CampaignBatchUncheckedCreateNestedManyWithoutCampaignInput
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutCampaignInput
   stats?: Prisma.CampaignStatsUncheckedCreateNestedOneWithoutCampaignInput
@@ -1489,6 +1534,7 @@ export type CampaignCreateManyWorkspaceInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
 }
 
 export type CampaignUpdateWithoutWorkspaceInput = {
@@ -1501,6 +1547,7 @@ export type CampaignUpdateWithoutWorkspaceInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   audience?: Prisma.AudienceUpdateOneRequiredWithoutCampaignsNestedInput
   template?: Prisma.TemplateUpdateOneRequiredWithoutCampaignsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
@@ -1524,6 +1571,7 @@ export type CampaignUncheckedUpdateWithoutWorkspaceInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batches?: Prisma.CampaignBatchUncheckedUpdateManyWithoutCampaignNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutCampaignNestedInput
   stats?: Prisma.CampaignStatsUncheckedUpdateOneWithoutCampaignNestedInput
@@ -1543,6 +1591,7 @@ export type CampaignUncheckedUpdateManyWithoutWorkspaceInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CampaignCreateManyUserInput = {
@@ -1559,6 +1608,7 @@ export type CampaignCreateManyUserInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
 }
 
 export type CampaignUpdateWithoutUserInput = {
@@ -1571,6 +1621,7 @@ export type CampaignUpdateWithoutUserInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   audience?: Prisma.AudienceUpdateOneRequiredWithoutCampaignsNestedInput
   template?: Prisma.TemplateUpdateOneRequiredWithoutCampaignsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCampaignsNestedInput
@@ -1594,6 +1645,7 @@ export type CampaignUncheckedUpdateWithoutUserInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batches?: Prisma.CampaignBatchUncheckedUpdateManyWithoutCampaignNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutCampaignNestedInput
   stats?: Prisma.CampaignStatsUncheckedUpdateOneWithoutCampaignNestedInput
@@ -1613,6 +1665,7 @@ export type CampaignUncheckedUpdateManyWithoutUserInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CampaignCreateManyTemplateInput = {
@@ -1629,6 +1682,7 @@ export type CampaignCreateManyTemplateInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
 }
 
 export type CampaignUpdateWithoutTemplateInput = {
@@ -1641,6 +1695,7 @@ export type CampaignUpdateWithoutTemplateInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   audience?: Prisma.AudienceUpdateOneRequiredWithoutCampaignsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCampaignsNestedInput
@@ -1664,6 +1719,7 @@ export type CampaignUncheckedUpdateWithoutTemplateInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batches?: Prisma.CampaignBatchUncheckedUpdateManyWithoutCampaignNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutCampaignNestedInput
   stats?: Prisma.CampaignStatsUncheckedUpdateOneWithoutCampaignNestedInput
@@ -1683,6 +1739,7 @@ export type CampaignUncheckedUpdateManyWithoutTemplateInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CampaignCreateManyAudienceInput = {
@@ -1699,6 +1756,7 @@ export type CampaignCreateManyAudienceInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
 }
 
 export type CampaignUpdateWithoutAudienceInput = {
@@ -1711,6 +1769,7 @@ export type CampaignUpdateWithoutAudienceInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   template?: Prisma.TemplateUpdateOneRequiredWithoutCampaignsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
   workspace?: Prisma.WorkspaceUpdateOneRequiredWithoutCampaignsNestedInput
@@ -1734,6 +1793,7 @@ export type CampaignUncheckedUpdateWithoutAudienceInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batches?: Prisma.CampaignBatchUncheckedUpdateManyWithoutCampaignNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutCampaignNestedInput
   stats?: Prisma.CampaignStatsUncheckedUpdateOneWithoutCampaignNestedInput
@@ -1753,6 +1813,7 @@ export type CampaignUncheckedUpdateManyWithoutAudienceInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type CampaignCreateManySenderNumberInput = {
@@ -1769,6 +1830,7 @@ export type CampaignCreateManySenderNumberInput = {
   totalContacts?: number | null
   processedContacts?: number | null
   createdAt?: Date | string
+  generationCompletedAt?: Date | string | null
 }
 
 export type CampaignUpdateWithoutSenderNumberInput = {
@@ -1781,6 +1843,7 @@ export type CampaignUpdateWithoutSenderNumberInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   audience?: Prisma.AudienceUpdateOneRequiredWithoutCampaignsNestedInput
   template?: Prisma.TemplateUpdateOneRequiredWithoutCampaignsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutCampaignsNestedInput
@@ -1804,6 +1867,7 @@ export type CampaignUncheckedUpdateWithoutSenderNumberInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   batches?: Prisma.CampaignBatchUncheckedUpdateManyWithoutCampaignNestedInput
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutCampaignNestedInput
   stats?: Prisma.CampaignStatsUncheckedUpdateOneWithoutCampaignNestedInput
@@ -1823,6 +1887,7 @@ export type CampaignUncheckedUpdateManyWithoutSenderNumberInput = {
   totalContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   processedContacts?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  generationCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1880,6 +1945,7 @@ export type CampaignSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   totalContacts?: boolean
   processedContacts?: boolean
   createdAt?: boolean
+  generationCompletedAt?: boolean
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
   template?: boolean | Prisma.TemplateDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1906,6 +1972,7 @@ export type CampaignSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   totalContacts?: boolean
   processedContacts?: boolean
   createdAt?: boolean
+  generationCompletedAt?: boolean
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
   template?: boolean | Prisma.TemplateDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1928,6 +1995,7 @@ export type CampaignSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   totalContacts?: boolean
   processedContacts?: boolean
   createdAt?: boolean
+  generationCompletedAt?: boolean
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
   template?: boolean | Prisma.TemplateDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1950,9 +2018,10 @@ export type CampaignSelectScalar = {
   totalContacts?: boolean
   processedContacts?: boolean
   createdAt?: boolean
+  generationCompletedAt?: boolean
 }
 
-export type CampaignOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "name" | "userId" | "templateId" | "audienceId" | "senderNumberId" | "status" | "scheduledAt" | "startedAt" | "finishedAt" | "totalContacts" | "processedContacts" | "createdAt", ExtArgs["result"]["campaign"]>
+export type CampaignOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "workspaceId" | "name" | "userId" | "templateId" | "audienceId" | "senderNumberId" | "status" | "scheduledAt" | "startedAt" | "finishedAt" | "totalContacts" | "processedContacts" | "createdAt" | "generationCompletedAt", ExtArgs["result"]["campaign"]>
 export type CampaignInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   audience?: boolean | Prisma.AudienceDefaultArgs<ExtArgs>
   template?: boolean | Prisma.TemplateDefaultArgs<ExtArgs>
@@ -2006,6 +2075,7 @@ export type $CampaignPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     totalContacts: number | null
     processedContacts: number | null
     createdAt: Date
+    generationCompletedAt: Date | null
   }, ExtArgs["result"]["campaign"]>
   composites: {}
 }
@@ -2451,6 +2521,7 @@ export interface CampaignFieldRefs {
   readonly totalContacts: Prisma.FieldRef<"Campaign", 'Int'>
   readonly processedContacts: Prisma.FieldRef<"Campaign", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Campaign", 'DateTime'>
+  readonly generationCompletedAt: Prisma.FieldRef<"Campaign", 'DateTime'>
 }
     
 

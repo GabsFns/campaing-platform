@@ -58,7 +58,13 @@ export class CampaignRepository {
     });
   }
 
-  findAudienceContacts(audienceId: string) {
+  async findAudienceContactsBatch(params: {
+    audienceId: string;
+    cursor?: string;
+    take: number;
+  }) {
+    const { audienceId, cursor, take } = params;
+
     return this.prisma.audienceContact.findMany({
       where: {
         audienceId,
@@ -68,7 +74,86 @@ export class CampaignRepository {
         contact: true,
         seller: true,
       },
+
+      take,
+
+      ...(cursor && {
+        skip: 1,
+
+        cursor: {
+          id: cursor,
+        },
+      }),
+
+      orderBy: {
+        id: 'asc',
+      },
     });
+  }
+
+  async findAudienceContactsRange(params: {
+    audienceId: string;
+    startSequence: bigint;
+    endSequence: bigint;
+  }) {
+    const { audienceId, startSequence, endSequence } = params;
+
+    return this.prisma.audienceContact.findMany({
+      where: {
+        audienceId,
+
+        sequence: {
+          gte: startSequence,
+          lte: endSequence,
+        },
+      },
+
+      include: {
+        contact: true,
+
+        seller: true,
+      },
+
+      orderBy: {
+        sequence: 'asc',
+      },
+    });
+  }
+  async getAudienceRange(audienceId: string) {
+    const [first, last] = await Promise.all([
+      this.prisma.audienceContact.findFirst({
+        where: {
+          audienceId,
+        },
+
+        select: {
+          sequence: true,
+        },
+
+        orderBy: {
+          sequence: 'asc',
+        },
+      }),
+
+      this.prisma.audienceContact.findFirst({
+        where: {
+          audienceId,
+        },
+
+        select: {
+          sequence: true,
+        },
+
+        orderBy: {
+          sequence: 'desc',
+        },
+      }),
+    ]);
+
+    return {
+      startSequence: first?.sequence ?? null,
+      endSequence: last?.sequence ?? null,
+    };
   }
 
   createCampaignMessages(data: Prisma.CampaignMessageCreateManyInput[]) {

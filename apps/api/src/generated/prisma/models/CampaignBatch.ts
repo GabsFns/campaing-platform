@@ -29,11 +29,23 @@ export type AggregateCampaignBatch = {
 export type CampaignBatchAvgAggregateOutputType = {
   batchIndex: number | null
   size: number | null
+  startSequence: number | null
+  endSequence: number | null
+  processedCount: number | null
+  successCount: number | null
+  failedCount: number | null
+  retryCount: number | null
 }
 
 export type CampaignBatchSumAggregateOutputType = {
   batchIndex: number | null
   size: number | null
+  startSequence: bigint | null
+  endSequence: bigint | null
+  processedCount: number | null
+  successCount: number | null
+  failedCount: number | null
+  retryCount: number | null
 }
 
 export type CampaignBatchMinAggregateOutputType = {
@@ -42,9 +54,23 @@ export type CampaignBatchMinAggregateOutputType = {
   batchIndex: number | null
   size: number | null
   status: $Enums.BatchStatus | null
+  startSequence: bigint | null
+  endSequence: bigint | null
+  startContactId: string | null
+  endContactId: string | null
+  processedCount: number | null
+  successCount: number | null
+  failedCount: number | null
+  retryCount: number | null
+  lockedAt: Date | null
+  lockToken: string | null
+  queuedAt: Date | null
   startedAt: Date | null
   finishedAt: Date | null
+  lastHeartbeatAt: Date | null
+  error: string | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type CampaignBatchMaxAggregateOutputType = {
@@ -53,9 +79,23 @@ export type CampaignBatchMaxAggregateOutputType = {
   batchIndex: number | null
   size: number | null
   status: $Enums.BatchStatus | null
+  startSequence: bigint | null
+  endSequence: bigint | null
+  startContactId: string | null
+  endContactId: string | null
+  processedCount: number | null
+  successCount: number | null
+  failedCount: number | null
+  retryCount: number | null
+  lockedAt: Date | null
+  lockToken: string | null
+  queuedAt: Date | null
   startedAt: Date | null
   finishedAt: Date | null
+  lastHeartbeatAt: Date | null
+  error: string | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type CampaignBatchCountAggregateOutputType = {
@@ -64,9 +104,23 @@ export type CampaignBatchCountAggregateOutputType = {
   batchIndex: number
   size: number
   status: number
+  startSequence: number
+  endSequence: number
+  startContactId: number
+  endContactId: number
+  processedCount: number
+  successCount: number
+  failedCount: number
+  retryCount: number
+  lockedAt: number
+  lockToken: number
+  queuedAt: number
   startedAt: number
   finishedAt: number
+  lastHeartbeatAt: number
+  error: number
   createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -74,11 +128,23 @@ export type CampaignBatchCountAggregateOutputType = {
 export type CampaignBatchAvgAggregateInputType = {
   batchIndex?: true
   size?: true
+  startSequence?: true
+  endSequence?: true
+  processedCount?: true
+  successCount?: true
+  failedCount?: true
+  retryCount?: true
 }
 
 export type CampaignBatchSumAggregateInputType = {
   batchIndex?: true
   size?: true
+  startSequence?: true
+  endSequence?: true
+  processedCount?: true
+  successCount?: true
+  failedCount?: true
+  retryCount?: true
 }
 
 export type CampaignBatchMinAggregateInputType = {
@@ -87,9 +153,23 @@ export type CampaignBatchMinAggregateInputType = {
   batchIndex?: true
   size?: true
   status?: true
+  startSequence?: true
+  endSequence?: true
+  startContactId?: true
+  endContactId?: true
+  processedCount?: true
+  successCount?: true
+  failedCount?: true
+  retryCount?: true
+  lockedAt?: true
+  lockToken?: true
+  queuedAt?: true
   startedAt?: true
   finishedAt?: true
+  lastHeartbeatAt?: true
+  error?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type CampaignBatchMaxAggregateInputType = {
@@ -98,9 +178,23 @@ export type CampaignBatchMaxAggregateInputType = {
   batchIndex?: true
   size?: true
   status?: true
+  startSequence?: true
+  endSequence?: true
+  startContactId?: true
+  endContactId?: true
+  processedCount?: true
+  successCount?: true
+  failedCount?: true
+  retryCount?: true
+  lockedAt?: true
+  lockToken?: true
+  queuedAt?: true
   startedAt?: true
   finishedAt?: true
+  lastHeartbeatAt?: true
+  error?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type CampaignBatchCountAggregateInputType = {
@@ -109,9 +203,23 @@ export type CampaignBatchCountAggregateInputType = {
   batchIndex?: true
   size?: true
   status?: true
+  startSequence?: true
+  endSequence?: true
+  startContactId?: true
+  endContactId?: true
+  processedCount?: true
+  successCount?: true
+  failedCount?: true
+  retryCount?: true
+  lockedAt?: true
+  lockToken?: true
+  queuedAt?: true
   startedAt?: true
   finishedAt?: true
+  lastHeartbeatAt?: true
+  error?: true
   createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -207,9 +315,23 @@ export type CampaignBatchGroupByOutputType = {
   batchIndex: number
   size: number
   status: $Enums.BatchStatus
+  startSequence: bigint | null
+  endSequence: bigint | null
+  startContactId: string | null
+  endContactId: string | null
+  processedCount: number
+  successCount: number
+  failedCount: number
+  retryCount: number
+  lockedAt: Date | null
+  lockToken: string | null
+  queuedAt: Date | null
   startedAt: Date | null
   finishedAt: Date | null
+  lastHeartbeatAt: Date | null
+  error: string | null
   createdAt: Date
+  updatedAt: Date
   _count: CampaignBatchCountAggregateOutputType | null
   _avg: CampaignBatchAvgAggregateOutputType | null
   _sum: CampaignBatchSumAggregateOutputType | null
@@ -241,9 +363,23 @@ export type CampaignBatchWhereInput = {
   batchIndex?: Prisma.IntFilter<"CampaignBatch"> | number
   size?: Prisma.IntFilter<"CampaignBatch"> | number
   status?: Prisma.EnumBatchStatusFilter<"CampaignBatch"> | $Enums.BatchStatus
+  startSequence?: Prisma.BigIntNullableFilter<"CampaignBatch"> | bigint | number | null
+  endSequence?: Prisma.BigIntNullableFilter<"CampaignBatch"> | bigint | number | null
+  startContactId?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
+  endContactId?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
+  processedCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  successCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  failedCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  retryCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  lockedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
+  lockToken?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
+  queuedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
   startedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
   finishedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
+  lastHeartbeatAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
+  error?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CampaignBatch"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"CampaignBatch"> | Date | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   messages?: Prisma.CampaignMessageListRelationFilter
 }
@@ -254,9 +390,23 @@ export type CampaignBatchOrderByWithRelationInput = {
   batchIndex?: Prisma.SortOrder
   size?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  startSequence?: Prisma.SortOrderInput | Prisma.SortOrder
+  endSequence?: Prisma.SortOrderInput | Prisma.SortOrder
+  startContactId?: Prisma.SortOrderInput | Prisma.SortOrder
+  endContactId?: Prisma.SortOrderInput | Prisma.SortOrder
+  processedCount?: Prisma.SortOrder
+  successCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
+  lockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lockToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  queuedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   startedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   finishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastHeartbeatAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  error?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   campaign?: Prisma.CampaignOrderByWithRelationInput
   messages?: Prisma.CampaignMessageOrderByRelationAggregateInput
 }
@@ -270,9 +420,23 @@ export type CampaignBatchWhereUniqueInput = Prisma.AtLeast<{
   batchIndex?: Prisma.IntFilter<"CampaignBatch"> | number
   size?: Prisma.IntFilter<"CampaignBatch"> | number
   status?: Prisma.EnumBatchStatusFilter<"CampaignBatch"> | $Enums.BatchStatus
+  startSequence?: Prisma.BigIntNullableFilter<"CampaignBatch"> | bigint | number | null
+  endSequence?: Prisma.BigIntNullableFilter<"CampaignBatch"> | bigint | number | null
+  startContactId?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
+  endContactId?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
+  processedCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  successCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  failedCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  retryCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  lockedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
+  lockToken?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
+  queuedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
   startedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
   finishedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
+  lastHeartbeatAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
+  error?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CampaignBatch"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"CampaignBatch"> | Date | string
   campaign?: Prisma.XOR<Prisma.CampaignScalarRelationFilter, Prisma.CampaignWhereInput>
   messages?: Prisma.CampaignMessageListRelationFilter
 }, "id">
@@ -283,9 +447,23 @@ export type CampaignBatchOrderByWithAggregationInput = {
   batchIndex?: Prisma.SortOrder
   size?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  startSequence?: Prisma.SortOrderInput | Prisma.SortOrder
+  endSequence?: Prisma.SortOrderInput | Prisma.SortOrder
+  startContactId?: Prisma.SortOrderInput | Prisma.SortOrder
+  endContactId?: Prisma.SortOrderInput | Prisma.SortOrder
+  processedCount?: Prisma.SortOrder
+  successCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
+  lockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lockToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  queuedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   startedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   finishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastHeartbeatAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  error?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.CampaignBatchCountOrderByAggregateInput
   _avg?: Prisma.CampaignBatchAvgOrderByAggregateInput
   _max?: Prisma.CampaignBatchMaxOrderByAggregateInput
@@ -302,9 +480,23 @@ export type CampaignBatchScalarWhereWithAggregatesInput = {
   batchIndex?: Prisma.IntWithAggregatesFilter<"CampaignBatch"> | number
   size?: Prisma.IntWithAggregatesFilter<"CampaignBatch"> | number
   status?: Prisma.EnumBatchStatusWithAggregatesFilter<"CampaignBatch"> | $Enums.BatchStatus
+  startSequence?: Prisma.BigIntNullableWithAggregatesFilter<"CampaignBatch"> | bigint | number | null
+  endSequence?: Prisma.BigIntNullableWithAggregatesFilter<"CampaignBatch"> | bigint | number | null
+  startContactId?: Prisma.StringNullableWithAggregatesFilter<"CampaignBatch"> | string | null
+  endContactId?: Prisma.StringNullableWithAggregatesFilter<"CampaignBatch"> | string | null
+  processedCount?: Prisma.IntWithAggregatesFilter<"CampaignBatch"> | number
+  successCount?: Prisma.IntWithAggregatesFilter<"CampaignBatch"> | number
+  failedCount?: Prisma.IntWithAggregatesFilter<"CampaignBatch"> | number
+  retryCount?: Prisma.IntWithAggregatesFilter<"CampaignBatch"> | number
+  lockedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignBatch"> | Date | string | null
+  lockToken?: Prisma.StringNullableWithAggregatesFilter<"CampaignBatch"> | string | null
+  queuedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignBatch"> | Date | string | null
   startedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignBatch"> | Date | string | null
   finishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignBatch"> | Date | string | null
+  lastHeartbeatAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignBatch"> | Date | string | null
+  error?: Prisma.StringNullableWithAggregatesFilter<"CampaignBatch"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CampaignBatch"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CampaignBatch"> | Date | string
 }
 
 export type CampaignBatchCreateInput = {
@@ -312,9 +504,23 @@ export type CampaignBatchCreateInput = {
   batchIndex: number
   size: number
   status?: $Enums.BatchStatus
+  startSequence?: bigint | number | null
+  endSequence?: bigint | number | null
+  startContactId?: string | null
+  endContactId?: string | null
+  processedCount?: number
+  successCount?: number
+  failedCount?: number
+  retryCount?: number
+  lockedAt?: Date | string | null
+  lockToken?: string | null
+  queuedAt?: Date | string | null
   startedAt?: Date | string | null
   finishedAt?: Date | string | null
+  lastHeartbeatAt?: Date | string | null
+  error?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutBatchesInput
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutBatchInput
 }
@@ -325,9 +531,23 @@ export type CampaignBatchUncheckedCreateInput = {
   batchIndex: number
   size: number
   status?: $Enums.BatchStatus
+  startSequence?: bigint | number | null
+  endSequence?: bigint | number | null
+  startContactId?: string | null
+  endContactId?: string | null
+  processedCount?: number
+  successCount?: number
+  failedCount?: number
+  retryCount?: number
+  lockedAt?: Date | string | null
+  lockToken?: string | null
+  queuedAt?: Date | string | null
   startedAt?: Date | string | null
   finishedAt?: Date | string | null
+  lastHeartbeatAt?: Date | string | null
+  error?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutBatchInput
 }
 
@@ -336,9 +556,23 @@ export type CampaignBatchUpdateInput = {
   batchIndex?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumBatchStatusFieldUpdateOperationsInput | $Enums.BatchStatus
+  startSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  endSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  startContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  endContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  successCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutBatchesNestedInput
   messages?: Prisma.CampaignMessageUpdateManyWithoutBatchNestedInput
 }
@@ -349,9 +583,23 @@ export type CampaignBatchUncheckedUpdateInput = {
   batchIndex?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumBatchStatusFieldUpdateOperationsInput | $Enums.BatchStatus
+  startSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  endSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  startContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  endContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  successCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutBatchNestedInput
 }
 
@@ -361,9 +609,23 @@ export type CampaignBatchCreateManyInput = {
   batchIndex: number
   size: number
   status?: $Enums.BatchStatus
+  startSequence?: bigint | number | null
+  endSequence?: bigint | number | null
+  startContactId?: string | null
+  endContactId?: string | null
+  processedCount?: number
+  successCount?: number
+  failedCount?: number
+  retryCount?: number
+  lockedAt?: Date | string | null
+  lockToken?: string | null
+  queuedAt?: Date | string | null
   startedAt?: Date | string | null
   finishedAt?: Date | string | null
+  lastHeartbeatAt?: Date | string | null
+  error?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CampaignBatchUpdateManyMutationInput = {
@@ -371,9 +633,23 @@ export type CampaignBatchUpdateManyMutationInput = {
   batchIndex?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumBatchStatusFieldUpdateOperationsInput | $Enums.BatchStatus
+  startSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  endSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  startContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  endContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  successCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CampaignBatchUncheckedUpdateManyInput = {
@@ -382,9 +658,23 @@ export type CampaignBatchUncheckedUpdateManyInput = {
   batchIndex?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumBatchStatusFieldUpdateOperationsInput | $Enums.BatchStatus
+  startSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  endSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  startContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  endContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  successCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CampaignBatchListRelationFilter = {
@@ -408,14 +698,34 @@ export type CampaignBatchCountOrderByAggregateInput = {
   batchIndex?: Prisma.SortOrder
   size?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  startSequence?: Prisma.SortOrder
+  endSequence?: Prisma.SortOrder
+  startContactId?: Prisma.SortOrder
+  endContactId?: Prisma.SortOrder
+  processedCount?: Prisma.SortOrder
+  successCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
+  lockedAt?: Prisma.SortOrder
+  lockToken?: Prisma.SortOrder
+  queuedAt?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
+  lastHeartbeatAt?: Prisma.SortOrder
+  error?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type CampaignBatchAvgOrderByAggregateInput = {
   batchIndex?: Prisma.SortOrder
   size?: Prisma.SortOrder
+  startSequence?: Prisma.SortOrder
+  endSequence?: Prisma.SortOrder
+  processedCount?: Prisma.SortOrder
+  successCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
 }
 
 export type CampaignBatchMaxOrderByAggregateInput = {
@@ -424,9 +734,23 @@ export type CampaignBatchMaxOrderByAggregateInput = {
   batchIndex?: Prisma.SortOrder
   size?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  startSequence?: Prisma.SortOrder
+  endSequence?: Prisma.SortOrder
+  startContactId?: Prisma.SortOrder
+  endContactId?: Prisma.SortOrder
+  processedCount?: Prisma.SortOrder
+  successCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
+  lockedAt?: Prisma.SortOrder
+  lockToken?: Prisma.SortOrder
+  queuedAt?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
+  lastHeartbeatAt?: Prisma.SortOrder
+  error?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type CampaignBatchMinOrderByAggregateInput = {
@@ -435,14 +759,34 @@ export type CampaignBatchMinOrderByAggregateInput = {
   batchIndex?: Prisma.SortOrder
   size?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  startSequence?: Prisma.SortOrder
+  endSequence?: Prisma.SortOrder
+  startContactId?: Prisma.SortOrder
+  endContactId?: Prisma.SortOrder
+  processedCount?: Prisma.SortOrder
+  successCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
+  lockedAt?: Prisma.SortOrder
+  lockToken?: Prisma.SortOrder
+  queuedAt?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   finishedAt?: Prisma.SortOrder
+  lastHeartbeatAt?: Prisma.SortOrder
+  error?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type CampaignBatchSumOrderByAggregateInput = {
   batchIndex?: Prisma.SortOrder
   size?: Prisma.SortOrder
+  startSequence?: Prisma.SortOrder
+  endSequence?: Prisma.SortOrder
+  processedCount?: Prisma.SortOrder
+  successCount?: Prisma.SortOrder
+  failedCount?: Prisma.SortOrder
+  retryCount?: Prisma.SortOrder
 }
 
 export type CampaignBatchCreateNestedManyWithoutCampaignInput = {
@@ -507,14 +851,36 @@ export type EnumBatchStatusFieldUpdateOperationsInput = {
   set?: $Enums.BatchStatus
 }
 
+export type NullableBigIntFieldUpdateOperationsInput = {
+  set?: bigint | number | null
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
+}
+
 export type CampaignBatchCreateWithoutCampaignInput = {
   id?: string
   batchIndex: number
   size: number
   status?: $Enums.BatchStatus
+  startSequence?: bigint | number | null
+  endSequence?: bigint | number | null
+  startContactId?: string | null
+  endContactId?: string | null
+  processedCount?: number
+  successCount?: number
+  failedCount?: number
+  retryCount?: number
+  lockedAt?: Date | string | null
+  lockToken?: string | null
+  queuedAt?: Date | string | null
   startedAt?: Date | string | null
   finishedAt?: Date | string | null
+  lastHeartbeatAt?: Date | string | null
+  error?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   messages?: Prisma.CampaignMessageCreateNestedManyWithoutBatchInput
 }
 
@@ -523,9 +889,23 @@ export type CampaignBatchUncheckedCreateWithoutCampaignInput = {
   batchIndex: number
   size: number
   status?: $Enums.BatchStatus
+  startSequence?: bigint | number | null
+  endSequence?: bigint | number | null
+  startContactId?: string | null
+  endContactId?: string | null
+  processedCount?: number
+  successCount?: number
+  failedCount?: number
+  retryCount?: number
+  lockedAt?: Date | string | null
+  lockToken?: string | null
+  queuedAt?: Date | string | null
   startedAt?: Date | string | null
   finishedAt?: Date | string | null
+  lastHeartbeatAt?: Date | string | null
+  error?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   messages?: Prisma.CampaignMessageUncheckedCreateNestedManyWithoutBatchInput
 }
 
@@ -564,9 +944,23 @@ export type CampaignBatchScalarWhereInput = {
   batchIndex?: Prisma.IntFilter<"CampaignBatch"> | number
   size?: Prisma.IntFilter<"CampaignBatch"> | number
   status?: Prisma.EnumBatchStatusFilter<"CampaignBatch"> | $Enums.BatchStatus
+  startSequence?: Prisma.BigIntNullableFilter<"CampaignBatch"> | bigint | number | null
+  endSequence?: Prisma.BigIntNullableFilter<"CampaignBatch"> | bigint | number | null
+  startContactId?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
+  endContactId?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
+  processedCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  successCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  failedCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  retryCount?: Prisma.IntFilter<"CampaignBatch"> | number
+  lockedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
+  lockToken?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
+  queuedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
   startedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
   finishedAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
+  lastHeartbeatAt?: Prisma.DateTimeNullableFilter<"CampaignBatch"> | Date | string | null
+  error?: Prisma.StringNullableFilter<"CampaignBatch"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CampaignBatch"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"CampaignBatch"> | Date | string
 }
 
 export type CampaignBatchCreateWithoutMessagesInput = {
@@ -574,9 +968,23 @@ export type CampaignBatchCreateWithoutMessagesInput = {
   batchIndex: number
   size: number
   status?: $Enums.BatchStatus
+  startSequence?: bigint | number | null
+  endSequence?: bigint | number | null
+  startContactId?: string | null
+  endContactId?: string | null
+  processedCount?: number
+  successCount?: number
+  failedCount?: number
+  retryCount?: number
+  lockedAt?: Date | string | null
+  lockToken?: string | null
+  queuedAt?: Date | string | null
   startedAt?: Date | string | null
   finishedAt?: Date | string | null
+  lastHeartbeatAt?: Date | string | null
+  error?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
   campaign: Prisma.CampaignCreateNestedOneWithoutBatchesInput
 }
 
@@ -586,9 +994,23 @@ export type CampaignBatchUncheckedCreateWithoutMessagesInput = {
   batchIndex: number
   size: number
   status?: $Enums.BatchStatus
+  startSequence?: bigint | number | null
+  endSequence?: bigint | number | null
+  startContactId?: string | null
+  endContactId?: string | null
+  processedCount?: number
+  successCount?: number
+  failedCount?: number
+  retryCount?: number
+  lockedAt?: Date | string | null
+  lockToken?: string | null
+  queuedAt?: Date | string | null
   startedAt?: Date | string | null
   finishedAt?: Date | string | null
+  lastHeartbeatAt?: Date | string | null
+  error?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CampaignBatchCreateOrConnectWithoutMessagesInput = {
@@ -612,9 +1034,23 @@ export type CampaignBatchUpdateWithoutMessagesInput = {
   batchIndex?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumBatchStatusFieldUpdateOperationsInput | $Enums.BatchStatus
+  startSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  endSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  startContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  endContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  successCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   campaign?: Prisma.CampaignUpdateOneRequiredWithoutBatchesNestedInput
 }
 
@@ -624,9 +1060,23 @@ export type CampaignBatchUncheckedUpdateWithoutMessagesInput = {
   batchIndex?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumBatchStatusFieldUpdateOperationsInput | $Enums.BatchStatus
+  startSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  endSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  startContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  endContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  successCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CampaignBatchCreateManyCampaignInput = {
@@ -634,9 +1084,23 @@ export type CampaignBatchCreateManyCampaignInput = {
   batchIndex: number
   size: number
   status?: $Enums.BatchStatus
+  startSequence?: bigint | number | null
+  endSequence?: bigint | number | null
+  startContactId?: string | null
+  endContactId?: string | null
+  processedCount?: number
+  successCount?: number
+  failedCount?: number
+  retryCount?: number
+  lockedAt?: Date | string | null
+  lockToken?: string | null
+  queuedAt?: Date | string | null
   startedAt?: Date | string | null
   finishedAt?: Date | string | null
+  lastHeartbeatAt?: Date | string | null
+  error?: string | null
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CampaignBatchUpdateWithoutCampaignInput = {
@@ -644,9 +1108,23 @@ export type CampaignBatchUpdateWithoutCampaignInput = {
   batchIndex?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumBatchStatusFieldUpdateOperationsInput | $Enums.BatchStatus
+  startSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  endSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  startContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  endContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  successCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.CampaignMessageUpdateManyWithoutBatchNestedInput
 }
 
@@ -655,9 +1133,23 @@ export type CampaignBatchUncheckedUpdateWithoutCampaignInput = {
   batchIndex?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumBatchStatusFieldUpdateOperationsInput | $Enums.BatchStatus
+  startSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  endSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  startContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  endContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  successCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   messages?: Prisma.CampaignMessageUncheckedUpdateManyWithoutBatchNestedInput
 }
 
@@ -666,9 +1158,23 @@ export type CampaignBatchUncheckedUpdateManyWithoutCampaignInput = {
   batchIndex?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumBatchStatusFieldUpdateOperationsInput | $Enums.BatchStatus
+  startSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  endSequence?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  startContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  endContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  successCount?: Prisma.IntFieldUpdateOperationsInput | number
+  failedCount?: Prisma.IntFieldUpdateOperationsInput | number
+  retryCount?: Prisma.IntFieldUpdateOperationsInput | number
+  lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lockToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  queuedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   startedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   finishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastHeartbeatAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -708,9 +1214,23 @@ export type CampaignBatchSelect<ExtArgs extends runtime.Types.Extensions.Interna
   batchIndex?: boolean
   size?: boolean
   status?: boolean
+  startSequence?: boolean
+  endSequence?: boolean
+  startContactId?: boolean
+  endContactId?: boolean
+  processedCount?: boolean
+  successCount?: boolean
+  failedCount?: boolean
+  retryCount?: boolean
+  lockedAt?: boolean
+  lockToken?: boolean
+  queuedAt?: boolean
   startedAt?: boolean
   finishedAt?: boolean
+  lastHeartbeatAt?: boolean
+  error?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   messages?: boolean | Prisma.CampaignBatch$messagesArgs<ExtArgs>
   _count?: boolean | Prisma.CampaignBatchCountOutputTypeDefaultArgs<ExtArgs>
@@ -722,9 +1242,23 @@ export type CampaignBatchSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   batchIndex?: boolean
   size?: boolean
   status?: boolean
+  startSequence?: boolean
+  endSequence?: boolean
+  startContactId?: boolean
+  endContactId?: boolean
+  processedCount?: boolean
+  successCount?: boolean
+  failedCount?: boolean
+  retryCount?: boolean
+  lockedAt?: boolean
+  lockToken?: boolean
+  queuedAt?: boolean
   startedAt?: boolean
   finishedAt?: boolean
+  lastHeartbeatAt?: boolean
+  error?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campaignBatch"]>
 
@@ -734,9 +1268,23 @@ export type CampaignBatchSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   batchIndex?: boolean
   size?: boolean
   status?: boolean
+  startSequence?: boolean
+  endSequence?: boolean
+  startContactId?: boolean
+  endContactId?: boolean
+  processedCount?: boolean
+  successCount?: boolean
+  failedCount?: boolean
+  retryCount?: boolean
+  lockedAt?: boolean
+  lockToken?: boolean
+  queuedAt?: boolean
   startedAt?: boolean
   finishedAt?: boolean
+  lastHeartbeatAt?: boolean
+  error?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["campaignBatch"]>
 
@@ -746,12 +1294,26 @@ export type CampaignBatchSelectScalar = {
   batchIndex?: boolean
   size?: boolean
   status?: boolean
+  startSequence?: boolean
+  endSequence?: boolean
+  startContactId?: boolean
+  endContactId?: boolean
+  processedCount?: boolean
+  successCount?: boolean
+  failedCount?: boolean
+  retryCount?: boolean
+  lockedAt?: boolean
+  lockToken?: boolean
+  queuedAt?: boolean
   startedAt?: boolean
   finishedAt?: boolean
+  lastHeartbeatAt?: boolean
+  error?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type CampaignBatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaignId" | "batchIndex" | "size" | "status" | "startedAt" | "finishedAt" | "createdAt", ExtArgs["result"]["campaignBatch"]>
+export type CampaignBatchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaignId" | "batchIndex" | "size" | "status" | "startSequence" | "endSequence" | "startContactId" | "endContactId" | "processedCount" | "successCount" | "failedCount" | "retryCount" | "lockedAt" | "lockToken" | "queuedAt" | "startedAt" | "finishedAt" | "lastHeartbeatAt" | "error" | "createdAt" | "updatedAt", ExtArgs["result"]["campaignBatch"]>
 export type CampaignBatchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
   messages?: boolean | Prisma.CampaignBatch$messagesArgs<ExtArgs>
@@ -776,9 +1338,23 @@ export type $CampaignBatchPayload<ExtArgs extends runtime.Types.Extensions.Inter
     batchIndex: number
     size: number
     status: $Enums.BatchStatus
+    startSequence: bigint | null
+    endSequence: bigint | null
+    startContactId: string | null
+    endContactId: string | null
+    processedCount: number
+    successCount: number
+    failedCount: number
+    retryCount: number
+    lockedAt: Date | null
+    lockToken: string | null
+    queuedAt: Date | null
     startedAt: Date | null
     finishedAt: Date | null
+    lastHeartbeatAt: Date | null
+    error: string | null
     createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["campaignBatch"]>
   composites: {}
 }
@@ -1209,9 +1785,23 @@ export interface CampaignBatchFieldRefs {
   readonly batchIndex: Prisma.FieldRef<"CampaignBatch", 'Int'>
   readonly size: Prisma.FieldRef<"CampaignBatch", 'Int'>
   readonly status: Prisma.FieldRef<"CampaignBatch", 'BatchStatus'>
+  readonly startSequence: Prisma.FieldRef<"CampaignBatch", 'BigInt'>
+  readonly endSequence: Prisma.FieldRef<"CampaignBatch", 'BigInt'>
+  readonly startContactId: Prisma.FieldRef<"CampaignBatch", 'String'>
+  readonly endContactId: Prisma.FieldRef<"CampaignBatch", 'String'>
+  readonly processedCount: Prisma.FieldRef<"CampaignBatch", 'Int'>
+  readonly successCount: Prisma.FieldRef<"CampaignBatch", 'Int'>
+  readonly failedCount: Prisma.FieldRef<"CampaignBatch", 'Int'>
+  readonly retryCount: Prisma.FieldRef<"CampaignBatch", 'Int'>
+  readonly lockedAt: Prisma.FieldRef<"CampaignBatch", 'DateTime'>
+  readonly lockToken: Prisma.FieldRef<"CampaignBatch", 'String'>
+  readonly queuedAt: Prisma.FieldRef<"CampaignBatch", 'DateTime'>
   readonly startedAt: Prisma.FieldRef<"CampaignBatch", 'DateTime'>
   readonly finishedAt: Prisma.FieldRef<"CampaignBatch", 'DateTime'>
+  readonly lastHeartbeatAt: Prisma.FieldRef<"CampaignBatch", 'DateTime'>
+  readonly error: Prisma.FieldRef<"CampaignBatch", 'String'>
   readonly createdAt: Prisma.FieldRef<"CampaignBatch", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"CampaignBatch", 'DateTime'>
 }
     
 

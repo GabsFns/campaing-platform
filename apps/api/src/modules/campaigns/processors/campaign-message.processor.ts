@@ -2,92 +2,69 @@ import { Injectable } from '@nestjs/common';
 
 import { PrismaService } from '../../../prisma/prisma.service.js';
 
-import { BatchEngine } from '../engines/batch.engine.js';
 import { CampaignQueueProcessor } from './campaign-Queue.processor.js';
 
 @Injectable()
 export class CampaignMessageProcessor {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly batchEngine: BatchEngine,
+
     private readonly campaignQueueProcessor: CampaignQueueProcessor,
   ) {}
 
+  /**
+   * PROCESSA CAMPANHA
+   *
+   * Responsável apenas por:
+   *
+   * - buscar batches pendentes
+   * - enviar batches para fila
+   */
   async process(campaignId: string) {
-    const messages = await this.prisma.campaignMessage.findMany({
+    /**
+     * BUSCA BATCHES
+     */
+    const batches = await this.prisma.campaignBatch.findMany({
       where: {
         campaignId,
+
         status: 'PENDING',
       },
 
       orderBy: {
-        createdAt: 'asc',
+        batchIndex: 'asc',
+      },
+
+      select: {
+        id: true,
       },
     });
 
-    if (messages.length === 0) {
+    /**
+     * SEM BATCHES
+     */
+    if (batches.length === 0) {
       return;
     }
 
     /**
-     * CRIA BATCHES EM MEMÓRIA
+     * ENQUEUE DOS BATCHES
      */
-    const batches = this.batchEngine.createBatches(messages, 100);
+    for (const batch of batches) {
+      await this.campaignQueueProcessor.enqueueBatch(batch.id);
+    }
 
     /**
-     * TRANSACTION
+     * UPDATE STATUS CAMPANHA
      */
-    await this.prisma.$transaction(async (tx) => {
-      for (const [index, batchMessages] of batches.entries()) {
-        /**
-         * CRIA BATCH
-         */
-        const batch = await tx.campaignBatch.create({
-          data: {
-            campaignId,
+    await this.prisma.campaign.update({
+      where: {
+        id: campaignId,
+      },
 
-            batchIndex: index + 1,
-
-            size: batchMessages.length,
-
-            status: 'PENDING',
-          },
-        });
-
-        /**
-         * VINCULA MESSAGES AO BATCH
-         */
-        await tx.campaignMessage.updateMany({
-          where: {
-            id: {
-              in: batchMessages.map((message) => message.id),
-            },
-          },
-
-          data: {
-            batchId: batch.id,
-          },
-        });
-      }
-
-      /**
-       * UPDATE STATUS CAMPANHA
-       */
-      await tx.campaign.update({
-        where: {
-          id: campaignId,
-        },
-
-        data: {
-          status: 'PROCESSING',
-        },
-      });
+      data: {
+        status: 'RUNNING',
+      },
     });
-
-    /**
-     * REDIS / BULLMQ
-     * FORA DA TRANSACTION
-     */
-    await this.campaignQueueProcessor.process(campaignId);
   }
 }

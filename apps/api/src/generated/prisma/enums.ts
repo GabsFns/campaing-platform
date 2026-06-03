@@ -74,7 +74,8 @@ export const BatchStatus = {
   RUNNING: 'RUNNING',
   FINISHED: 'FINISHED',
   PARTIAL: 'PARTIAL',
-  FAILED: 'FAILED'
+  FAILED: 'FAILED',
+  QUEUED: 'QUEUED'
 } as const
 
 export type BatchStatus = (typeof BatchStatus)[keyof typeof BatchStatus]

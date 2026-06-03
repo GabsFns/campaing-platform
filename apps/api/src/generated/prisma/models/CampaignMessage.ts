@@ -47,8 +47,11 @@ export type CampaignMessageMinAggregateOutputType = {
   senderNumberId: string | null
   workspaceId: string | null
   sellerId: string | null
+  generationKey: string | null
   status: $Enums.MessageStatus | null
   error: string | null
+  providerTimestamp: Date | null
+  providerStatus: string | null
   providerId: string | null
   chatwootConversationId: number | null
   chatwootInboxId: number | null
@@ -58,6 +61,8 @@ export type CampaignMessageMinAggregateOutputType = {
   deliveredAt: Date | null
   readAt: Date | null
   lockedAt: Date | null
+  processedAt: Date | null
+  processingStartedAt: Date | null
   retryCount: number | null
   nextRetryAt: Date | null
   createdAt: Date | null
@@ -72,8 +77,11 @@ export type CampaignMessageMaxAggregateOutputType = {
   senderNumberId: string | null
   workspaceId: string | null
   sellerId: string | null
+  generationKey: string | null
   status: $Enums.MessageStatus | null
   error: string | null
+  providerTimestamp: Date | null
+  providerStatus: string | null
   providerId: string | null
   chatwootConversationId: number | null
   chatwootInboxId: number | null
@@ -83,6 +91,8 @@ export type CampaignMessageMaxAggregateOutputType = {
   deliveredAt: Date | null
   readAt: Date | null
   lockedAt: Date | null
+  processedAt: Date | null
+  processingStartedAt: Date | null
   retryCount: number | null
   nextRetryAt: Date | null
   createdAt: Date | null
@@ -97,9 +107,13 @@ export type CampaignMessageCountAggregateOutputType = {
   senderNumberId: number
   workspaceId: number
   sellerId: number
+  generationKey: number
   status: number
   error: number
   providerPayload: number
+  providerRawResponse: number
+  providerTimestamp: number
+  providerStatus: number
   providerId: number
   chatwootConversationId: number
   chatwootInboxId: number
@@ -109,6 +123,8 @@ export type CampaignMessageCountAggregateOutputType = {
   deliveredAt: number
   readAt: number
   lockedAt: number
+  processedAt: number
+  processingStartedAt: number
   retryCount: number
   nextRetryAt: number
   createdAt: number
@@ -137,8 +153,11 @@ export type CampaignMessageMinAggregateInputType = {
   senderNumberId?: true
   workspaceId?: true
   sellerId?: true
+  generationKey?: true
   status?: true
   error?: true
+  providerTimestamp?: true
+  providerStatus?: true
   providerId?: true
   chatwootConversationId?: true
   chatwootInboxId?: true
@@ -148,6 +167,8 @@ export type CampaignMessageMinAggregateInputType = {
   deliveredAt?: true
   readAt?: true
   lockedAt?: true
+  processedAt?: true
+  processingStartedAt?: true
   retryCount?: true
   nextRetryAt?: true
   createdAt?: true
@@ -162,8 +183,11 @@ export type CampaignMessageMaxAggregateInputType = {
   senderNumberId?: true
   workspaceId?: true
   sellerId?: true
+  generationKey?: true
   status?: true
   error?: true
+  providerTimestamp?: true
+  providerStatus?: true
   providerId?: true
   chatwootConversationId?: true
   chatwootInboxId?: true
@@ -173,6 +197,8 @@ export type CampaignMessageMaxAggregateInputType = {
   deliveredAt?: true
   readAt?: true
   lockedAt?: true
+  processedAt?: true
+  processingStartedAt?: true
   retryCount?: true
   nextRetryAt?: true
   createdAt?: true
@@ -187,9 +213,13 @@ export type CampaignMessageCountAggregateInputType = {
   senderNumberId?: true
   workspaceId?: true
   sellerId?: true
+  generationKey?: true
   status?: true
   error?: true
   providerPayload?: true
+  providerRawResponse?: true
+  providerTimestamp?: true
+  providerStatus?: true
   providerId?: true
   chatwootConversationId?: true
   chatwootInboxId?: true
@@ -199,6 +229,8 @@ export type CampaignMessageCountAggregateInputType = {
   deliveredAt?: true
   readAt?: true
   lockedAt?: true
+  processedAt?: true
+  processingStartedAt?: true
   retryCount?: true
   nextRetryAt?: true
   createdAt?: true
@@ -300,9 +332,13 @@ export type CampaignMessageGroupByOutputType = {
   senderNumberId: string | null
   workspaceId: string
   sellerId: string | null
+  generationKey: string | null
   status: $Enums.MessageStatus
   error: string | null
   providerPayload: runtime.JsonValue | null
+  providerRawResponse: runtime.JsonValue | null
+  providerTimestamp: Date | null
+  providerStatus: string | null
   providerId: string | null
   chatwootConversationId: number | null
   chatwootInboxId: number | null
@@ -312,6 +348,8 @@ export type CampaignMessageGroupByOutputType = {
   deliveredAt: Date | null
   readAt: Date | null
   lockedAt: Date | null
+  processedAt: Date | null
+  processingStartedAt: Date | null
   retryCount: number
   nextRetryAt: Date | null
   createdAt: Date
@@ -349,9 +387,13 @@ export type CampaignMessageWhereInput = {
   senderNumberId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   workspaceId?: Prisma.StringFilter<"CampaignMessage"> | string
   sellerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
+  generationKey?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   status?: Prisma.EnumMessageStatusFilter<"CampaignMessage"> | $Enums.MessageStatus
   error?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   providerPayload?: Prisma.JsonNullableFilter<"CampaignMessage">
+  providerRawResponse?: Prisma.JsonNullableFilter<"CampaignMessage">
+  providerTimestamp?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
+  providerStatus?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   providerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   chatwootConversationId?: Prisma.IntNullableFilter<"CampaignMessage"> | number | null
   chatwootInboxId?: Prisma.IntNullableFilter<"CampaignMessage"> | number | null
@@ -361,6 +403,8 @@ export type CampaignMessageWhereInput = {
   deliveredAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   readAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   lockedAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
+  processedAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
+  processingStartedAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   retryCount?: Prisma.IntFilter<"CampaignMessage"> | number
   nextRetryAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"CampaignMessage"> | Date | string
@@ -383,9 +427,13 @@ export type CampaignMessageOrderByWithRelationInput = {
   senderNumberId?: Prisma.SortOrderInput | Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  generationKey?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrderInput | Prisma.SortOrder
   providerPayload?: Prisma.SortOrderInput | Prisma.SortOrder
+  providerRawResponse?: Prisma.SortOrderInput | Prisma.SortOrder
+  providerTimestamp?: Prisma.SortOrderInput | Prisma.SortOrder
+  providerStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   providerId?: Prisma.SortOrderInput | Prisma.SortOrder
   chatwootConversationId?: Prisma.SortOrderInput | Prisma.SortOrder
   chatwootInboxId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -395,6 +443,8 @@ export type CampaignMessageOrderByWithRelationInput = {
   deliveredAt?: Prisma.SortOrderInput | Prisma.SortOrder
   readAt?: Prisma.SortOrderInput | Prisma.SortOrder
   lockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  processedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  processingStartedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   retryCount?: Prisma.SortOrder
   nextRetryAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -410,6 +460,7 @@ export type CampaignMessageOrderByWithRelationInput = {
 
 export type CampaignMessageWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  campaignId_contactId?: Prisma.CampaignMessageCampaignIdContactIdCompoundUniqueInput
   AND?: Prisma.CampaignMessageWhereInput | Prisma.CampaignMessageWhereInput[]
   OR?: Prisma.CampaignMessageWhereInput[]
   NOT?: Prisma.CampaignMessageWhereInput | Prisma.CampaignMessageWhereInput[]
@@ -420,9 +471,13 @@ export type CampaignMessageWhereUniqueInput = Prisma.AtLeast<{
   senderNumberId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   workspaceId?: Prisma.StringFilter<"CampaignMessage"> | string
   sellerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
+  generationKey?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   status?: Prisma.EnumMessageStatusFilter<"CampaignMessage"> | $Enums.MessageStatus
   error?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   providerPayload?: Prisma.JsonNullableFilter<"CampaignMessage">
+  providerRawResponse?: Prisma.JsonNullableFilter<"CampaignMessage">
+  providerTimestamp?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
+  providerStatus?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   providerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   chatwootConversationId?: Prisma.IntNullableFilter<"CampaignMessage"> | number | null
   chatwootInboxId?: Prisma.IntNullableFilter<"CampaignMessage"> | number | null
@@ -432,6 +487,8 @@ export type CampaignMessageWhereUniqueInput = Prisma.AtLeast<{
   deliveredAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   readAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   lockedAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
+  processedAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
+  processingStartedAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   retryCount?: Prisma.IntFilter<"CampaignMessage"> | number
   nextRetryAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"CampaignMessage"> | Date | string
@@ -443,7 +500,7 @@ export type CampaignMessageWhereUniqueInput = Prisma.AtLeast<{
   seller?: Prisma.XOR<Prisma.SellerNullableScalarRelationFilter, Prisma.SellerWhereInput> | null
   events?: Prisma.MessageEventListRelationFilter
   deadLetters?: Prisma.DeadLetterMessageListRelationFilter
-}, "id">
+}, "id" | "campaignId_contactId">
 
 export type CampaignMessageOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -454,9 +511,13 @@ export type CampaignMessageOrderByWithAggregationInput = {
   senderNumberId?: Prisma.SortOrderInput | Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  generationKey?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrderInput | Prisma.SortOrder
   providerPayload?: Prisma.SortOrderInput | Prisma.SortOrder
+  providerRawResponse?: Prisma.SortOrderInput | Prisma.SortOrder
+  providerTimestamp?: Prisma.SortOrderInput | Prisma.SortOrder
+  providerStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   providerId?: Prisma.SortOrderInput | Prisma.SortOrder
   chatwootConversationId?: Prisma.SortOrderInput | Prisma.SortOrder
   chatwootInboxId?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -466,6 +527,8 @@ export type CampaignMessageOrderByWithAggregationInput = {
   deliveredAt?: Prisma.SortOrderInput | Prisma.SortOrder
   readAt?: Prisma.SortOrderInput | Prisma.SortOrder
   lockedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  processedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  processingStartedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   retryCount?: Prisma.SortOrder
   nextRetryAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -488,9 +551,13 @@ export type CampaignMessageScalarWhereWithAggregatesInput = {
   senderNumberId?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
   workspaceId?: Prisma.StringWithAggregatesFilter<"CampaignMessage"> | string
   sellerId?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
+  generationKey?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
   status?: Prisma.EnumMessageStatusWithAggregatesFilter<"CampaignMessage"> | $Enums.MessageStatus
   error?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
   providerPayload?: Prisma.JsonNullableWithAggregatesFilter<"CampaignMessage">
+  providerRawResponse?: Prisma.JsonNullableWithAggregatesFilter<"CampaignMessage">
+  providerTimestamp?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignMessage"> | Date | string | null
+  providerStatus?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
   providerId?: Prisma.StringNullableWithAggregatesFilter<"CampaignMessage"> | string | null
   chatwootConversationId?: Prisma.IntNullableWithAggregatesFilter<"CampaignMessage"> | number | null
   chatwootInboxId?: Prisma.IntNullableWithAggregatesFilter<"CampaignMessage"> | number | null
@@ -500,6 +567,8 @@ export type CampaignMessageScalarWhereWithAggregatesInput = {
   deliveredAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignMessage"> | Date | string | null
   readAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignMessage"> | Date | string | null
   lockedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignMessage"> | Date | string | null
+  processedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignMessage"> | Date | string | null
+  processingStartedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignMessage"> | Date | string | null
   retryCount?: Prisma.IntWithAggregatesFilter<"CampaignMessage"> | number
   nextRetryAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CampaignMessage"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CampaignMessage"> | Date | string
@@ -508,9 +577,13 @@ export type CampaignMessageScalarWhereWithAggregatesInput = {
 export type CampaignMessageCreateInput = {
   id?: string
   phoneNormalized: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -520,6 +593,8 @@ export type CampaignMessageCreateInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -542,9 +617,13 @@ export type CampaignMessageUncheckedCreateInput = {
   senderNumberId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -554,6 +633,8 @@ export type CampaignMessageUncheckedCreateInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -564,9 +645,13 @@ export type CampaignMessageUncheckedCreateInput = {
 export type CampaignMessageUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -576,6 +661,8 @@ export type CampaignMessageUpdateInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -598,9 +685,13 @@ export type CampaignMessageUncheckedUpdateInput = {
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -610,6 +701,8 @@ export type CampaignMessageUncheckedUpdateInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -626,9 +719,13 @@ export type CampaignMessageCreateManyInput = {
   senderNumberId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -638,6 +735,8 @@ export type CampaignMessageCreateManyInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -646,9 +745,13 @@ export type CampaignMessageCreateManyInput = {
 export type CampaignMessageUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -658,6 +761,8 @@ export type CampaignMessageUpdateManyMutationInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -672,9 +777,13 @@ export type CampaignMessageUncheckedUpdateManyInput = {
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -684,6 +793,8 @@ export type CampaignMessageUncheckedUpdateManyInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -699,6 +810,11 @@ export type CampaignMessageOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type CampaignMessageCampaignIdContactIdCompoundUniqueInput = {
+  campaignId: string
+  contactId: string
+}
+
 export type CampaignMessageCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   campaignId?: Prisma.SortOrder
@@ -708,9 +824,13 @@ export type CampaignMessageCountOrderByAggregateInput = {
   senderNumberId?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
+  generationKey?: Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrder
   providerPayload?: Prisma.SortOrder
+  providerRawResponse?: Prisma.SortOrder
+  providerTimestamp?: Prisma.SortOrder
+  providerStatus?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
   chatwootConversationId?: Prisma.SortOrder
   chatwootInboxId?: Prisma.SortOrder
@@ -720,6 +840,8 @@ export type CampaignMessageCountOrderByAggregateInput = {
   deliveredAt?: Prisma.SortOrder
   readAt?: Prisma.SortOrder
   lockedAt?: Prisma.SortOrder
+  processedAt?: Prisma.SortOrder
+  processingStartedAt?: Prisma.SortOrder
   retryCount?: Prisma.SortOrder
   nextRetryAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -740,8 +862,11 @@ export type CampaignMessageMaxOrderByAggregateInput = {
   senderNumberId?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
+  generationKey?: Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrder
+  providerTimestamp?: Prisma.SortOrder
+  providerStatus?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
   chatwootConversationId?: Prisma.SortOrder
   chatwootInboxId?: Prisma.SortOrder
@@ -751,6 +876,8 @@ export type CampaignMessageMaxOrderByAggregateInput = {
   deliveredAt?: Prisma.SortOrder
   readAt?: Prisma.SortOrder
   lockedAt?: Prisma.SortOrder
+  processedAt?: Prisma.SortOrder
+  processingStartedAt?: Prisma.SortOrder
   retryCount?: Prisma.SortOrder
   nextRetryAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -765,8 +892,11 @@ export type CampaignMessageMinOrderByAggregateInput = {
   senderNumberId?: Prisma.SortOrder
   workspaceId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
+  generationKey?: Prisma.SortOrder
   status?: Prisma.SortOrder
   error?: Prisma.SortOrder
+  providerTimestamp?: Prisma.SortOrder
+  providerStatus?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
   chatwootConversationId?: Prisma.SortOrder
   chatwootInboxId?: Prisma.SortOrder
@@ -776,6 +906,8 @@ export type CampaignMessageMinOrderByAggregateInput = {
   deliveredAt?: Prisma.SortOrder
   readAt?: Prisma.SortOrder
   lockedAt?: Prisma.SortOrder
+  processedAt?: Prisma.SortOrder
+  processingStartedAt?: Prisma.SortOrder
   retryCount?: Prisma.SortOrder
   nextRetryAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1083,9 +1215,13 @@ export type CampaignMessageUncheckedUpdateManyWithoutSenderNumberNestedInput = {
 export type CampaignMessageCreateWithoutWorkspaceInput = {
   id?: string
   phoneNormalized: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1095,6 +1231,8 @@ export type CampaignMessageCreateWithoutWorkspaceInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1115,9 +1253,13 @@ export type CampaignMessageUncheckedCreateWithoutWorkspaceInput = {
   batchId?: string | null
   senderNumberId?: string | null
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1127,6 +1269,8 @@ export type CampaignMessageUncheckedCreateWithoutWorkspaceInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1172,9 +1316,13 @@ export type CampaignMessageScalarWhereInput = {
   senderNumberId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   workspaceId?: Prisma.StringFilter<"CampaignMessage"> | string
   sellerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
+  generationKey?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   status?: Prisma.EnumMessageStatusFilter<"CampaignMessage"> | $Enums.MessageStatus
   error?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   providerPayload?: Prisma.JsonNullableFilter<"CampaignMessage">
+  providerRawResponse?: Prisma.JsonNullableFilter<"CampaignMessage">
+  providerTimestamp?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
+  providerStatus?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   providerId?: Prisma.StringNullableFilter<"CampaignMessage"> | string | null
   chatwootConversationId?: Prisma.IntNullableFilter<"CampaignMessage"> | number | null
   chatwootInboxId?: Prisma.IntNullableFilter<"CampaignMessage"> | number | null
@@ -1184,6 +1332,8 @@ export type CampaignMessageScalarWhereInput = {
   deliveredAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   readAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   lockedAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
+  processedAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
+  processingStartedAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   retryCount?: Prisma.IntFilter<"CampaignMessage"> | number
   nextRetryAt?: Prisma.DateTimeNullableFilter<"CampaignMessage"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"CampaignMessage"> | Date | string
@@ -1192,9 +1342,13 @@ export type CampaignMessageScalarWhereInput = {
 export type CampaignMessageCreateWithoutContactInput = {
   id?: string
   phoneNormalized: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1204,6 +1358,8 @@ export type CampaignMessageCreateWithoutContactInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1224,9 +1380,13 @@ export type CampaignMessageUncheckedCreateWithoutContactInput = {
   senderNumberId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1236,6 +1396,8 @@ export type CampaignMessageUncheckedCreateWithoutContactInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1272,9 +1434,13 @@ export type CampaignMessageUpdateManyWithWhereWithoutContactInput = {
 export type CampaignMessageCreateWithoutSellerInput = {
   id?: string
   phoneNormalized: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1284,6 +1450,8 @@ export type CampaignMessageCreateWithoutSellerInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1304,9 +1472,13 @@ export type CampaignMessageUncheckedCreateWithoutSellerInput = {
   batchId?: string | null
   senderNumberId?: string | null
   workspaceId: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1316,6 +1488,8 @@ export type CampaignMessageUncheckedCreateWithoutSellerInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1352,9 +1526,13 @@ export type CampaignMessageUpdateManyWithWhereWithoutSellerInput = {
 export type CampaignMessageCreateWithoutCampaignInput = {
   id?: string
   phoneNormalized: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1364,6 +1542,8 @@ export type CampaignMessageCreateWithoutCampaignInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1384,9 +1564,13 @@ export type CampaignMessageUncheckedCreateWithoutCampaignInput = {
   senderNumberId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1396,6 +1580,8 @@ export type CampaignMessageUncheckedCreateWithoutCampaignInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1432,9 +1618,13 @@ export type CampaignMessageUpdateManyWithWhereWithoutCampaignInput = {
 export type CampaignMessageCreateWithoutBatchInput = {
   id?: string
   phoneNormalized: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1444,6 +1634,8 @@ export type CampaignMessageCreateWithoutBatchInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1464,9 +1656,13 @@ export type CampaignMessageUncheckedCreateWithoutBatchInput = {
   senderNumberId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1476,6 +1672,8 @@ export type CampaignMessageUncheckedCreateWithoutBatchInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1512,9 +1710,13 @@ export type CampaignMessageUpdateManyWithWhereWithoutBatchInput = {
 export type CampaignMessageCreateWithoutDeadLettersInput = {
   id?: string
   phoneNormalized: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1524,6 +1726,8 @@ export type CampaignMessageCreateWithoutDeadLettersInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1545,9 +1749,13 @@ export type CampaignMessageUncheckedCreateWithoutDeadLettersInput = {
   senderNumberId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1557,6 +1765,8 @@ export type CampaignMessageUncheckedCreateWithoutDeadLettersInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1582,9 +1792,13 @@ export type CampaignMessageUpdateToOneWithWhereWithoutDeadLettersInput = {
 export type CampaignMessageUpdateWithoutDeadLettersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1594,6 +1808,8 @@ export type CampaignMessageUpdateWithoutDeadLettersInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1615,9 +1831,13 @@ export type CampaignMessageUncheckedUpdateWithoutDeadLettersInput = {
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1627,6 +1847,8 @@ export type CampaignMessageUncheckedUpdateWithoutDeadLettersInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1636,9 +1858,13 @@ export type CampaignMessageUncheckedUpdateWithoutDeadLettersInput = {
 export type CampaignMessageCreateWithoutEventsInput = {
   id?: string
   phoneNormalized: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1648,6 +1874,8 @@ export type CampaignMessageCreateWithoutEventsInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1669,9 +1897,13 @@ export type CampaignMessageUncheckedCreateWithoutEventsInput = {
   senderNumberId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1681,6 +1913,8 @@ export type CampaignMessageUncheckedCreateWithoutEventsInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1706,9 +1940,13 @@ export type CampaignMessageUpdateToOneWithWhereWithoutEventsInput = {
 export type CampaignMessageUpdateWithoutEventsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1718,6 +1956,8 @@ export type CampaignMessageUpdateWithoutEventsInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1739,9 +1979,13 @@ export type CampaignMessageUncheckedUpdateWithoutEventsInput = {
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1751,6 +1995,8 @@ export type CampaignMessageUncheckedUpdateWithoutEventsInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1760,9 +2006,13 @@ export type CampaignMessageUncheckedUpdateWithoutEventsInput = {
 export type CampaignMessageCreateWithoutSenderNumberInput = {
   id?: string
   phoneNormalized: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1772,6 +2022,8 @@ export type CampaignMessageCreateWithoutSenderNumberInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1792,9 +2044,13 @@ export type CampaignMessageUncheckedCreateWithoutSenderNumberInput = {
   batchId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1804,6 +2060,8 @@ export type CampaignMessageUncheckedCreateWithoutSenderNumberInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1845,9 +2103,13 @@ export type CampaignMessageCreateManyWorkspaceInput = {
   batchId?: string | null
   senderNumberId?: string | null
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1857,6 +2119,8 @@ export type CampaignMessageCreateManyWorkspaceInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1865,9 +2129,13 @@ export type CampaignMessageCreateManyWorkspaceInput = {
 export type CampaignMessageUpdateWithoutWorkspaceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1877,6 +2145,8 @@ export type CampaignMessageUpdateWithoutWorkspaceInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1897,9 +2167,13 @@ export type CampaignMessageUncheckedUpdateWithoutWorkspaceInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1909,6 +2183,8 @@ export type CampaignMessageUncheckedUpdateWithoutWorkspaceInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1924,9 +2200,13 @@ export type CampaignMessageUncheckedUpdateManyWithoutWorkspaceInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1936,6 +2216,8 @@ export type CampaignMessageUncheckedUpdateManyWithoutWorkspaceInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1949,9 +2231,13 @@ export type CampaignMessageCreateManyContactInput = {
   senderNumberId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -1961,6 +2247,8 @@ export type CampaignMessageCreateManyContactInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -1969,9 +2257,13 @@ export type CampaignMessageCreateManyContactInput = {
 export type CampaignMessageUpdateWithoutContactInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1981,6 +2273,8 @@ export type CampaignMessageUpdateWithoutContactInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2001,9 +2295,13 @@ export type CampaignMessageUncheckedUpdateWithoutContactInput = {
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2013,6 +2311,8 @@ export type CampaignMessageUncheckedUpdateWithoutContactInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2028,9 +2328,13 @@ export type CampaignMessageUncheckedUpdateManyWithoutContactInput = {
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2040,6 +2344,8 @@ export type CampaignMessageUncheckedUpdateManyWithoutContactInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2053,9 +2359,13 @@ export type CampaignMessageCreateManySellerInput = {
   batchId?: string | null
   senderNumberId?: string | null
   workspaceId: string
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -2065,6 +2375,8 @@ export type CampaignMessageCreateManySellerInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -2073,9 +2385,13 @@ export type CampaignMessageCreateManySellerInput = {
 export type CampaignMessageUpdateWithoutSellerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2085,6 +2401,8 @@ export type CampaignMessageUpdateWithoutSellerInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2105,9 +2423,13 @@ export type CampaignMessageUncheckedUpdateWithoutSellerInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2117,6 +2439,8 @@ export type CampaignMessageUncheckedUpdateWithoutSellerInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2132,9 +2456,13 @@ export type CampaignMessageUncheckedUpdateManyWithoutSellerInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2144,6 +2472,8 @@ export type CampaignMessageUncheckedUpdateManyWithoutSellerInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2157,9 +2487,13 @@ export type CampaignMessageCreateManyCampaignInput = {
   senderNumberId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -2169,6 +2503,8 @@ export type CampaignMessageCreateManyCampaignInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -2177,9 +2513,13 @@ export type CampaignMessageCreateManyCampaignInput = {
 export type CampaignMessageUpdateWithoutCampaignInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2189,6 +2529,8 @@ export type CampaignMessageUpdateWithoutCampaignInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2209,9 +2551,13 @@ export type CampaignMessageUncheckedUpdateWithoutCampaignInput = {
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2221,6 +2567,8 @@ export type CampaignMessageUncheckedUpdateWithoutCampaignInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2236,9 +2584,13 @@ export type CampaignMessageUncheckedUpdateManyWithoutCampaignInput = {
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2248,6 +2600,8 @@ export type CampaignMessageUncheckedUpdateManyWithoutCampaignInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2261,9 +2615,13 @@ export type CampaignMessageCreateManyBatchInput = {
   senderNumberId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -2273,6 +2631,8 @@ export type CampaignMessageCreateManyBatchInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -2281,9 +2641,13 @@ export type CampaignMessageCreateManyBatchInput = {
 export type CampaignMessageUpdateWithoutBatchInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2293,6 +2657,8 @@ export type CampaignMessageUpdateWithoutBatchInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2313,9 +2679,13 @@ export type CampaignMessageUncheckedUpdateWithoutBatchInput = {
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2325,6 +2695,8 @@ export type CampaignMessageUncheckedUpdateWithoutBatchInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2340,9 +2712,13 @@ export type CampaignMessageUncheckedUpdateManyWithoutBatchInput = {
   senderNumberId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2352,6 +2728,8 @@ export type CampaignMessageUncheckedUpdateManyWithoutBatchInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2365,9 +2743,13 @@ export type CampaignMessageCreateManySenderNumberInput = {
   batchId?: string | null
   workspaceId: string
   sellerId?: string | null
+  generationKey?: string | null
   status?: $Enums.MessageStatus
   error?: string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Date | string | null
+  providerStatus?: string | null
   providerId?: string | null
   chatwootConversationId?: number | null
   chatwootInboxId?: number | null
@@ -2377,6 +2759,8 @@ export type CampaignMessageCreateManySenderNumberInput = {
   deliveredAt?: Date | string | null
   readAt?: Date | string | null
   lockedAt?: Date | string | null
+  processedAt?: Date | string | null
+  processingStartedAt?: Date | string | null
   retryCount?: number
   nextRetryAt?: Date | string | null
   createdAt?: Date | string
@@ -2385,9 +2769,13 @@ export type CampaignMessageCreateManySenderNumberInput = {
 export type CampaignMessageUpdateWithoutSenderNumberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   phoneNormalized?: Prisma.StringFieldUpdateOperationsInput | string
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2397,6 +2785,8 @@ export type CampaignMessageUpdateWithoutSenderNumberInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2417,9 +2807,13 @@ export type CampaignMessageUncheckedUpdateWithoutSenderNumberInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2429,6 +2823,8 @@ export type CampaignMessageUncheckedUpdateWithoutSenderNumberInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2444,9 +2840,13 @@ export type CampaignMessageUncheckedUpdateManyWithoutSenderNumberInput = {
   batchId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   workspaceId?: Prisma.StringFieldUpdateOperationsInput | string
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  generationKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumMessageStatusFieldUpdateOperationsInput | $Enums.MessageStatus
   error?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerPayload?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerRawResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  providerTimestamp?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  providerStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   chatwootConversationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chatwootInboxId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -2456,6 +2856,8 @@ export type CampaignMessageUncheckedUpdateManyWithoutSenderNumberInput = {
   deliveredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   readAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lockedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  processingStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   retryCount?: Prisma.IntFieldUpdateOperationsInput | number
   nextRetryAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2510,9 +2912,13 @@ export type CampaignMessageSelect<ExtArgs extends runtime.Types.Extensions.Inter
   senderNumberId?: boolean
   workspaceId?: boolean
   sellerId?: boolean
+  generationKey?: boolean
   status?: boolean
   error?: boolean
   providerPayload?: boolean
+  providerRawResponse?: boolean
+  providerTimestamp?: boolean
+  providerStatus?: boolean
   providerId?: boolean
   chatwootConversationId?: boolean
   chatwootInboxId?: boolean
@@ -2522,6 +2928,8 @@ export type CampaignMessageSelect<ExtArgs extends runtime.Types.Extensions.Inter
   deliveredAt?: boolean
   readAt?: boolean
   lockedAt?: boolean
+  processedAt?: boolean
+  processingStartedAt?: boolean
   retryCount?: boolean
   nextRetryAt?: boolean
   createdAt?: boolean
@@ -2545,9 +2953,13 @@ export type CampaignMessageSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   senderNumberId?: boolean
   workspaceId?: boolean
   sellerId?: boolean
+  generationKey?: boolean
   status?: boolean
   error?: boolean
   providerPayload?: boolean
+  providerRawResponse?: boolean
+  providerTimestamp?: boolean
+  providerStatus?: boolean
   providerId?: boolean
   chatwootConversationId?: boolean
   chatwootInboxId?: boolean
@@ -2557,6 +2969,8 @@ export type CampaignMessageSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   deliveredAt?: boolean
   readAt?: boolean
   lockedAt?: boolean
+  processedAt?: boolean
+  processingStartedAt?: boolean
   retryCount?: boolean
   nextRetryAt?: boolean
   createdAt?: boolean
@@ -2577,9 +2991,13 @@ export type CampaignMessageSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   senderNumberId?: boolean
   workspaceId?: boolean
   sellerId?: boolean
+  generationKey?: boolean
   status?: boolean
   error?: boolean
   providerPayload?: boolean
+  providerRawResponse?: boolean
+  providerTimestamp?: boolean
+  providerStatus?: boolean
   providerId?: boolean
   chatwootConversationId?: boolean
   chatwootInboxId?: boolean
@@ -2589,6 +3007,8 @@ export type CampaignMessageSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   deliveredAt?: boolean
   readAt?: boolean
   lockedAt?: boolean
+  processedAt?: boolean
+  processingStartedAt?: boolean
   retryCount?: boolean
   nextRetryAt?: boolean
   createdAt?: boolean
@@ -2609,9 +3029,13 @@ export type CampaignMessageSelectScalar = {
   senderNumberId?: boolean
   workspaceId?: boolean
   sellerId?: boolean
+  generationKey?: boolean
   status?: boolean
   error?: boolean
   providerPayload?: boolean
+  providerRawResponse?: boolean
+  providerTimestamp?: boolean
+  providerStatus?: boolean
   providerId?: boolean
   chatwootConversationId?: boolean
   chatwootInboxId?: boolean
@@ -2621,12 +3045,14 @@ export type CampaignMessageSelectScalar = {
   deliveredAt?: boolean
   readAt?: boolean
   lockedAt?: boolean
+  processedAt?: boolean
+  processingStartedAt?: boolean
   retryCount?: boolean
   nextRetryAt?: boolean
   createdAt?: boolean
 }
 
-export type CampaignMessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaignId" | "contactId" | "phoneNormalized" | "batchId" | "senderNumberId" | "workspaceId" | "sellerId" | "status" | "error" | "providerPayload" | "providerId" | "chatwootConversationId" | "chatwootInboxId" | "lastEventType" | "queuedAt" | "sentAt" | "deliveredAt" | "readAt" | "lockedAt" | "retryCount" | "nextRetryAt" | "createdAt", ExtArgs["result"]["campaignMessage"]>
+export type CampaignMessageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaignId" | "contactId" | "phoneNormalized" | "batchId" | "senderNumberId" | "workspaceId" | "sellerId" | "generationKey" | "status" | "error" | "providerPayload" | "providerRawResponse" | "providerTimestamp" | "providerStatus" | "providerId" | "chatwootConversationId" | "chatwootInboxId" | "lastEventType" | "queuedAt" | "sentAt" | "deliveredAt" | "readAt" | "lockedAt" | "processedAt" | "processingStartedAt" | "retryCount" | "nextRetryAt" | "createdAt", ExtArgs["result"]["campaignMessage"]>
 export type CampaignMessageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   batch?: boolean | Prisma.CampaignMessage$batchArgs<ExtArgs>
   campaign?: boolean | Prisma.CampaignDefaultArgs<ExtArgs>
@@ -2676,9 +3102,13 @@ export type $CampaignMessagePayload<ExtArgs extends runtime.Types.Extensions.Int
     senderNumberId: string | null
     workspaceId: string
     sellerId: string | null
+    generationKey: string | null
     status: $Enums.MessageStatus
     error: string | null
     providerPayload: runtime.JsonValue | null
+    providerRawResponse: runtime.JsonValue | null
+    providerTimestamp: Date | null
+    providerStatus: string | null
     providerId: string | null
     chatwootConversationId: number | null
     chatwootInboxId: number | null
@@ -2688,6 +3118,8 @@ export type $CampaignMessagePayload<ExtArgs extends runtime.Types.Extensions.Int
     deliveredAt: Date | null
     readAt: Date | null
     lockedAt: Date | null
+    processedAt: Date | null
+    processingStartedAt: Date | null
     retryCount: number
     nextRetryAt: Date | null
     createdAt: Date
@@ -3130,9 +3562,13 @@ export interface CampaignMessageFieldRefs {
   readonly senderNumberId: Prisma.FieldRef<"CampaignMessage", 'String'>
   readonly workspaceId: Prisma.FieldRef<"CampaignMessage", 'String'>
   readonly sellerId: Prisma.FieldRef<"CampaignMessage", 'String'>
+  readonly generationKey: Prisma.FieldRef<"CampaignMessage", 'String'>
   readonly status: Prisma.FieldRef<"CampaignMessage", 'MessageStatus'>
   readonly error: Prisma.FieldRef<"CampaignMessage", 'String'>
   readonly providerPayload: Prisma.FieldRef<"CampaignMessage", 'Json'>
+  readonly providerRawResponse: Prisma.FieldRef<"CampaignMessage", 'Json'>
+  readonly providerTimestamp: Prisma.FieldRef<"CampaignMessage", 'DateTime'>
+  readonly providerStatus: Prisma.FieldRef<"CampaignMessage", 'String'>
   readonly providerId: Prisma.FieldRef<"CampaignMessage", 'String'>
   readonly chatwootConversationId: Prisma.FieldRef<"CampaignMessage", 'Int'>
   readonly chatwootInboxId: Prisma.FieldRef<"CampaignMessage", 'Int'>
@@ -3142,6 +3578,8 @@ export interface CampaignMessageFieldRefs {
   readonly deliveredAt: Prisma.FieldRef<"CampaignMessage", 'DateTime'>
   readonly readAt: Prisma.FieldRef<"CampaignMessage", 'DateTime'>
   readonly lockedAt: Prisma.FieldRef<"CampaignMessage", 'DateTime'>
+  readonly processedAt: Prisma.FieldRef<"CampaignMessage", 'DateTime'>
+  readonly processingStartedAt: Prisma.FieldRef<"CampaignMessage", 'DateTime'>
   readonly retryCount: Prisma.FieldRef<"CampaignMessage", 'Int'>
   readonly nextRetryAt: Prisma.FieldRef<"CampaignMessage", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"CampaignMessage", 'DateTime'>

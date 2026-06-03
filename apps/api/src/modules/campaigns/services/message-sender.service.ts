@@ -1,6 +1,7 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 
 import { PrismaService } from '../../../prisma/prisma.service.js';
+import { Prisma } from '@prisma/client';
 
 import { MetaApiService } from '../../meta/meta-api.service.js';
 
@@ -15,6 +16,11 @@ import { CampaignCompleteEngine } from '../engines/campaign-complete.engine.js';
 export class MessageSenderService {
   private readonly logger = new Logger(MessageSenderService.name);
 
+  /**
+   * Máximo de retries persistidos
+   */
+  private readonly maxRetries = 5;
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly metaApiService: MetaApiService,
@@ -26,6 +32,11 @@ export class MessageSenderService {
   async send(messageId: string) {
     /**
      * LOCK MESSAGE
+     *
+     * Garante:
+     * - idempotência
+     * - evita race condition
+     * - evita múltiplos workers
      */
     const lock = await this.prisma.campaignMessage.updateMany({
       where: {
@@ -40,11 +51,13 @@ export class MessageSenderService {
         status: 'PROCESSING',
 
         processingStartedAt: new Date(),
+
+        lockedAt: new Date(),
       },
     });
 
     /**
-     * MESSAGE JÁ PROCESSADA
+     * Outro worker já pegou
      */
     if (lock.count === 0) {
       this.logger.warn(`[MESSAGE_LOCKED] messageId=${messageId}`);
@@ -75,14 +88,51 @@ export class MessageSenderService {
       throw new NotFoundException('Message not found');
     }
 
+    /**
+     * IDEMPOTÊNCIA PROVIDER
+     *
+     * Evita duplo envio caso:
+     * - Meta recebeu
+     * - worker crashou antes do update
+     */
+    if (message.providerId) {
+      this.logger.warn(
+        `[MESSAGE_ALREADY_SENT] messageId=${message.id} providerId=${message.providerId}`,
+      );
+
+      return;
+    }
+
     this.logger.log(
       `[MESSAGE_SEND_START] messageId=${message.id} campaignId=${message.campaignId}`,
     );
 
-    /**
-     * RATE LIMIT
-     */
-    await this.rateLimitEngine.consume(message.senderNumberId ?? 'default');
+    const senderNumberId = message.senderNumberId;
+
+    if (!senderNumberId) {
+      throw new Error(`Message without senderNumberId: ${message.id}`);
+    }
+
+    const senderNumber = await this.prisma.senderNumber.findUnique({
+      where: {
+        id: senderNumberId,
+      },
+      select: {
+        id: true,
+        throughputLimit: true,
+      },
+    });
+
+    if (!senderNumber) {
+      throw new Error(
+        `SenderNumber not found: ${senderNumberId} (message=${message.id})`,
+      );
+    }
+
+    await this.rateLimitEngine.acquireSenderNumberThroughput(
+      senderNumber.id,
+      Number(senderNumber.throughputLimit),
+    );
 
     /**
      * CONNECTION
@@ -105,7 +155,7 @@ export class MessageSenderService {
 
     try {
       /**
-       * ENVIO META
+       * ENVIA META
        */
       const providerResponse = await this.metaApiService.sendTextMessage({
         accessToken: connection.accessToken,
@@ -120,45 +170,101 @@ export class MessageSenderService {
       const providerMessageId = providerResponse.messages?.[0]?.id;
 
       /**
-       * UPDATE MESSAGE
+       * PROVIDER TIMESTAMP
        */
-      await this.prisma.campaignMessage.update({
-        where: {
-          id: message.id,
-        },
-
-        data: {
-          status: 'SENT',
-
-          providerId: providerMessageId,
-
-          providerStatus: 'accepted',
-
-          providerTimestamp: new Date(),
-
-          providerRawResponse: providerResponse,
-
-          sentAt: new Date(),
-
-          processingStartedAt: null,
-
-          lastEventType: 'SENT',
-
-          error: null,
-        },
-      });
+      const providerTimestamp = providerResponse.messages?.[0]?.timestamp
+        ? new Date(providerResponse.messages[0].timestamp)
+        : new Date();
 
       /**
-       * EVENT LOG
+       * UPDATE MESSAGE + PROGRESS + EVENT
        */
-      await this.prisma.messageEvent.create({
-        data: {
-          messageId: message.id,
+      await this.prisma.$transaction(async (tx) => {
+        /**
+         * PROCESSAMENTO JÁ CONTABILIZADO?
+         */
+        const alreadyProcessed = await tx.campaignMessage.findUnique({
+          where: {
+            id: message.id,
+          },
 
-          type: 'SENT',
+          select: {
+            processedAt: true,
+          },
+        });
 
-          providerPayload: providerResponse,
-        },
+        /**
+         * UPDATE MESSAGE
+         */
+
+        const providerRawResponse = JSON.parse(
+          JSON.stringify(providerResponse),
+        ) as Prisma.InputJsonValue;
+
+        await tx.campaignMessage.update({
+          where: {
+            id: message.id,
+          },
+
+          data: {
+            status: 'SENT',
+
+            providerId: providerMessageId,
+
+            providerStatus: 'accepted',
+
+            providerTimestamp,
+
+            providerRawResponse,
+
+            sentAt: new Date(),
+
+            processingStartedAt: null,
+
+            nextRetryAt: null,
+
+            lastEventType: 'SENT',
+
+            error: null,
+
+            processedAt: alreadyProcessed?.processedAt
+              ? alreadyProcessed.processedAt
+              : new Date(),
+          },
+        });
+
+        /**
+         * INCREMENTA APENAS UMA VEZ
+         */
+        if (!alreadyProcessed?.processedAt) {
+          await tx.campaign.update({
+            where: {
+              id: message.campaignId,
+            },
+
+            data: {
+              processedContacts: {
+                increment: 1,
+              },
+            },
+          });
+        }
+
+        /**
+         * EVENT LOG
+         */
+        const providerPayload = JSON.parse(
+          JSON.stringify(providerResponse),
+        ) as Prisma.InputJsonValue;
+        await tx.messageEvent.create({
+          data: {
+            messageId: message.id,
+
+            type: 'SENT',
+
+            providerPayload,
+          },
+        });
       });
 
       this.logger.log(
@@ -199,13 +305,44 @@ export class MessageSenderService {
       });
 
       /**
-       * TEMPORARY / RATE LIMIT
+       * RETRY COUNT
+       */
+      const nextRetryCount = message.retryCount + 1;
+
+      /**
+       * EXPONENTIAL BACKOFF
+       *
+       * 1s
+       * 2s
+       * 4s
+       * 8s
+       * ...
+       * max 5min
+       */
+      const retryDelay = Math.min(1000 * Math.pow(2, nextRetryCount), 300000);
+
+      /**
+       * RETRYABLE ERRORS
        */
       if (
         errorType === CampaignErrorType.TEMPORARY ||
         errorType === CampaignErrorType.RATE_LIMIT ||
         errorType === CampaignErrorType.UNKNOWN
       ) {
+        /**
+         * ULTRAPASSOU RETRY?
+         */
+        if (nextRetryCount >= this.maxRetries) {
+          await this.moveToDeadLetter({
+            messageId: message.id,
+            campaignId: message.campaignId,
+            errorMessage,
+            errorType,
+          });
+
+          return;
+        }
+
         await this.prisma.campaignMessage.update({
           where: {
             id: message.id,
@@ -214,14 +351,25 @@ export class MessageSenderService {
           data: {
             status: 'RETRYING',
 
+            retryCount: {
+              increment: 1,
+            },
+
+            nextRetryAt: new Date(Date.now() + retryDelay),
+
             processingStartedAt: null,
 
             error: errorMessage,
           },
         });
 
-        this.logger.warn(`[MESSAGE_RETRY] messageId=${message.id}`);
+        this.logger.warn(
+          `[MESSAGE_RETRY] messageId=${message.id} retryCount=${nextRetryCount} retryInMs=${retryDelay}`,
+        );
 
+        /**
+         * BullMQ retry
+         */
         throw error;
       }
 
@@ -229,43 +377,81 @@ export class MessageSenderService {
        * AUTH ERROR
        */
       if (errorType === CampaignErrorType.AUTH) {
-        await this.prisma.metaConnection.update({
+        await this.failMessage({
+          message,
+          connectionId: connection.id,
+          errorMessage,
+          disconnectConnection: true,
+        });
+
+        this.logger.error(`[META_AUTH_FAILED] connectionId=${connection.id}`);
+
+        throw error;
+      }
+
+      /**
+       * ERRO PERMANENTE
+       */
+      await this.failMessage({
+        message,
+        errorMessage,
+      });
+
+      this.logger.error(`[MESSAGE_PERMANENT_FAILED] messageId=${message.id}`);
+    }
+  }
+
+  /**
+   * FAIL MESSAGE
+   */
+  private async failMessage(params: {
+    message: {
+      id: string;
+      campaignId: string;
+    };
+
+    errorMessage: string;
+
+    connectionId?: string;
+
+    disconnectConnection?: boolean;
+  }) {
+    const { message, errorMessage, connectionId, disconnectConnection } =
+      params;
+
+    await this.prisma.$transaction(async (tx) => {
+      /**
+       * PROCESSAMENTO JÁ CONTABILIZADO?
+       */
+      const alreadyProcessed = await tx.campaignMessage.findUnique({
+        where: {
+          id: message.id,
+        },
+
+        select: {
+          processedAt: true,
+        },
+      });
+
+      /**
+       * DISCONNECT META
+       */
+      if (disconnectConnection && connectionId) {
+        await tx.metaConnection.update({
           where: {
-            id: connection.id,
+            id: connectionId,
           },
 
           data: {
             status: 'DISCONNECTED',
           },
         });
-
-        await this.prisma.campaignMessage.update({
-          where: {
-            id: message.id,
-          },
-
-          data: {
-            status: 'FAILED',
-
-            processingStartedAt: null,
-
-            error: errorMessage,
-
-            lastEventType: 'FAILED',
-          },
-        });
-
-        this.logger.error(`[META_AUTH_FAILED] connectionId=${connection.id}`);
-
-        await this.campaignCompleteEngine.checkCompletion(message.campaignId);
-
-        throw error;
       }
 
       /**
-       * PERMANENT ERROR
+       * UPDATE MESSAGE
        */
-      await this.prisma.campaignMessage.update({
+      await tx.campaignMessage.update({
         where: {
           id: message.id,
         },
@@ -277,13 +463,139 @@ export class MessageSenderService {
 
           error: errorMessage,
 
+          nextRetryAt: null,
+
           lastEventType: 'FAILED',
+
+          processedAt: alreadyProcessed?.processedAt
+            ? alreadyProcessed.processedAt
+            : new Date(),
         },
       });
 
-      this.logger.error(`[MESSAGE_PERMANENT_FAILED] messageId=${message.id}`);
+      /**
+       * INCREMENTA APENAS UMA VEZ
+       */
+      if (!alreadyProcessed?.processedAt) {
+        await tx.campaign.update({
+          where: {
+            id: message.campaignId,
+          },
 
-      await this.campaignCompleteEngine.checkCompletion(message.campaignId);
-    }
+          data: {
+            processedContacts: {
+              increment: 1,
+            },
+          },
+        });
+      }
+    });
+
+    /**
+     * COMPLETION CHECK
+     */
+    await this.campaignCompleteEngine.checkCompletion(message.campaignId);
+  }
+
+  /**
+   * DEAD LETTER
+   */
+  private async moveToDeadLetter(params: {
+    messageId: string;
+    campaignId: string;
+    errorMessage: string;
+    errorType: CampaignErrorType;
+  }) {
+    const { messageId, campaignId, errorMessage, errorType } = params;
+
+    this.logger.error(
+      `[MESSAGE_DEAD_LETTER] messageId=${messageId} errorType=${errorType}`,
+    );
+
+    await this.prisma.$transaction(async (tx) => {
+      /**
+       * MESSAGE
+       */
+      const message = await tx.campaignMessage.findUnique({
+        where: {
+          id: messageId,
+        },
+      });
+
+      if (!message) {
+        return;
+      }
+
+      /**
+       * PROCESSADO?
+       */
+      const alreadyProcessed = !!message.processedAt;
+
+      /**
+       * DEAD LETTER
+       */
+      await tx.deadLetterMessage.create({
+        data: {
+          campaignMessageId: message.id,
+
+          error: errorMessage,
+
+          failedAt: new Date(),
+
+          payload: {
+            errorType,
+            retryCount: message.retryCount,
+          },
+          queueName: 'campaign-message',
+
+          jobName: 'send-message',
+        },
+      });
+
+      /**
+       * UPDATE MESSAGE
+       */
+      await tx.campaignMessage.update({
+        where: {
+          id: message.id,
+        },
+
+        data: {
+          status: 'FAILED',
+
+          processingStartedAt: null,
+
+          nextRetryAt: null,
+
+          error: errorMessage,
+
+          lastEventType: 'FAILED',
+
+          processedAt: alreadyProcessed ? message.processedAt : new Date(),
+        },
+      });
+
+      /**
+       * INCREMENTA UMA VEZ
+       */
+      if (!alreadyProcessed) {
+        await tx.campaign.update({
+          where: {
+            id: campaignId,
+          },
+
+          data: {
+            processedContacts: {
+              increment: 1,
+            },
+          },
+        });
+      }
+    });
+
+    /**
+     * COMPLETION CHECK
+     */
+    await this.campaignCompleteEngine.checkCompletion(campaignId);
   }
 }
