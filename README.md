@@ -1,4 +1,4 @@
-# 🚀 Campaign Platform
+# Campaign Platform
 
 Scalable multi-tenant WhatsApp campaign platform built with **NestJS**, **BullMQ**, **Redis**, **PostgreSQL**, **Prisma**, **Meta Cloud API**, and **Chatwoot**.
 
@@ -6,7 +6,7 @@ Designed to support high-throughput message delivery with fault tolerance, distr
 
 ---
 
-# ✨ Features
+# Features
 
 * Multi-tenant architecture
 * WhatsApp Cloud API integration
@@ -28,7 +28,7 @@ Designed to support high-throughput message delivery with fault tolerance, distr
 
 ---
 
-# 🏗 Architecture
+# Architecture
 
 ```text
 Campaign
@@ -88,7 +88,7 @@ Metrics
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
 ```text
 modules/
