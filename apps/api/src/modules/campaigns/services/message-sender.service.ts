@@ -1,24 +1,17 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-
 import { PrismaService } from '../../../prisma/prisma.service.js';
 import { Prisma } from '@prisma/client';
-
 import { MetaApiService } from '../../meta/meta-api.service.js';
-
 import { RateLimitEngine } from '../engines/rate-limit.engine.js';
 import { ErrorClassifierEngine } from '../engines/error-classifier.engine.js';
-
 import { CampaignErrorType } from '../type/campaigns.type.js';
-
 import { CampaignCompleteEngine } from '../engines/campaign-complete.engine.js';
+import { SenderNumberCacheService } from './cache.service.js';
+import { CampaignMetricsService } from './metrics-service.js';
 
 @Injectable()
 export class MessageSenderService {
   private readonly logger = new Logger(MessageSenderService.name);
-
-  /**
-   * Máximo de retries persistidos
-   */
   private readonly maxRetries = 5;
 
   constructor(
@@ -26,10 +19,13 @@ export class MessageSenderService {
     private readonly metaApiService: MetaApiService,
     private readonly rateLimitEngine: RateLimitEngine,
     private readonly errorClassifier: ErrorClassifierEngine,
+    private readonly senderCache: SenderNumberCacheService,
+    private readonly metricsService: CampaignMetricsService,
     private readonly campaignCompleteEngine: CampaignCompleteEngine,
   ) {}
 
   async send(messageId: string) {
+    const startTime = Date.now();
     /**
      * LOCK MESSAGE
      *
@@ -41,17 +37,14 @@ export class MessageSenderService {
     const lock = await this.prisma.campaignMessage.updateMany({
       where: {
         id: messageId,
-
         status: {
-          in: ['PENDING', 'RETRYING'],
+          in: ['QUEUED', 'PENDING', 'RETRYING'],
         },
       },
 
       data: {
         status: 'PROCESSING',
-
         processingStartedAt: new Date(),
-
         lockedAt: new Date(),
       },
     });
@@ -61,7 +54,6 @@ export class MessageSenderService {
      */
     if (lock.count === 0) {
       this.logger.warn(`[MESSAGE_LOCKED] messageId=${messageId}`);
-
       return;
     }
 
@@ -72,10 +64,8 @@ export class MessageSenderService {
       where: {
         id: messageId,
       },
-
       include: {
         campaign: true,
-
         workspace: {
           include: {
             MetaConnection: true,
@@ -99,8 +89,7 @@ export class MessageSenderService {
       this.logger.warn(
         `[MESSAGE_ALREADY_SENT] messageId=${message.id} providerId=${message.providerId}`,
       );
-
-      return;
+      return message.id;
     }
 
     this.logger.log(
@@ -108,20 +97,13 @@ export class MessageSenderService {
     );
 
     const senderNumberId = message.senderNumberId;
-
     if (!senderNumberId) {
       throw new Error(`Message without senderNumberId: ${message.id}`);
     }
-
-    const senderNumber = await this.prisma.senderNumber.findUnique({
-      where: {
-        id: senderNumberId,
-      },
-      select: {
-        id: true,
-        throughputLimit: true,
-      },
-    });
+    const senderNumber = await this.senderCache.get(
+      senderNumberId,
+      message.workspaceId,
+    );
 
     if (!senderNumber) {
       throw new Error(
@@ -138,7 +120,6 @@ export class MessageSenderService {
      * CONNECTION
      */
     const connection = message.workspace.MetaConnection[0];
-
     if (!connection) {
       throw new Error('Meta connection not found');
     }
@@ -159,11 +140,8 @@ export class MessageSenderService {
        */
       const providerResponse = await this.metaApiService.sendTextMessage({
         accessToken: connection.accessToken,
-
         phoneNumberId: connection.phoneNumberId,
-
         to: message.phoneNormalized,
-
         body: text,
       });
 
@@ -187,7 +165,6 @@ export class MessageSenderService {
           where: {
             id: message.id,
           },
-
           select: {
             processedAt: true,
           },
@@ -208,25 +185,15 @@ export class MessageSenderService {
 
           data: {
             status: 'SENT',
-
             providerId: providerMessageId,
-
             providerStatus: 'accepted',
-
             providerTimestamp,
-
             providerRawResponse,
-
             sentAt: new Date(),
-
             processingStartedAt: null,
-
             nextRetryAt: null,
-
             lastEventType: 'SENT',
-
             error: null,
-
             processedAt: alreadyProcessed?.processedAt
               ? alreadyProcessed.processedAt
               : new Date(),
@@ -241,7 +208,6 @@ export class MessageSenderService {
             where: {
               id: message.campaignId,
             },
-
             data: {
               processedContacts: {
                 increment: 1,
@@ -274,13 +240,18 @@ export class MessageSenderService {
       /**
        * COMPLETION CHECK
        */
-      await this.campaignCompleteEngine.checkCompletion(message.campaignId);
+      const duration = Date.now() - startTime;
+      await this.metricsService.recordMessage(
+        message.campaignId,
+        'SENT',
+        duration,
+      );
+      return message.id;
     } catch (error) {
       /**
        * CLASSIFICA ERRO
        */
       const errorType = this.errorClassifier.classify(error);
-
       const errorMessage =
         error instanceof Error ? error.message : 'Unknown error';
 
@@ -294,9 +265,7 @@ export class MessageSenderService {
       await this.prisma.messageEvent.create({
         data: {
           messageId: message.id,
-
           type: 'FAILED',
-
           providerPayload: {
             error: errorMessage,
             errorType,
@@ -304,6 +273,12 @@ export class MessageSenderService {
         },
       });
 
+      await this.metricsService.recordMessage(
+        message.campaignId,
+        'FAILED',
+        Date.now() - startTime,
+        errorType,
+      );
       /**
        * RETRY COUNT
        */
@@ -347,18 +322,13 @@ export class MessageSenderService {
           where: {
             id: message.id,
           },
-
           data: {
             status: 'RETRYING',
-
             retryCount: {
               increment: 1,
             },
-
             nextRetryAt: new Date(Date.now() + retryDelay),
-
             processingStartedAt: null,
-
             error: errorMessage,
           },
         });
@@ -409,11 +379,8 @@ export class MessageSenderService {
       id: string;
       campaignId: string;
     };
-
     errorMessage: string;
-
     connectionId?: string;
-
     disconnectConnection?: boolean;
   }) {
     const { message, errorMessage, connectionId, disconnectConnection } =
@@ -427,7 +394,6 @@ export class MessageSenderService {
         where: {
           id: message.id,
         },
-
         select: {
           processedAt: true,
         },
@@ -458,15 +424,10 @@ export class MessageSenderService {
 
         data: {
           status: 'FAILED',
-
           processingStartedAt: null,
-
           error: errorMessage,
-
           nextRetryAt: null,
-
           lastEventType: 'FAILED',
-
           processedAt: alreadyProcessed?.processedAt
             ? alreadyProcessed.processedAt
             : new Date(),
@@ -494,7 +455,6 @@ export class MessageSenderService {
     /**
      * COMPLETION CHECK
      */
-    await this.campaignCompleteEngine.checkCompletion(message.campaignId);
   }
 
   /**
@@ -559,18 +519,12 @@ export class MessageSenderService {
         where: {
           id: message.id,
         },
-
         data: {
           status: 'FAILED',
-
           processingStartedAt: null,
-
           nextRetryAt: null,
-
           error: errorMessage,
-
           lastEventType: 'FAILED',
-
           processedAt: alreadyProcessed ? message.processedAt : new Date(),
         },
       });
@@ -592,10 +546,5 @@ export class MessageSenderService {
         });
       }
     });
-
-    /**
-     * COMPLETION CHECK
-     */
-    await this.campaignCompleteEngine.checkCompletion(campaignId);
   }
 }

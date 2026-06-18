@@ -27,7 +27,6 @@ export class CampaignBatchConsumer extends WorkerHost {
 
   async process(job: Job<{ batchId: string }>) {
     const { batchId } = job.data;
-
     const lockToken = randomUUID();
 
     const lock = await this.prisma.campaignBatch.updateMany({
@@ -37,7 +36,6 @@ export class CampaignBatchConsumer extends WorkerHost {
           in: ['PENDING', 'QUEUED', 'FAILED'],
         },
       },
-
       data: {
         status: BatchStatus.RUNNING,
         startedAt: new Date(),
@@ -54,19 +52,6 @@ export class CampaignBatchConsumer extends WorkerHost {
     if (lock.count === 0) {
       return;
     }
-
-    const heartbeat = setInterval(() => {
-      void this.prisma.campaignBatch.updateMany({
-        where: {
-          id: batchId,
-          lockToken,
-        },
-
-        data: {
-          lastHeartbeatAt: new Date(),
-        },
-      });
-    }, 5000);
 
     try {
       const batch = await this.prisma.campaignBatch.findUnique({
@@ -102,7 +87,6 @@ export class CampaignBatchConsumer extends WorkerHost {
           where: {
             id: batch.id,
           },
-
           data: {
             status: BatchStatus.FAILED,
             error: 'No contacts found',
@@ -112,14 +96,11 @@ export class CampaignBatchConsumer extends WorkerHost {
             lastHeartbeatAt: null,
           },
         });
-
         return;
       }
 
       const generationKey = randomUUID();
-
       const queuedAt = new Date();
-
       const messages: Prisma.CampaignMessageCreateManyInput[] = contacts.map(
         (item) => {
           const finalMessage = this.variableResolver.resolve(
@@ -136,24 +117,15 @@ export class CampaignBatchConsumer extends WorkerHost {
 
           return {
             generationKey,
-
             campaignId: batch.campaign.id,
             batchId: batch.id,
-
             workspaceId: batch.campaign.workspaceId,
-
             contactId: item.contact.id,
-
             sellerId: item.sellerId ?? null,
-
-            senderNumberId: batch.campaign.senderNumberId ?? null,
-
+            senderNumberId: null,
             phoneNormalized: item.contact.phoneNormalized,
-
             status: MessageStatus.QUEUED,
-
             queuedAt,
-
             providerPayload,
           };
         },
@@ -169,20 +141,20 @@ export class CampaignBatchConsumer extends WorkerHost {
         generationKey,
       });
 
+      await this.queueEngine.enqueueCampaignCompletion({
+        campaignId: batch.campaign.id,
+        delay: 5000,
+      });
+
       await this.prisma.campaignBatch.update({
         where: {
           id: batch.id,
         },
-
         data: {
           status: BatchStatus.FINISHED,
-
           processedCount: contacts.length,
-
           successCount: contacts.length,
-
           finishedAt: new Date(),
-
           lockToken: null,
           lockedAt: null,
           lastHeartbeatAt: null,
@@ -198,12 +170,9 @@ export class CampaignBatchConsumer extends WorkerHost {
           id: batchId,
           lockToken,
         },
-
         data: {
           status: BatchStatus.FAILED,
-
           error: error instanceof Error ? error.message : 'Unknown error',
-
           lockToken: null,
           lockedAt: null,
           lastHeartbeatAt: null,
@@ -211,8 +180,6 @@ export class CampaignBatchConsumer extends WorkerHost {
       });
 
       throw error;
-    } finally {
-      clearInterval(heartbeat);
     }
   }
 }

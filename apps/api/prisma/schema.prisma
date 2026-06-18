@@ -201,6 +201,8 @@ model CampaignMessage {
   chatwootConversationId Int?
   chatwootInboxId        Int?
 
+  metaMessageId          String?           @unique
+
   lastEventType          MessageEventType?
   queuedAt               DateTime?
   sentAt                 DateTime?
@@ -368,6 +370,7 @@ model SenderNumber {
   status       String
   
   qualityScore Float             @default(1.0)
+  messagingTier   String?     
   maxPerSecond Int               @default(20)
   
   lockedAt     DateTime?
